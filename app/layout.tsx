@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { socialImage } from "@/lib/social-image";
 import { Analytics } from "@vercel/analytics/next";
 import { Poppins, Caveat } from "next/font/google";
 import { Header } from "@/components/layout/header";
@@ -40,9 +41,11 @@ export const metadata: Metadata = {
     title: "Dicode · De votre idée à un site prêt pour vos clients",
     description: site.description,
     url: "/",
+    images: [socialImage],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
+    images: [socialImage],
     title: "Dicode · Développement web & SaaS",
     description: site.description,
   },

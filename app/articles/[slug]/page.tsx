@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social-image";
 import { notFound } from "next/navigation";
 import { articles } from "@/lib/articles";
 import { site } from "@/lib/site";
@@ -26,6 +27,7 @@ export async function generateMetadata({
       publishedTime: a.publishedAt,
       modifiedTime: a.updatedAt,
       authors: [site.person],
+      images: [socialImage],
     },
     twitter: { title: a.fr.title, description: a.fr.description },
   };

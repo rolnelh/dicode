@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social-image";
 import { ArticleList } from "@/components/articles/article-list";
 export const metadata: Metadata = {
   title: "Articles · QA, VibenGo et développement web",
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     description:
       "Qualité web, VibenGo et développement : des repères pratiques.",
     url: "/articles",
+    images: [socialImage],
   },
 };
 export default function Articles() {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social-image";
 import { notFound } from "next/navigation";
 import { projects } from "@/lib/content";
 import { ProjectDetail } from "@/components/projects/project-detail";
@@ -21,8 +22,9 @@ export async function generateMetadata({
       title: `${p.name} | Dicode`,
       description: p.summary,
       url: `/projets/${p.slug}`,
+      images: [socialImage],
     },
-    twitter: { title: `${p.name} | Dicode`, description: p.summary },
+    twitter: { title: `${p.name} | Dicode`, description: p.summary, images: [socialImage] },
   };
 }
 export default async function Project({

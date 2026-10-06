@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social-image";
 import { ContactContent } from "@/components/contact/contact-content";
 export const metadata: Metadata = {
   title: "Contact · Parlons de votre projet web",
@@ -10,10 +11,12 @@ export const metadata: Metadata = {
     description:
       "Création de site, refonte ou interface SaaS : présentez votre besoin à Dieudonné.",
     url: "/contact",
+    images: [socialImage],
   },
   twitter: {
     title: "Parlons de votre projet web | Dicode",
     description: "Création de site, refonte ou interface SaaS.",
+    images: [socialImage],
   },
 };
 export default function Contact() {

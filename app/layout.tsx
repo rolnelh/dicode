@@ -26,6 +26,9 @@ export const metadata: Metadata = {
     template: "%s | Dicode",
   },
   description: site.description,
+  verification: {
+    google: "_M81974KQb_dBv3rXZBgunEoqTN5dL7bHQHXkLisgRQ",
+  },
   alternates: { canonical: "/" },
   authors: [{ name: site.person }],
   creator: site.person,

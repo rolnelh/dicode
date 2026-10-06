@@ -1,0 +1,107 @@
+import type { Metadata, Viewport } from "next";
+import { Poppins, Caveat } from "next/font/google";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { site } from "@/lib/site";
+import "./globals.css";
+import { LanguageProvider } from "@/components/language-provider";
+import { SkipLink } from "@/components/skip-link";
+import { ResourceWidget } from "@/components/resource-widget";
+const sans = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+  display: "swap",
+});
+const hand = Caveat({
+  subsets: ["latin"],
+  weight: "500",
+  variable: "--font-hand",
+  display: "swap",
+});
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: "Dicode | Développeur web au Bénin · Sites & SaaS",
+    template: "%s | Dicode",
+  },
+  description: site.description,
+  alternates: { canonical: "/" },
+  authors: [{ name: site.person }],
+  creator: site.person,
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: site.name,
+    title: "Dicode · De votre idée à un site prêt pour vos clients",
+    description: site.description,
+    url: "/",
+  },
+  twitter: {
+    card: "summary",
+    title: "Dicode · Développement web & SaaS",
+    description: site.description,
+  },
+  icons: { icon: "/favicon.svg" },
+};
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#FAFAF7",
+};
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const json = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${site.url}/#person`,
+        name: site.person,
+        alternateName: "Dicode",
+        url: site.url,
+        image: `${site.url}/images/dieudonne.jpeg`,
+        jobTitle: "Développeur web",
+        description: site.description,
+        knowsAbout: [
+          "Développement web",
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Interfaces SaaS",
+        ],
+        sameAs: [site.github, site.linkedin, site.threads, site.dribbble],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${site.url}/#website`,
+        url: site.url,
+        name: "Dicode",
+        inLanguage: ["fr", "en"],
+        publisher: { "@id": `${site.url}/#person` },
+      },
+    ],
+  };
+  return (
+    <html lang="fr" className={`${sans.variable} ${hand.variable}`}>
+      <body>
+        <LanguageProvider>
+          <SkipLink />
+          <Header />
+          <main id="contenu">{children}</main>
+          <Footer />
+          <ResourceWidget />
+        </LanguageProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(json).replace(/</g, "\\u003c"),
+          }}
+        />
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,25 @@
+# Dicode — Dieudonné Houndagnon
+
+> Portfolio professionnel d’un développeur web basé au Bénin, avec plus de trois années d’expérience. Création, refonte et finalisation de sites web et interfaces SaaS.
+
+## Informations
+- Nom : Dieudonné Houndagnon
+- Marque : Dicode
+- Compétences : React, Next.js, TypeScript, Tailwind CSS, intégration d’API, interfaces responsive.
+- Cofondateur de VibenGo, marketing et acquisition.
+- Contact : houndagnondieudonne4@gmail.com
+
+## Pages
+- [Accueil](/) : services, méthode de travail, présentation et projets.
+- [Contact](/contact) : demande de projet.
+- [Vidmake](/projets/vidmake) : prototype, aperçu illustratif et direction visuelle.
+- [MeFolio](/projets/mefolio) : plateforme créative.
+- [L’Expo](/projets/lexpo) : galerie numérique pour les artisans ; visuel de présentation repris du portfolio d’origine.
+- [Gozem](/projets/gozem) : concept de refonte indépendant, sans commande client ou affiliation officielle revendiquée.
+
+
+## Articles
+- [Articles](/articles) : guides et perspectives sur la qualité web, le produit et le développement.
+- [QA avant publication](/articles/checklist-qa-avant-mise-en-ligne) : checklist de parcours, erreurs, mobile et accessibilité.
+- [VibenGo et les tests QA](/articles/vibengo-tests-qa-produits-web) : présentation du service et démarche de correction, avec rôle de cofondateur déclaré.
+- [Création web avec l’IA](/articles/creation-web-ia-du-prototype-au-site-fiable) : une méthode de développement et de vérification.

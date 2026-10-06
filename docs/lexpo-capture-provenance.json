@@ -1,0 +1,62 @@
+{
+  "capturedDate": "2026-10-06",
+  "method": "Unmodified real browser screenshots of public L’Expo pages; no sign-in, submission or payment.",
+  "assets": [
+    {
+      "asset": "/images/lexpo/home.jpg",
+      "sourceUrl": "https://lexpo-gallery.vercel.app/",
+      "section": "Accueil",
+      "width": 1165,
+      "height": 747,
+      "sha256": "f518fd2e0b390d1058472cc7dd3d5202a6911d3149d095e9997c749d40f21dc5"
+    },
+    {
+      "asset": "/images/lexpo/home-full.jpg",
+      "sourceUrl": "https://lexpo-gallery.vercel.app/",
+      "section": "Accueil complet",
+      "width": 1165,
+      "height": 5219,
+      "sha256": "e85918bfd1d87f1fa48895ff01653934601ec4618fdbd6bf3600dd1902da41e2"
+    },
+    {
+      "asset": "/images/lexpo/explorer-mode-lin.jpg",
+      "sourceUrl": "https://lexpo-gallery.vercel.app/explorer",
+      "section": "Filtre Mode & Lin",
+      "width": 1165,
+      "height": 909,
+      "sha256": "65e351ad3f0340f15b6a380d13eee5787ce68f469ac0d26c3f0804102d035e59"
+    },
+    {
+      "asset": "/images/lexpo/artisans.jpg",
+      "sourceUrl": "https://lexpo-gallery.vercel.app/artisans",
+      "section": "Annuaire",
+      "width": 1165,
+      "height": 747,
+      "sha256": "2ce8805c359d2db6c549856301157e85f631ed985aa031e35ef6517019c65d88"
+    },
+    {
+      "asset": "/images/lexpo/artisans-full.jpg",
+      "sourceUrl": "https://lexpo-gallery.vercel.app/artisans",
+      "section": "Annuaire complet",
+      "width": 1165,
+      "height": 2656,
+      "sha256": "6b74e952a0fc842c9470009d1a7eec39bdce4086a78f51e20f19aa3c58df2230"
+    },
+    {
+      "asset": "/images/lexpo/dashboard.jpg",
+      "sourceUrl": "https://lexpo-gallery.vercel.app/dashboard",
+      "section": "Aperçu",
+      "width": 1165,
+      "height": 747,
+      "sha256": "b15c368ed87bd965d67e866fbffde939cc497a87adf1f4dbac61b4aa96b64a1b"
+    },
+    {
+      "asset": "/images/lexpo/dashboard-plans.jpg",
+      "sourceUrl": "https://lexpo-gallery.vercel.app/dashboard",
+      "section": "Mon Abonnement",
+      "width": 1165,
+      "height": 1099,
+      "sha256": "3afe88c4f5e9dfedba0b441444bb0c00d8accf7a8a4ae052e3a6eb9ae162413c"
+    }
+  ]
+}

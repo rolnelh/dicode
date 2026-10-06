@@ -1,0 +1,5 @@
+import Image from 'next/image';
+import type { Capture } from './dashboard-mockup';
+function BrowserBar(){return <div className="layered-browser-bar" aria-hidden="true"><span className="browser-dots"><i/><i/><i/></span><span className="browser-nav">‹　›</span><span className="browser-address">lexpo-gallery.vercel.app</span><span className="browser-plus">＋</span></div>;}
+/** Two real page captures overlap; only the presentation frame is invented. */
+export function LayeredPageMockup({project}:{project:Capture & {secondaryImage?: Capture}}){const back=project.secondaryImage||project;return <div className="project-art layered-page-scene"><div className="layered-page-panel page-panel-back" aria-hidden="true"><Image src={back.image} alt="" width={back.imageWidth} height={back.imageHeight} sizes="(max-width:700px) 50vw, 40vw"/></div><div className="layered-page-panel page-panel-front"><BrowserBar/><Image src={project.image} alt={project.imageAlt} width={project.imageWidth} height={project.imageHeight} sizes="(max-width:700px) 80vw, 60vw"/></div></div>;}

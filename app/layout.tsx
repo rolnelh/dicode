@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Poppins, Caveat } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -104,6 +105,8 @@ export default function RootLayout({
             __html: JSON.stringify(json).replace(/</g, "\\u003c"),
           }}
         />
+
+        <Analytics />
       </body>
     </html>
   );

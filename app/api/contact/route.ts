@@ -2,13 +2,21 @@ import { NextResponse } from "next/server";
 import { needs } from "@/lib/content";
 import { site } from "@/lib/site";
 export const runtime = "nodejs";
+
 export async function POST(request: Request) {
-  if (!process.env.RESEND_API_KEY || !process.env.CONTACT_FROM)
+  const endpoint = process.env.FORMSPREE_ENDPOINT?.trim();
+
+  if (
+    !endpoint ||
+    !/^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(endpoint)
+  )
     return NextResponse.json(
       { error: "Envoi non configuré. Utilisez le lien e-mail direct." },
       { status: 503 },
     );
-  if (request.headers.get("origin") !== new URL(request.url).origin)
+
+  const origin = new URL(request.url).origin;
+  if (request.headers.get("origin") !== origin)
     return NextResponse.json(
       { error: "Origine non autorisée." },
       { status: 403 },
@@ -54,22 +62,50 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   try {
-    const response = await fetch("https://api.resend.com/emails", {
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        Accept: "application/json",
         "Content-Type": "application/json",
+        Referer: `${origin}/contact`,
       },
       body: JSON.stringify({
-        from: process.env.CONTACT_FROM,
-        to: [process.env.CONTACT_TO || site.email],
-        reply_to: email,
+        name,
+        email,
+        need,
+        budget,
+        message,
         subject: `Projet Dicode · ${need}`,
-        text: `Nom : ${name}\nE-mail : ${email}\nBesoin : ${need}\nBudget : ${budget}\n\n${message}`,
       }),
+      redirect: "error",
       signal: AbortSignal.timeout(10000),
     });
-    if (!response.ok) throw new Error("Delivery failed");
+
+    if (response.status === 429)
+      return NextResponse.json(
+        { error: "Trop de tentatives. Réessayez plus tard." },
+        { status: 429 },
+      );
+
+    if (!response.ok) {
+      console.error("Formspree HTTP error:", response.status);
+      throw new Error("Formspree request failed");
+    }
+
+    const result: unknown = await response.json();
+
+    if (
+      !result ||
+      typeof result !== "object" ||
+      Array.isArray(result) ||
+      "error" in result ||
+      "errors" in result ||
+      !("next" in result) ||
+      typeof result.next !== "string"
+    ) {
+      throw new Error("Unconfirmed Formspree submission");
+    }
+
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json(

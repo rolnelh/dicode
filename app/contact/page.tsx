@@ -20,8 +20,6 @@ export const metadata: Metadata = {
   },
 };
 export default function Contact() {
-  const enabled = Boolean(
-    process.env.RESEND_API_KEY && process.env.CONTACT_FROM,
-  );
+  const enabled = Boolean(process.env.FORMSPREE_ENDPOINT?.trim());
   return <ContactContent deliveryEnabled={enabled} />;
 }

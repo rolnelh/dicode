@@ -36,6 +36,7 @@ export type ProjectGalleryView = {
 
 export type Project = {
   slug: string;
+  platform?: "web" | "mobile";
   name: string;
   category: string;
   summary: string;
@@ -188,6 +189,62 @@ export const projects: readonly Project[] = [
     tags: ["UI/UX", "Refonte web", "Intégration"],
     url: "https://rolnelh.github.io/gozem-refonte/",
     note: "Refonte personnelle publiée sur GitHub Pages. Cette présentation ne revendique ni commande client ni affiliation officielle avec Gozem.",
+  },
+  {
+    "slug": "post",
+    "platform": "mobile",
+    "name": "Post",
+    "category": "Application mobile · Prototype en cours",
+    "summary": "Explorer la création et la planification de contenus dans un prototype mobile.",
+    "description": "Post explore la création et la planification de contenus pour les réseaux sociaux dans une interface mobile. Le prototype réunit un splashscreen, un onboarding en trois étapes et un accueil de démonstration. Les maquettes de création, de calendrier et de landing page prolongent cette direction visuelle.",
+    "image": "/images/post/onboarding.png",
+    "imageAlt": "Maquette de présentation Post : trois écrans d’onboarding pour créer, planifier et diffuser des contenus",
+    "imageWidth": 1536,
+    "imageHeight": 1024,
+    "kind": "presentation",
+    "tags": [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "NativeWind"
+    ],
+    "url": null,
+    "note": "Prototype mobile en cours. Les visuels sont des maquettes ; la création, le calendrier et la publication sur les réseaux ne sont pas encore fonctionnels.",
+    "gallery": [
+      {
+        "image": "/images/post/splash.png",
+        "imageWidth": 1024,
+        "imageHeight": 1536,
+        "title": "Une entrée centrée sur la marque",
+        "titleEn": "A brand-focused welcome",
+        "imageAlt": "Maquette du splashscreen Post avec son logo bleu et son crayon sur fond lilas clair",
+        "imageAltEn": "Post splash-screen mockup with its blue logo and pencil on a light lilac background",
+        "caption": "Maquette du splashscreen : logo bleu, crayon et fond lilas clair.",
+        "captionEn": "Splash-screen mockup: blue logo, pencil and light lilac background."
+      },
+      {
+        "image": "/images/post/creation-calendrier.png",
+        "imageWidth": 1536,
+        "imageHeight": 1024,
+        "title": "Créer et planifier : la direction envisagée",
+        "titleEn": "Creating and scheduling: the intended direction",
+        "imageAlt": "Maquettes Post de création de contenu et de calendrier avec des données de démonstration",
+        "imageAltEn": "Post content-creation and calendar mockups with demonstration data",
+        "caption": "Création et calendrier : maquettes statiques avec des données de démonstration.",
+        "captionEn": "Creation and calendar: static mockups with demonstration data."
+      },
+      {
+        "image": "/images/post/landing-maquette.png",
+        "imageWidth": 941,
+        "imageHeight": 1672,
+        "title": "Présenter le concept sur le web",
+        "titleEn": "Introducing the concept on the web",
+        "imageAlt": "Maquette de landing page Post présentant le concept de création et de planification de contenus",
+        "imageAltEn": "Post landing-page mockup introducing the content-creation and scheduling concept",
+        "caption": "Landing page : maquette de présentation du concept, sans liste d’attente connectée.",
+        "captionEn": "Landing page: a concept presentation mockup, without a connected waitlist."
+      }
+    ]
   },
 ];
 export const needs = [

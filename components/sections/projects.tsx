@@ -2,7 +2,7 @@
 import { ProjectMockup } from "@/components/projects/project-mockup";
 import Link from "next/link";
 import { ArrowUpRight, MessageCircle } from "lucide-react";
-import { projects } from "@/lib/content";
+import { projects, type Project } from "@/lib/content";
 import { useLanguage } from "@/components/language-provider";
 import { copy, getLocalizedProject } from "@/lib/localized-content";
 import { Sparks } from "@/components/ui/decorations";
@@ -13,12 +13,31 @@ export function ProjectImage({
 }) {
   return <ProjectMockup project={project} />;
 }
+function ProjectCard({ project, mobile = false }: { project: Project; mobile?: boolean }) {
+  const Heading = mobile ? "h4" : "h3";
+  return (
+    <Link className="project-card" href={`/projets/${project.slug}`}>
+      <ProjectImage project={project} />
+      <div className="project-meta">
+        <div>
+          <Heading>{project.name}</Heading>
+          <p>{project.category}</p>
+        </div>
+        <span className="circle-arrow">
+          <ArrowUpRight size={22} />
+        </span>
+      </div>
+    </Link>
+  );
+}
 export function Projects() {
   const { language } = useLanguage();
   const text = copy[language].projects;
   const localizedProjects = projects.map((project) =>
     getLocalizedProject(project, language),
   );
+  const webProjects = localizedProjects.filter((project) => project.platform !== "mobile");
+  const mobileProjects = localizedProjects.filter((project) => project.platform === "mobile");
   return (
     <section id="projets" className="projects wrap section-anchor">
       <div className="section-heading">
@@ -32,25 +51,20 @@ export function Projects() {
         <span className="hand">{text.hand}</span>
       </div>
       <div className="project-grid">
-        {localizedProjects.map((p) => (
-          <Link
-            className="project-card"
-            key={p.slug}
-            href={`/projets/${p.slug}`}
-          >
-            <ProjectImage project={p} />
-            <div className="project-meta">
-              <div>
-                <h3>{p.name}</h3>
-                <p>{p.category}</p>
-              </div>
-              <span className="circle-arrow">
-                <ArrowUpRight size={22} />
-              </span>
-            </div>
-          </Link>
+        {webProjects.map((project) => (
+          <ProjectCard key={project.slug} project={project} />
         ))}
       </div>
+      {mobileProjects.length > 0 && (
+        <section id="projets-mobiles" className="mobile-projects section-anchor" aria-labelledby="mobile-projects-title">
+          <h3 id="mobile-projects-title">{text.mobileTitle}</h3>
+          <div className="project-grid">
+            {mobileProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} mobile />
+            ))}
+          </div>
+        </section>
+      )}
       <div className="project-bottom">
         <p>
           {text.bottom[0]}

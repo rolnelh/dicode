@@ -116,7 +116,7 @@ for (const project of projects) {
   for (const font of craft.fonts) assert.ok(html.includes(font.name));
  }
 }
-console.log('PASS: six bilingual case-detail panels, design choices, typography labels and accessible HEX palettes.');
+console.log(`PASS: ${projects.length} bilingual case-detail panels, design choices, typography labels and accessible HEX palettes.`);
 
 // Run the form handler with controlled hook state and DOM-like test inputs.
 let language='en'; const formStates=[]; let cursor=0;

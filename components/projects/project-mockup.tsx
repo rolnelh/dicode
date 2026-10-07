@@ -33,9 +33,9 @@ export function ProjectMockup({ project }: { project: MockupProject }) {
         />
       </div>
     );
-  if (project.slug === "gozem")
+  if (project.slug === "post" || project.slug === "gozem")
     return (
-      <div className="project-art presentation-mosaic">
+      <div className={`project-art presentation-mosaic${project.slug === "post" ? " post-presentation" : ""}`}>
         <Image
           src={project.image}
           alt={project.imageAlt}

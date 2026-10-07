@@ -12,7 +12,7 @@ async function readFile(file, encoding) {
   // Next.js server builds encode local image paths inside optimisation URLs.
   return typeof content === "string" ? content.replaceAll("%2F", "/") : content;
 }
-const slugs = ["dicode-portfolio", "rynva", "mefolio", "quebec-signature", "lexpo", "gozem"];
+const slugs = ["dicode-portfolio", "rynva", "mefolio", "quebec-signature", "lexpo", "gozem", "post"];
 const home = await readFile("out/index.html", "utf8");
 for (const slug of slugs) {
   assert.ok(home.includes(`/projets/${slug}`), `Accueil : lien ${slug}`);
@@ -31,9 +31,9 @@ assert.ok(gozem.includes("Refonte indépendante"));
 assert.ok(!gozem.includes("Découvrir MeFolio"));
 assert.ok(!expo.includes("Découvrir MeFolio"));
 const sitemap = await readFile("out/sitemap.xml", "utf8");
-assert.equal((sitemap.match(/<loc>/g) || []).length, 12);
+assert.equal((sitemap.match(/<loc>/g) || []).length, 13);
 for (const slug of slugs) assert.ok(sitemap.includes(`/projets/${slug}`));
-console.log("6 projets, 6 fiches, images et liens, 12 URL sitemap vérifiés.");
+console.log("7 projets, 7 fiches, images et liens, 13 URL sitemap vérifiés.");
 const mefolio = await readFile("out/projets/mefolio/index.html", "utf8");
 assert.ok(mefolio.includes("/images/mefolio-dashboard.png"));
 const quebec = await readFile(
@@ -95,7 +95,7 @@ for (const slug of slugs) {
   if(pending) pendingDetails.push(slug);
   assert.ok(allowPending || !pending, `${slug}: unresolved role/stack must never be published`);
 }
-console.log(pendingDetails.length ? `DRAFT ONLY: waiting for role/stack details in ${pendingDetails.join(', ')}. Publishing remains blocked.` : 'Six exported project pages include resolved roles, design details and palettes.');
+console.log(pendingDetails.length ? `DRAFT ONLY: waiting for role/stack details in ${pendingDetails.join(', ')}. Publishing remains blocked.` : 'Seven exported project pages include resolved roles, design details and palettes.');
 assert.ok(mefolio.includes('Voir la capture complète en grand'));
 assert.ok(mefolio.includes('Voir le mockup en pleine résolution'));
 assert.ok(portfolio.includes('Voir le mockup en pleine résolution'));

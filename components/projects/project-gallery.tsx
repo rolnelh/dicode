@@ -5,12 +5,13 @@ import type { Project } from "@/lib/content";
 export function ProjectGallery({ project, language }: { project: Project; language: Language }) {
   if (!project.gallery?.length) return null;
   const isExpo = project.slug === "lexpo";
+  const isPost = project.slug === "post";
   const french = language === "fr";
   const headingId = `${project.slug}-gallery-title`;
 
   return (
     <section
-      className={`project-gallery${isExpo ? " project-gallery-pages" : ""}`}
+      className={`project-gallery${isExpo ? " project-gallery-pages" : ""}${isPost ? " project-gallery-post" : ""}`}
       aria-labelledby={headingId}
     >
       <h2 id={headingId}>
@@ -28,7 +29,9 @@ export function ProjectGallery({ project, language }: { project: Project; langua
       {project.gallery.map((view, index) => {
         const title = french ? view.title : view.titleEn;
         const fullImage = view.fullImage || view.image;
-        const openLabel = view.fullImage
+        const openLabel = isPost
+          ? french ? "Ouvrir la maquette en grand" : "Open the full-size mockup"
+          : view.fullImage
           ? french ? "Ouvrir la page complète en grand" : "Open the full-page screenshot"
           : french ? "Ouvrir la capture en grand" : "Open the full-size screenshot";
         return (

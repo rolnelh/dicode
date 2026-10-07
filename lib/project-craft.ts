@@ -21,6 +21,104 @@ export type ProjectCraftDetails = {
 
 /** Scope and exact values are grounded in project source or qualified observations. */
 export const projectCraft: Record<string, ProjectCraftDetails> = {
+  post: {
+    "technologies": [
+      "React Native",
+      "Expo 57",
+      "TypeScript",
+      "NativeWind",
+      "AsyncStorage"
+    ],
+    "fonts": [
+      {
+        "name": "Inter",
+        "usage": {
+          "fr": "Interface mobile · 400, 500, 600 et 700",
+          "en": "Mobile interface · 400, 500, 600 and 700"
+        }
+      }
+    ],
+    "palette": [
+      {
+        "hex": "#0862F8",
+        "name": {
+          "fr": "Bleu principal",
+          "en": "Primary blue"
+        }
+      },
+      {
+        "hex": "#F3F3FA",
+        "name": {
+          "fr": "Lilas clair",
+          "en": "Light lilac"
+        }
+      },
+      {
+        "hex": "#171719",
+        "name": {
+          "fr": "Encre",
+          "en": "Ink"
+        }
+      },
+      {
+        "hex": "#656571",
+        "name": {
+          "fr": "Gris de lecture",
+          "en": "Body grey"
+        }
+      },
+      {
+        "hex": "#DDDDE8",
+        "name": {
+          "fr": "Bordures",
+          "en": "Borders"
+        }
+      }
+    ],
+    "sources": [],
+    "copy": {
+      "fr": {
+        "role": "Conception des interfaces et intégration mobile assistée par l’IA",
+        "design": [
+          {
+            "title": "Introduire le parcours en trois étapes",
+            "text": "Le splashscreen installe l’identité de Post. L’onboarding explique ensuite l’intention du produit : créer, planifier et diffuser ses contenus."
+          },
+          {
+            "title": "Relier identité et lisibilité",
+            "text": "Le bleu, les fonds lilas clairs, les boutons noirs et les illustrations 3D donnent une continuité aux écrans. Le crayon intégré au logo rappelle la création de contenu."
+          },
+          {
+            "title": "Un prototype navigable",
+            "text": "Le splashscreen, les trois étapes d’onboarding et l’accueil de démonstration forment le parcours actuel. La fin de l’onboarding est mémorisée localement et peut être réinitialisée."
+          }
+        ],
+        "stackNote": "Stack du prototype mobile. La persistance utilise AsyncStorage sur l’appareil ; les réseaux sociaux ne sont pas connectés.",
+        "fontNote": "Typographie utilisée dans le prototype mobile.",
+        "paletteNote": "Couleurs déclarées dans tailwind.config.js du prototype mobile."
+      },
+      "en": {
+        "role": "Interface design and AI-assisted mobile implementation",
+        "design": [
+          {
+            "title": "Introducing a three-step journey",
+            "text": "The splash screen establishes Post’s identity. Onboarding then introduces the product’s intended journey: creating, scheduling and distributing content."
+          },
+          {
+            "title": "Connecting identity and readability",
+            "text": "Blue, light lilac backgrounds, black buttons and 3D illustrations create continuity between screens. The pencil inside the logo refers to content creation."
+          },
+          {
+            "title": "A navigable prototype",
+            "text": "The splash screen, three onboarding steps and demo home screen form the current journey. Onboarding completion is stored locally and can be reset."
+          }
+        ],
+        "stackNote": "Mobile prototype stack. Persistence uses AsyncStorage on the device; social networks are not connected.",
+        "fontNote": "Typography used in the mobile prototype.",
+        "paletteNote": "Colours declared in the mobile prototype’s tailwind.config.js."
+      }
+    }
+  },
   "dicode-portfolio": {
     "technologies": [
       "Next.js 16",

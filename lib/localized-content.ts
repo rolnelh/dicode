@@ -8,6 +8,19 @@ type ProjectCopy = Pick<
   "category" | "summary" | "description" | "imageAlt" | "tags" | "note"
 >;
 const englishProjects: Record<string, ProjectCopy> = {
+  post: {
+    "category": "Mobile app · Prototype in progress",
+    "summary": "Exploring content creation and scheduling through a mobile prototype.",
+    "description": "Post explores content creation and scheduling for social networks through a mobile interface. The prototype includes a splash screen, a three-step onboarding flow and a demo home screen. Creation, calendar and landing-page mockups extend this visual direction.",
+    "imageAlt": "Post presentation mockup: three onboarding screens introducing content creation, scheduling and distribution",
+    "tags": [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "NativeWind"
+    ],
+    "note": "Mobile prototype in progress. The visuals are mockups; creation, scheduling and social publishing are not yet functional."
+  },
   "dicode-portfolio": {
     category: "Personal portfolio · Desktop & mobile",
     summary:
@@ -172,6 +185,7 @@ export const copy = {
     projects: {
       eyebrow: "SÉLECTION DE PROJETS",
       title: "Des projets, des univers singuliers.",
+      mobileTitle: "Projets mobiles",
       hand: "Un aperçu de mon univers.",
       bottom: [
         "Des interfaces pensées pour être",
@@ -288,6 +302,7 @@ export const copy = {
     projects: {
       eyebrow: "SELECTED PROJECTS",
       title: "Different projects. Distinctive worlds.",
+      mobileTitle: "Mobile projects",
       hand: "A glimpse into my world.",
       bottom: [
         "Interfaces designed to be",

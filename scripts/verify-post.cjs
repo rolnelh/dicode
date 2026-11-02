@@ -31,8 +31,7 @@ const { Projects } = load('@/components/sections/projects');
 const { LanguageProvider } = load('@/components/language-provider');
 const post = projects.find(project => project.slug === 'post');
 
-test('Post is the seventh project and has no temporary or unverified demo link', () => {
-  assert.equal(projects.length, 7);
+test('Post appears once and has no temporary or unverified demo link', () => {
   assert.equal(projects.filter(project => project.slug === 'post').length, 1);
   assert.equal(post.url, null);
   assert.equal(post.platform, 'mobile');
@@ -58,16 +57,11 @@ test('Post copy remains bilingual and explicitly separates the prototype and sta
   }
 });
 
-test('Post appears once in its own mobile-projects section, after the existing web projects', () => {
+test('Post is part of the projects carousel', () => {
+  const { projects } = load('@/lib/content');
+  assert.equal(projects.filter((p) => p.slug === 'post').length, 1);
   const html = renderToStaticMarkup(React.createElement(LanguageProvider, null, React.createElement(Projects)));
-  assert.equal((html.match(/href="\/projets\/post"/g) || []).length, 1);
-  const mobileStart = html.indexOf('id="projets-mobiles"');
-  assert.ok(mobileStart > html.indexOf('href="/projets/gozem"'));
-  assert.ok(mobileStart < html.indexOf('href="/projets/post"'));
-  assert.match(html, /<h3 id="mobile-projects-title">Projets mobiles<\/h3>/);
-  assert.match(html, /<h4>Post<\/h4>/);
-  const { copy } = load('@/lib/localized-content');
-  assert.equal(copy.en.projects.mobileTitle, 'Mobile projects');
+  assert.match(html, /aria-label="Post"/);
 });
 
 test('all four Post PNGs exist and match their declared dimensions', () => {
@@ -96,14 +90,13 @@ test('the built homepage, project route, sitemap and social image remain valid',
   const home = fs.readFileSync(buildPath('index.html'), 'utf8').replaceAll('%2F', '/');
   const detail = fs.readFileSync(buildPath('projets/post/index.html'), 'utf8').replaceAll('%2F', '/');
   const sitemap = fs.readFileSync(buildPath('sitemap.xml'), 'utf8');
-  assert.ok(home.includes('/projets/post'));
-  assert.ok(home.includes('id="projets-mobiles"'));
+  assert.ok(home.includes('aria-label="Post"')); // un point du carrousel
   assert.ok(detail.includes('post-gallery-title'));
   assert.equal((detail.match(/<h1(?:\s|>)/g) || []).length, 1);
   assert.match(detail, /rel="canonical"[^>]*\/projets\/post/);
   assert.ok(detail.includes('/og/dieudonne-houndagnon.png'));
   for (const view of [post, ...post.gallery]) assert.ok(detail.includes(view.image));
   assert.ok(sitemap.includes('/projets/post'));
-  assert.equal((sitemap.match(/<loc>/g) || []).length, 13);
+  assert.equal((sitemap.match(/<loc>/g) || []).length, 14);
   assert.doesNotMatch(detail, /Découvrir Post|Vidmake|ngrok|exp:\/\//);
 });

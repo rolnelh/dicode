@@ -42,6 +42,8 @@ export type Project = {
   summary: string;
   description: string;
   image: string;
+  /** Image affichée dans le carrousel de l'accueil (sinon on utilise "image"). */
+  cover?: string;
   imageAlt: string;
   imageWidth: number;
   imageHeight: number;
@@ -59,7 +61,25 @@ export type Project = {
 };
 export const projects: readonly Project[] = [
   {
+    slug: "baobab",
+    name: "Baobab",
+    category: "Site vitrine · Bandes dessinées",
+    summary:
+      "Des bandes dessinées pour tous, et des histoires qui vous ressemblent.",
+    description:
+      "Baobab présente des bandes dessinées pour les enfants comme pour les adultes, avec la possibilité de commander une BD personnalisée dont on devient le héros. L’accueil met en avant l’univers illustré, les BD disponibles et un parcours dédié aux parents.",
+    image: "/images/baobab.webp",
+    imageAlt:
+      "Page d’accueil Baobab : « Des bandes dessinées pour tous » et une famille qui lit une BD sur un canapé",
+    imageWidth: 1672,
+    imageHeight: 941,
+    kind: "presentation",
+    tags: ["Site vitrine", "UI design", "Responsive"],
+    url: "https://baobab-bd.vercel.app/",
+  },
+  {
     slug: "dicode-portfolio",
+    cover: "/images/dicode-macbook-presentation.png",
     name: "Dicode — Portfolio",
     category: "Portfolio personnel · Desktop & mobile",
     summary:
@@ -76,6 +96,7 @@ export const projects: readonly Project[] = [
   },
   {
     slug: "rynva",
+    cover: "/images/rynva-dashboard.png",
     name: "Rynva",
     category: "Interface créative · Dashboard",
     summary:
@@ -94,6 +115,7 @@ export const projects: readonly Project[] = [
   },
   {
     slug: "mefolio",
+    cover: "/images/mefolio-laptop-scene.png",
     name: "MeFolio",
     category: "Plateforme créative",
     summary: "Mettre les projets et le talent des créatifs au premier plan.",
@@ -150,6 +172,7 @@ export const projects: readonly Project[] = [
   },
   {
     slug: "lexpo",
+    cover: "/images/lexpo-hero.jpg",
     name: "L’Expo",
     category: "Galerie numérique · Artisans",
     summary:

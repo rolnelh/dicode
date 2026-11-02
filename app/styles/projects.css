@@ -1,0 +1,228 @@
+/* ===== Section projets en carrousel (components/sections/projects.tsx) ===== */
+
+.projects-v2 {
+  padding: 90px 0;
+}
+.projects-v2-box {
+  position: relative;
+  padding: 50px 0 56px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  overflow: hidden;
+}
+.projects-v2-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+}
+.projects-v2 h2 {
+  margin: 14px 0 40px;
+  padding: 0 20px;
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+/* --- Le carrousel --- */
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* La carte du projet affiché */
+.slide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+  width: min(760px, calc(100% - 32px));
+  flex-shrink: 0;
+  padding: 16px;
+  text-align: left;
+  background: #f6f5f9;
+  border-radius: 28px;
+  animation: fade 0.4s ease;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.slide-image {
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--lavender);
+}
+.slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.slide-category {
+  font-size: 0.78rem;
+  color: var(--purple);
+  font-weight: 500;
+}
+.slide h3 {
+  margin: 6px 0 10px;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.slide-summary {
+  font-size: 0.92rem;
+}
+.slide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.slide-link:hover {
+  color: var(--purple);
+}
+.slide-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 26px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+.slide-tags li {
+  padding: 4px 12px;
+  background: #fff;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* Les aperçus des projets précédent et suivant, sur les côtés */
+.peek {
+  flex-shrink: 0;
+  width: 220px;
+  height: 300px;
+  padding: 0;
+  border: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #f6f5f9;
+  opacity: 0.45;
+}
+.peek:hover {
+  opacity: 0.8;
+}
+.peek img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Les flèches rondes noires */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+}
+.arrow:hover {
+  background: var(--purple);
+}
+.arrow-left {
+  left: 24px;
+}
+.arrow-right {
+  right: 24px;
+}
+
+/* Les petits points */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 26px;
+}
+.dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 99px;
+  background: #d9d6e2;
+}
+.dots button.active {
+  width: 24px;
+  background: var(--purple);
+}
+
+/* Le bouton du bas */
+.projects-v2-cta {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 24px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 99px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.projects-v2-cta:hover {
+  background: var(--purple);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    animation: none;
+  }
+}
+
+/* Mobile : l'image passe au-dessus du texte, on cache les aperçus */
+@media (max-width: 800px) {
+  .projects-v2-box {
+    width: calc(100% - 24px);
+  }
+  .peek {
+    display: none;
+  }
+  .slide {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .slide-image {
+    aspect-ratio: 4 / 3;
+  }
+  .arrow {
+    top: 32%;
+  }
+  .arrow-left {
+    left: 8px;
+  }
+  .arrow-right {
+    right: 8px;
+  }
+}

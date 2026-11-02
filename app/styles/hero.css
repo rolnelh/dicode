@@ -1,0 +1,336 @@
+/* ===== Section d'accueil (components/sections/hero.tsx) ===== */
+
+.hero-v2 {
+  /* fond très légèrement quadrillé, comme sur le modèle */
+  background-color: #fafaf7;
+  background-image:
+    linear-gradient(#eeedf2 1px, transparent 1px),
+    linear-gradient(90deg, #eeedf2 1px, transparent 1px);
+  background-size: 48px 48px;
+  margin-top: -76px; /* le fond passe sous la nav */
+  padding-top: 120px;
+  overflow: hidden;
+}
+
+/* --- 1. Le titre --- */
+.hero-v2-top {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.hero-v2-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font-size: 0.8rem;
+  color: var(--ink);
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--purple);
+}
+.hero-v2 h1 {
+  position: relative;
+  display: inline-block;
+  margin-top: 18px;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
+}
+.hero-v2 h1 .name {
+  color: var(--purple);
+}
+.hero-v2 h1 .sparks {
+  position: absolute;
+  top: -10px;
+  right: -34px;
+  width: 26px;
+  color: var(--purple);
+}
+.hero-v2-subtitle {
+  margin-top: 12px;
+  font-size: 1.05rem;
+}
+
+/* Le badge rond qui tourne */
+.hero-v2-round {
+  position: absolute;
+  top: 40px;
+  right: 2%;
+  width: 116px;
+  height: 116px;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  border-radius: 50%;
+}
+.hero-v2-round .round-text {
+  position: absolute;
+  inset: 0;
+  fill: #fff;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  animation: spin 14s linear infinite;
+}
+.hero-v2-round .round-arrow {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: #fff;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- 2. Photo + colonnes gauche/droite --- */
+.hero-v2-middle {
+  display: grid;
+  grid-template-columns: 1fr 400px 1fr;
+  align-items: end;
+  gap: 24px;
+  margin-top: 10px;
+}
+.hero-v2-left,
+.hero-v2-right {
+  padding-bottom: 80px;
+}
+.hero-v2-right {
+  text-align: right;
+}
+.hero-v2-label {
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+.hero-v2-socials {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+.hero-v2-socials a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
+.hero-v2-socials a:hover {
+  background: var(--lavender);
+}
+.hero-v2-socials .brand-icon {
+  width: 18px;
+  height: 18px;
+}
+.hero-v2-stat {
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+.hero-v2-stat strong {
+  display: block;
+  color: var(--purple);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.hero-v2-quote {
+  font-family: var(--font-hand), cursive;
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.hero-v2-quote span {
+  color: var(--purple);
+  margin-right: 4px;
+}
+.hero-v2-text {
+  max-width: 260px;
+  margin: 10px 0 28px auto;
+  font-size: 0.9rem;
+}
+.hero-v2-skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  max-width: 280px;
+  margin-left: auto;
+  padding: 0;
+  list-style: none;
+}
+.hero-v2-skills li {
+  padding: 5px 14px;
+  border-radius: 99px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.hero-v2-skills .dark {
+  background: var(--ink);
+  color: #fff;
+}
+.hero-v2-skills .light {
+  background: var(--lavender);
+  color: var(--purple);
+}
+
+/* La photo et le grand cercle lavande derrière */
+.hero-v2-photo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.hero-v2-circle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 115%;
+  aspect-ratio: 1;
+  transform: translate(-50%, 32%);
+  background: var(--lavender);
+  border: 1px solid #e2dbf7;
+  border-radius: 50%;
+}
+.hero-v2-photo img {
+  position: relative; /* passe devant le cercle */
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Les deux boutons posés sur la photo */
+.hero-v2-buttons {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.btn-purple,
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 99px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.btn-purple {
+  background: var(--purple);
+  color: #fff;
+}
+.btn-purple:hover {
+  background: #6f52c0;
+}
+.btn-white {
+  background: #fff;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+}
+.btn-white:hover {
+  background: var(--lavender);
+}
+
+/* --- 3. La bande qui défile --- */
+.hero-v2-marquee {
+  position: relative;
+  background: var(--ink);
+  color: #fff;
+  border-bottom: 5px solid var(--purple);
+  padding: 16px 0;
+  overflow: hidden;
+}
+.hero-v2-marquee .track {
+  display: flex;
+  width: max-content;
+  animation: scroll 28s linear infinite;
+}
+.hero-v2-marquee span {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-right: 32px;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.hero-v2-marquee b {
+  color: var(--purple);
+}
+@keyframes scroll {
+  to {
+    transform: translateX(-50%); /* la liste est doublée, donc -50% = une boucle */
+  }
+}
+
+/* Si la personne a demandé moins d'animations, on arrête tout */
+@media (prefers-reduced-motion: reduce) {
+  .hero-v2-round .round-text,
+  .hero-v2-marquee .track {
+    animation: none;
+  }
+}
+
+/* --- Tablette et mobile : tout passe en une colonne --- */
+@media (max-width: 900px) {
+  .hero-v2-middle {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .hero-v2-photo {
+    width: min(400px, 100%);
+    order: -1; /* la photo passe en premier */
+  }
+  .hero-v2-left,
+  .hero-v2-right {
+    padding-bottom: 0;
+    text-align: center;
+  }
+  .hero-v2-socials,
+  .hero-v2-skills {
+    justify-content: center;
+    margin-inline: auto;
+  }
+  .hero-v2-text {
+    margin-inline: auto;
+  }
+  .hero-v2-right {
+    padding-bottom: 50px;
+  }
+  .hero-v2-round {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .hero-v2-buttons {
+    bottom: 14px;
+  }
+  .btn-purple,
+  .btn-white {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+  .hero-v2 h1 .sparks {
+    display: none;
+  }
+}

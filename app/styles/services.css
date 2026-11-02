@@ -1,0 +1,195 @@
+/* ===== Section services en timeline (components/sections/services.tsx) ===== */
+
+.services-v2 {
+  padding: 90px 0;
+  background: #fafaf7;
+}
+.services-v2-head {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 56px;
+}
+.services-v2-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+}
+.services-v2 h2 {
+  margin: 14px 0 12px;
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+/* --- La timeline --- */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+/* La ligne verticale au centre */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--line);
+}
+
+/* Une ligne = [icône] [point] [texte] */
+.timeline-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 24px;
+  border-radius: 24px;
+}
+/* Le premier service est mis en avant avec un fond gris */
+.timeline-row.highlight {
+  background: #efeef3;
+}
+
+/* Une ligne sur deux : le texte passe à gauche, l'icône à droite */
+.timeline-row.reverse .timeline-text-side {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+}
+.timeline-row.reverse .timeline-icon-side {
+  grid-column: 3;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+}
+
+.timeline-icon-side {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+}
+.timeline-icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: var(--ink);
+  color: #fff;
+}
+.timeline-number {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Le point sur la ligne */
+.timeline-point {
+  justify-self: center;
+  grid-column: 2;
+  grid-row: 1;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--purple);
+}
+
+.timeline-text-side h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.timeline-text-side p {
+  font-size: 0.9rem;
+}
+.timeline-tags {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 12px;
+  background: var(--lavender);
+  color: var(--purple);
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* --- Le bas de section --- */
+.services-v2-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px 24px;
+  margin-top: 48px;
+  font-size: 0.88rem;
+}
+.services-v2-footer > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+}
+.services-v2-footer svg {
+  color: var(--purple);
+}
+.services-v2-cta {
+  padding: 12px 24px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 99px;
+  font-weight: 500;
+}
+.services-v2-cta:hover {
+  background: var(--purple);
+}
+
+/* Mobile : la ligne passe à gauche et tout est aligné à gauche */
+@media (max-width: 700px) {
+  .timeline::before {
+    left: 27px;
+  }
+  .timeline-row,
+  .timeline-row.reverse {
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    padding: 20px 0;
+  }
+  .timeline-row.highlight {
+    padding: 20px 12px;
+    margin-inline: -12px;
+  }
+  .timeline-point {
+    display: none;
+  }
+  .timeline-row .timeline-icon-side,
+  .timeline-row.reverse .timeline-icon-side {
+    grid-column: 1;
+    grid-row: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .timeline-row .timeline-text-side,
+  .timeline-row.reverse .timeline-text-side {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+  }
+  .timeline-number {
+    background: #fafaf7;
+    padding: 2px 0;
+  }
+}

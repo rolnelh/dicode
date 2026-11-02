@@ -19,9 +19,6 @@ export function Services() {
     <section id="services" className="services-v2 section-anchor">
       <div className="wrap">
         <div className="services-v2-head">
-          <p className="services-v2-pill">
-            <span className="dot" /> {text.eyebrow}
-          </p>
           <h2>
             {text.title[0]} {text.title[1]}
           </h2>

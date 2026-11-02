@@ -38,7 +38,6 @@ export function Hero() {
         {/* 1. Le titre */}
         <div className="hero-v2-top">
           <p className="hero-v2-badge">
-            <span className="dot" />
             {en ? "Web developer based in Benin" : "Développeur web basé au Bénin"}
           </p>
           <h1>

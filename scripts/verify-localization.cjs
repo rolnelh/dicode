@@ -37,8 +37,8 @@ function keys(obj,prefix='') { return Object.entries(obj).flatMap(([k,v])=>typeo
 assert.deepEqual(keys(copy.fr),keys(copy.en));
 const {LanguageProvider} = load('@/components/language-provider');
 const subjects = [
- ['@/components/sections/services','Services',{},'MES SERVICES'],
- ['@/components/sections/process','Process',{},'Simple, clair, ensemble.'],
+ ['@/components/sections/services','Services',{},'Ce que je peux'],
+ ['@/components/sections/process','Process',{},'Comment se passe'],
  ['@/components/sections/projects','Projects',{},'Des projets, des univers singuliers.'],
  ['@/components/contact/contact-content','ContactContent',{deliveryEnabled:false},'Préparer mon message'],
  ['@/components/projects/project-detail','ProjectDetail',{project:projects[0]},'Tous les projets'],

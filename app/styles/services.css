@@ -9,20 +9,8 @@
   max-width: 620px;
   margin: 0 auto 56px;
 }
-.services-v2-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 14px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 99px;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  color: var(--ink);
-}
 .services-v2 h2 {
-  margin: 14px 0 12px;
+  margin: 0 0 12px;
   font-size: clamp(1.9rem, 4.5vw, 3rem);
   font-weight: 600;
   letter-spacing: -0.04em;

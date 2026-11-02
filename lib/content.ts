@@ -151,7 +151,7 @@ export const projects: readonly Project[] = [
     summary:
       "Repenser un site de déménagement pour clarifier l’offre et la prise de contact.",
     description:
-      "À partir du site Déménagement Québec Signature, j’ai repensé la hiérarchie de la page d’accueil, la navigation et la présentation des services. L’étude ci-dessous compare le site d’origine à ma proposition visuelle.",
+      "À partir du site Déménagement Québec Signature, j’ai repensé la hiérarchie de la page d’accueil, la navigation et la présentation des services.",
     image: "/images/quebec-signature-hero.png",
     imageAlt:
       "Proposition de refonte Déménagement Québec Signature : hero bleu et jaune avec illustrations de déménagement",
@@ -201,7 +201,7 @@ export const projects: readonly Project[] = [
     kind: "screenshot",
     tags: ["React JS", "Tailwind CSS", "Laravel API"],
     url: "https://lexpo-gallery.vercel.app/",
-    note: "Captures réelles du site les 5 et 6 octobre 2026. L’accueil est présenté dans deux fenêtres superposées ; les autres pages et le dashboard sont visibles en grand ci-dessous. Les chiffres et témoignages du site source ne sont pas des résultats vérifiés ici.",
+    note: "Captures réelles du site les 5 et 6 octobre 2026. Les chiffres et témoignages du site source ne sont pas des résultats vérifiés ici.",
     gallery: lexpoGallery,
     secondaryImage: {
       image: "/images/lexpo-page.jpg",

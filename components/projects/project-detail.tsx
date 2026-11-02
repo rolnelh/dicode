@@ -20,7 +20,13 @@ export function ProjectDetail({ project }: { project: Project }) {
   const p = getLocalizedProject(project, language);
 
   // Toutes les images du projet, sans doublon (et sans le logo .svg).
-  const allImages = [p.cover, p.image, ...(p.gallery ?? []).map((view) => view.image)];
+  // On écarte les captures de page entière très hautes : affichées en entier, elles seraient minuscules.
+  const isTooTall = (width: number, height: number) => height > width * 2;
+  const allImages = [
+    p.cover,
+    isTooTall(p.imageWidth, p.imageHeight) ? undefined : p.image,
+    ...(p.gallery ?? []).filter((view) => !isTooTall(view.imageWidth, view.imageHeight)).map((view) => view.image),
+  ];
   const images = allImages.filter(
     (src, i): src is string => !!src && !src.endsWith(".svg") && allImages.indexOf(src) === i,
   );

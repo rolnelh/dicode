@@ -85,10 +85,6 @@ export function Hero() {
               <strong>3+ {en ? "years" : "ans"}</strong>
               {en ? "building for the web" : "de développement web"}
             </p>
-            <p className="hero-v2-stat">
-              <strong>{en ? "Co-founder" : "Cofondateur"}</strong>
-              {en ? "of VibenGo" : "de VibenGo"}
-            </p>
           </div>
 
           <div className="hero-v2-photo">

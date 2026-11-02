@@ -1,12 +1,7 @@
 /* ===== Section d'accueil (components/sections/hero.tsx) ===== */
 
 .hero-v2 {
-  /* fond très légèrement quadrillé, comme sur le modèle */
-  background-color: #fafaf7;
-  background-image:
-    linear-gradient(#eeedf2 1px, transparent 1px),
-    linear-gradient(90deg, #eeedf2 1px, transparent 1px);
-  background-size: 48px 48px;
+  background: #fafaf7; /* fond crème uni (mets #fff pour du blanc) */
   margin-top: -76px; /* le fond passe sous la nav */
   padding-top: 120px;
   overflow: hidden;

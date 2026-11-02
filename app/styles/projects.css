@@ -226,3 +226,8 @@
     right: 8px;
   }
 }
+
+/* Page détail de Baobab : le mockup garde son format, sans bande grise */
+.project-art.presentation-mosaic.baobab-presentation {
+  aspect-ratio: 1672 / 941;
+}

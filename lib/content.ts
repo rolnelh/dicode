@@ -68,7 +68,8 @@ export const projects: readonly Project[] = [
       "Des bandes dessinées pour tous, et des histoires qui vous ressemblent.",
     description:
       "Baobab présente des bandes dessinées pour les enfants comme pour les adultes, avec la possibilité de commander une BD personnalisée dont on devient le héros. L’accueil met en avant l’univers illustré, les BD disponibles et un parcours dédié aux parents.",
-    image: "/images/baobab.webp",
+    image: "/images/baobab-mockup.webp",
+    cover: "/images/baobab-accueil.webp",
     imageAlt:
       "Page d’accueil Baobab : « Des bandes dessinées pour tous » et une famille qui lit une BD sur un canapé",
     imageWidth: 1672,
@@ -76,6 +77,19 @@ export const projects: readonly Project[] = [
     kind: "presentation",
     tags: ["Site vitrine", "UI design", "Responsive"],
     url: "https://baobab-bd.vercel.app/",
+    gallery: [
+      {
+        image: "/images/baobab-accueil.webp",
+        imageWidth: 1333,
+        imageHeight: 899,
+        imageAlt:
+          "Capture de la page d’accueil Baobab : titre, illustration de la famille et bande « Des mondes à explorer »",
+        imageAltEn:
+          "Baobab home page screenshot: headline, family illustration and the “Worlds to explore” band",
+        caption: "Page d’accueil · Titre, illustration et appels à l’action",
+        captionEn: "Home page · Headline, illustration and calls to action",
+      },
+    ],
   },
   {
     slug: "dicode-portfolio",

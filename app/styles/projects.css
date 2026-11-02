@@ -151,7 +151,8 @@
   color: #fff;
 }
 .arrow:hover {
-  background: var(--purple);
+  background: var(--lime);
+  color: var(--ink);
 }
 .arrow-left {
   left: 24px;
@@ -177,7 +178,8 @@
 }
 .dots button.active {
   width: 24px;
-  background: var(--purple);
+  background: var(--lime);
+  color: var(--ink);
 }
 
 /* Le bouton du bas */
@@ -192,7 +194,8 @@
   font-weight: 500;
 }
 .projects-v2-cta:hover {
-  background: var(--purple);
+  background: var(--lime);
+  color: var(--ink);
 }
 
 @media (prefers-reduced-motion: reduce) {

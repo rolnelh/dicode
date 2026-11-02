@@ -129,7 +129,7 @@ export const projects: readonly Project[] = [
   },
   {
     slug: "mefolio",
-    cover: "/images/mefolio-laptop-scene.png",
+    cover: "/images/mefolio-mockup.webp",
     name: "MeFolio",
     category: "Plateforme créative",
     summary: "Mettre les projets et le talent des créatifs au premier plan.",

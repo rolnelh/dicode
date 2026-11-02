@@ -12,7 +12,7 @@
   color: #a9a6b3;
 }
 .ft a:hover {
-  color: #b9a6f0;
+  color: var(--lime);
 }
 
 /* Ligne 1 */

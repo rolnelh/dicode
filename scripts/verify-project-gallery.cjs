@@ -89,13 +89,11 @@ test('L’Expo screenshots use natural proportions, readable captions and touch 
   assert.doesNotMatch(source, /setInterval|requestAnimationFrame|useEffect|onMouse|onClick|iframe/);
 });
 
-test('the exported L’Expo detail includes the gallery before its design study', () => {
+test('the exported L’Expo detail uses the simplified layout', () => {
   const html = fs.readFileSync(buildPath('projets/lexpo/index.html'), 'utf8').replaceAll('%2F', '/');
-  assert.ok(html.includes('lexpo-gallery-title'));
-  assert.ok(html.indexOf('lexpo-gallery-title') < html.indexOf('craft-heading'));
-  assert.ok(html.includes('layered-page-scene'));
-  assert.ok(html.includes('/images/lexpo-page.jpg'));
-  for (const view of lexpo.gallery) assert.ok(html.includes(view.image));
+  assert.ok(html.includes('pd-intro'));
+  assert.ok(html.includes('pd-steps'));
+  assert.ok(html.includes(lexpo.cover));
   const home = fs.readFileSync(buildPath('index.html'), 'utf8');
   assert.doesNotMatch(home, /lexpo-gallery-title/);
 });

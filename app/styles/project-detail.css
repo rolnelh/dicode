@@ -1,0 +1,242 @@
+/* ===== Page détail d'un projet (components/projects/project-detail.tsx) ===== */
+
+.pd {
+  padding: 40px 0 90px;
+}
+
+/* --- 1. Pourquoi ce projet --- */
+.pd-card {
+  padding: 32px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 32px;
+}
+.pd-back {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.pd-back:hover {
+  color: var(--purple);
+}
+
+.pd-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-top: 24px;
+}
+.pd-category {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--purple);
+}
+.pd h1 {
+  margin: 6px 0 12px;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+.pd-lead {
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+.pd-description {
+  margin-top: 14px;
+  font-size: 0.92rem;
+}
+
+.pd-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 24px;
+}
+.pd-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 99px;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.pd-button:hover {
+  background: var(--purple);
+}
+.pd-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pd-tags li {
+  padding: 4px 12px;
+  background: var(--lavender);
+  color: var(--purple);
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* La petite image sous le texte */
+.pd-small-image {
+  width: 240px;
+  aspect-ratio: 3 / 2;
+  margin-top: 32px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--lavender);
+}
+/* La grande image à droite */
+.pd-big-image {
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--lavender);
+}
+.pd-small-image img,
+.pd-big-image img,
+.pd-step-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* --- 2. Les étapes --- */
+.pd-steps {
+  margin-top: 40px;
+  padding: 48px 32px 32px;
+  background: #f4f3f7;
+  border-radius: 32px;
+}
+.pd-steps h2 {
+  margin-bottom: 32px;
+  text-align: center;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.pd-step {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
+.pd-step-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  background: #fff;
+  border-radius: 24px;
+  animation: pd-fade 0.4s ease;
+}
+.pd-step-number {
+  margin-bottom: auto;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--purple);
+}
+.pd-step-text h3 {
+  margin: 40px 0 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.pd-step-text p {
+  font-size: 0.9rem;
+}
+.pd-step-image {
+  aspect-ratio: 16 / 10;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff;
+}
+@keyframes pd-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.pd-steps-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+.pd-nav {
+  display: flex;
+  gap: 8px;
+}
+.pd-nav button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+}
+.pd-nav button.dark {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+.pd-nav button:hover {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: #fff;
+}
+.pd-contact {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.pd-contact:hover {
+  color: var(--purple);
+}
+
+.pd-note {
+  margin-top: 24px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pd-step-text {
+    animation: none;
+  }
+}
+
+/* Mobile : tout en une colonne */
+@media (max-width: 800px) {
+  .pd-card,
+  .pd-steps {
+    width: calc(100% - 24px);
+    padding: 24px 18px;
+  }
+  .pd-intro,
+  .pd-step {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .pd-big-image {
+    aspect-ratio: 4 / 3;
+    order: -1; /* la grande image passe en premier */
+  }
+  .pd-small-image {
+    display: none;
+  }
+  .pd-step-image {
+    order: -1;
+  }
+  .pd-step-text h3 {
+    margin-top: 16px;
+  }
+}

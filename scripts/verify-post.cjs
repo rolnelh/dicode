@@ -91,11 +91,11 @@ test('the built homepage, project route, sitemap and social image remain valid',
   const detail = fs.readFileSync(buildPath('projets/post/index.html'), 'utf8').replaceAll('%2F', '/');
   const sitemap = fs.readFileSync(buildPath('sitemap.xml'), 'utf8');
   assert.ok(home.includes('aria-label="Post"')); // un point du carrousel
-  assert.ok(detail.includes('post-gallery-title'));
+  assert.ok(detail.includes('pd-steps')); // carrousel des étapes de la page détail
   assert.equal((detail.match(/<h1(?:\s|>)/g) || []).length, 1);
   assert.match(detail, /rel="canonical"[^>]*\/projets\/post/);
   assert.ok(detail.includes('/og/dieudonne-houndagnon.png'));
-  for (const view of [post, ...post.gallery]) assert.ok(detail.includes(view.image));
+  assert.ok(detail.includes(post.image));
   assert.ok(sitemap.includes('/projets/post'));
   assert.equal((sitemap.match(/<loc>/g) || []).length, 14);
   assert.doesNotMatch(detail, /Découvrir Post|Vidmake|ngrok|exp:\/\//);

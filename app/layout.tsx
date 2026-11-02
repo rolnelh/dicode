@@ -12,6 +12,8 @@ import "./styles/hero.css";
 import "./styles/projects.css";
 import "./styles/services.css";
 import "./styles/process.css";
+import "./styles/project-detail.css";
+import "./styles/footer.css";
 import { LanguageProvider } from "@/components/language-provider";
 import { SkipLink } from "@/components/skip-link";
 import { ResourceWidget } from "@/components/resource-widget";

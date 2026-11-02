@@ -153,8 +153,7 @@
   font-weight: 500;
 }
 .services-v2-cta:hover {
-  background: var(--lime);
-  color: var(--ink);
+  background: var(--purple);
 }
 
 /* Mobile : la ligne passe à gauche et tout est aligné à gauche */

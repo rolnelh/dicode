@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { socialImage } from "@/lib/social-image";
 import { Analytics } from "@vercel/analytics/next";
-import { Inter } from "next/font/google";
+import { Poppins, Caveat } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { site } from "@/lib/site";
@@ -19,12 +19,16 @@ import "./styles/articles.css";
 import { LanguageProvider } from "@/components/language-provider";
 import { SkipLink } from "@/components/skip-link";
 import { ResourceWidget } from "@/components/resource-widget";
-// La police du site (une seule, pour les titres et le texte).
-// Pour en changer : remplace "Inter" ici et dans l'import ci-dessus.
-const sans = Inter({
+const sans = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   variable: "--font-sans",
+  display: "swap",
+});
+const hand = Caveat({
+  subsets: ["latin"],
+  weight: "500",
+  variable: "--font-hand",
   display: "swap",
 });
 export const metadata: Metadata = {
@@ -99,7 +103,7 @@ export default function RootLayout({
     ],
   };
   return (
-    <html lang="fr" className={sans.variable}>
+    <html lang="fr" className={`${sans.variable} ${hand.variable}`}>
       <body>
         <LanguageProvider>
           <SkipLink />

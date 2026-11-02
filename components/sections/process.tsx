@@ -3,11 +3,12 @@
 // une sur deux un peu plus bas, reliées par une ligne en pointillés.
 // Les textes sont dans lib/localized-content.ts (process).
 // Les styles sont dans app/styles/process.css
-import { Lightbulb, PenTool, Rocket } from "lucide-react";
+import Image from "next/image";
 import { useLanguage } from "@/components/language-provider";
 import { copy } from "@/lib/localized-content";
 
-const icons = [Lightbulb, PenTool, Rocket]; // une icône par étape, dans le même ordre
+// Une icône 3D par étape, dans le même ordre (fichiers dans public/images/process).
+const icons = ["/images/process/idee.png", "/images/process/conception.png", "/images/process/lancement.png"];
 
 export function Process() {
   const { language } = useLanguage();
@@ -27,12 +28,11 @@ export function Process() {
 
         <ol className="process-steps">
           {text.steps.map((step, i) => {
-            const Icon = icons[i];
             return (
               // Une étape sur deux reçoit la classe "low" pour descendre un peu.
               <li key={step.title} className={`process-step ${i % 2 === 1 ? "low" : ""}`}>
                 <span className="process-icon">
-                  <Icon size={26} strokeWidth={1.6} />
+                  <Image src={icons[i]} alt="" width={52} height={52} />
                   <small>0{i + 1}</small>
                 </span>
                 <h3>{step.title}</h3>

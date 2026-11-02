@@ -2,25 +2,32 @@
 
 .ab {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 48px;
+  grid-template-columns: 340px 1fr;
+  gap: 56px;
   align-items: center;
-  max-width: 960px;
-  padding: 70px 0;
+  max-width: 1040px;
+  padding: 80px 0;
 }
+
+/* La photo détourée, posée sur un fond lavande arrondi */
 .ab-photo {
-  aspect-ratio: 1 / 1;
-  border-radius: 28px;
-  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  aspect-ratio: 4 / 5;
+  padding-top: 24px;
   background: var(--lavender);
+  border-radius: 32px;
+  overflow: hidden;
 }
 .ab-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 92%;
+  height: auto;
+  display: block;
 }
+
 .ab h2 {
-  margin: 4px 0 14px;
+  margin-bottom: 16px;
   font-size: clamp(1.6rem, 3.5vw, 2.3rem);
   font-weight: 600;
   letter-spacing: -0.03em;
@@ -28,25 +35,64 @@
 .ab h2 span {
   color: var(--purple);
 }
-.ab-text > p:not(.hand) {
+.ab-text > p {
   font-size: 0.95rem;
 }
+.ab-text > p + p {
+  margin-top: 12px;
+}
+
+/* Les 3 points forts, avec une petite coche violette */
 .ab-values {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 20px 0 24px;
+  margin: 20px 0 0;
   padding: 0;
   list-style: none;
 }
 .ab-values li {
-  padding: 5px 14px;
+  position: relative;
+  padding-left: 26px;
+  margin-top: 8px;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+.ab-values li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
   background: var(--lavender);
   color: var(--purple);
-  border-radius: 99px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
 }
+
+/* Les 3 repères (années, lieu, outils) */
+.ab-facts {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: 28px;
+  margin: 26px 0;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.ab-facts dt {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--purple);
+}
+.ab-facts dd {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
 .ab-button {
   display: inline-block;
   padding: 12px 24px;
@@ -60,13 +106,17 @@
   background: var(--purple);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .ab {
     grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 50px 0;
+    gap: 28px;
+    padding: 56px 0;
   }
   .ab-photo {
-    width: 60%;
+    width: min(320px, 80%);
+  }
+  .ab-facts {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 }

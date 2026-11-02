@@ -43,9 +43,12 @@
   height: 80px;
   margin-bottom: 20px;
   background: #fff;
-  color: var(--purple);
   border-radius: 50%;
   box-shadow: 0 12px 36px rgba(131, 101, 210, 0.18);
+}
+.process-icon img {
+  width: 52px;
+  height: 52px;
 }
 /* Le numéro de l'étape, dans une petite pastille */
 .process-icon small {

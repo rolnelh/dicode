@@ -1,0 +1,106 @@
+/* ===== Pied de page (components/layout/footer.tsx) ===== */
+
+.ft {
+  margin-bottom: 16px;
+  padding: 32px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 28px;
+}
+.ft p,
+.ft-bottom {
+  color: #a9a6b3;
+}
+.ft a:hover {
+  color: #b9a6f0;
+}
+
+/* Ligne 1 */
+.ft-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.ft-logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+.ft-logo b {
+  color: var(--purple);
+}
+.ft-top p {
+  font-size: 0.9rem;
+}
+.ft-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: #fff;
+  color: var(--ink);
+  border-radius: 99px;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.ft .ft-button:hover {
+  background: var(--lavender);
+  color: var(--ink);
+}
+
+/* Ligne 2 */
+.ft-middle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  padding: 20px 0;
+  border-top: 1px solid #2c2a33;
+  border-bottom: 1px solid #2c2a33;
+}
+.ft-middle nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-size: 0.88rem;
+}
+.ft-socials {
+  display: flex;
+  gap: 8px;
+}
+.ft-socials a {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  border-radius: 50%;
+}
+.ft-socials a:hover {
+  background: var(--lavender);
+}
+.ft-socials .brand-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Ligne 3 */
+.ft-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 700px) {
+  .ft {
+    width: calc(100% - 24px);
+    padding: 24px 20px;
+  }
+}

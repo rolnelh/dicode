@@ -8,6 +8,15 @@ type ProjectCopy = Pick<
   "category" | "summary" | "description" | "imageAlt" | "tags" | "note"
 >;
 const englishProjects: Record<string, ProjectCopy> = {
+  baobab: {
+    category: "Showcase website · Comics",
+    summary: "Comics for everyone, with stories that look like you.",
+    description:
+      "Baobab presents comics for children and adults alike, with the option to order a personalised comic where you become the hero. The home page highlights the illustrated universe, the available comics and a path designed for parents.",
+    imageAlt:
+      "Baobab home page: “Comics for everyone” and a family reading a comic on a sofa",
+    tags: ["Showcase website", "UI design", "Responsive"],
+  },
   post: {
     "category": "Mobile app · Prototype in progress",
     "summary": "Exploring content creation and scheduling through a mobile prototype.",

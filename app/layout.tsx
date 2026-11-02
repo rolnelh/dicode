@@ -6,6 +6,14 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { site } from "@/lib/site";
 import "./globals.css";
+// Les styles des sections refaites, un fichier par section :
+import "./styles/header.css";
+import "./styles/hero.css";
+import "./styles/projects.css";
+import "./styles/services.css";
+import "./styles/process.css";
+import "./styles/project-detail.css";
+import "./styles/footer.css";
 import { LanguageProvider } from "@/components/language-provider";
 import { SkipLink } from "@/components/skip-link";
 import { ResourceWidget } from "@/components/resource-widget";

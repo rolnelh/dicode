@@ -21,6 +21,63 @@ export type ProjectCraftDetails = {
 
 /** Scope and exact values are grounded in project source or qualified observations. */
 export const projectCraft: Record<string, ProjectCraftDetails> = {
+  // Fiche Baobab : palette relevée sur la capture de l'accueil.
+  // Pense à compléter "technologies" et "fonts" avec ta vraie stack.
+  baobab: {
+    technologies: ["Site web responsive"],
+    fonts: [],
+    palette: [
+      { hex: "#143C34", name: { fr: "Vert forêt", en: "Forest green" } },
+      { hex: "#E8803C", name: { fr: "Orange", en: "Orange" } },
+      { hex: "#7E9670", name: { fr: "Vert sauge", en: "Sage green" } },
+      { hex: "#FAF6EC", name: { fr: "Crème", en: "Cream" } },
+    ],
+    sources: [
+      { url: "https://baobab-bd.vercel.app/", label: { fr: "Site en ligne", en: "Live website" } },
+    ],
+    copy: {
+      fr: {
+        role: "Conception et développement du site",
+        design: [
+          {
+            title: "Un titre qui parle à tous",
+            text: "« Des bandes dessinées pour tous » est mis en avant avec un mot souligné en orange, pour dire tout de suite à qui s’adresse le site.",
+          },
+          {
+            title: "Une illustration chaleureuse",
+            text: "Une famille qui lit une BD sur un canapé montre l’univers et le moment de partage que propose Baobab.",
+          },
+          {
+            title: "Deux actions claires",
+            text: "Découvrir les BD ou lire un extrait, et un bouton dédié pour commander une BD personnalisée.",
+          },
+        ],
+        stackNote: "Stack technique à préciser.",
+        fontNote: "Typographie à préciser.",
+        paletteNote: "Palette indicative relevée sur la page d’accueil.",
+      },
+      en: {
+        role: "Website design and development",
+        design: [
+          {
+            title: "A headline for everyone",
+            text: "“Comics for everyone” leads the page, with one word underlined in orange, so visitors immediately know who the site is for.",
+          },
+          {
+            title: "A warm illustration",
+            text: "A family reading a comic on a sofa shows the universe and the shared moment Baobab offers.",
+          },
+          {
+            title: "Two clear actions",
+            text: "Discover the comics or read an excerpt, plus a dedicated button to order a personalised comic.",
+          },
+        ],
+        stackNote: "Technical stack to be confirmed.",
+        fontNote: "Font family to be confirmed.",
+        paletteNote: "Indicative palette sampled from the home page.",
+      },
+    },
+  },
   post: {
     "technologies": [
       "React Native",

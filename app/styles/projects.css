@@ -12,19 +12,8 @@
   border-radius: 32px;
   overflow: hidden;
 }
-.projects-v2-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 14px;
-  border: 1px solid var(--line);
-  border-radius: 99px;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  color: var(--ink);
-}
 .projects-v2 h2 {
-  margin: 14px 0 40px;
+  margin: 0 0 40px;
   padding: 0 20px;
   font-size: clamp(1.9rem, 4.5vw, 3rem);
   font-weight: 600;

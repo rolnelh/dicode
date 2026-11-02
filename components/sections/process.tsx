@@ -19,7 +19,6 @@ export function Process() {
     <section className="process-v2">
       <div className="wrap">
         <div className="process-v2-head">
-          <p className="hand">{text.hand}</p>
           <h2>
             {text.title[0]} {text.title[1]}
           </h2>

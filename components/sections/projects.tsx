@@ -36,9 +36,6 @@ export function Projects() {
   return (
     <section id="projets" className="projects-v2 section-anchor">
       <div className="projects-v2-box wrap">
-        <p className="projects-v2-pill">
-          <span className="dot" /> {text.eyebrow}
-        </p>
         <h2>{text.title}</h2>
 
         <div className="carousel">

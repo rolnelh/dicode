@@ -1,0 +1,101 @@
+/* ===== Liste des articles (components/articles/article-list.tsx) ===== */
+
+.blog {
+  padding: 80px 0;
+}
+.blog-page {
+  padding-top: 50px;
+}
+.blog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.blog h1,
+.blog-head h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+.blog-all {
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.blog-all:hover {
+  color: var(--purple);
+}
+
+/* 3 cartes côte à côte */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.blog-card {
+  display: block;
+  padding: 10px 10px 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+}
+.blog-card:hover {
+  border-color: #cfc3f2;
+}
+/* L'image en haut de la carte */
+.blog-card .article-thumbnail {
+  aspect-ratio: 3 / 2;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0;
+}
+.blog-card .article-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.blog-card:hover .article-thumbnail img {
+  transform: scale(1.04);
+}
+/* La petite étiquette grise */
+.blog-tag {
+  display: inline-block;
+  margin: 16px 8px 10px;
+  padding: 3px 10px;
+  background: #f1f0f4;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.blog-card h2,
+.blog-card h3 {
+  margin: 0 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-card .article-thumbnail img {
+    transition: none;
+  }
+}
+@media (max-width: 900px) {
+  .blog-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+  .blog-head {
+    flex-direction: column;
+    align-items: start;
+  }
+}

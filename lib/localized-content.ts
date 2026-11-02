@@ -62,7 +62,7 @@ const englishProjects: Record<string, ProjectCopy> = {
     summary:
       "Rethinking a moving company’s website to clarify its offer and contact paths.",
     description:
-      "Starting from the Déménagement Québec Signature website, I rethought homepage hierarchy, navigation and service presentation. The study below compares the original website with my visual proposal.",
+      "Starting from the Déménagement Québec Signature website, I rethought homepage hierarchy, navigation and service presentation.",
     imageAlt:
       "Déménagement Québec Signature redesign proposal: blue and yellow hero with moving illustrations",
     tags: ["Visual direction", "Web design", "Business website"],
@@ -77,7 +77,7 @@ const englishProjects: Record<string, ProjectCopy> = {
     imageAlt:
       "Actual screenshot of L’Expo’s homepage, a digital gallery for artisans",
     tags: ["React JS", "Tailwind CSS", "Laravel API"],
-    note: "Real site screenshots taken on 5 and 6 October 2026. The homepage appears in two overlapping windows; other pages and the dashboard are shown at a larger scale below. Source-site figures and testimonials have not been independently verified here.",
+    note: "Real site screenshots taken on 5 and 6 October 2026. Source-site figures and testimonials have not been independently verified here.",
   },
   gozem: {
     category: "Independent redesign · Before / after",

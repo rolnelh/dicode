@@ -30,7 +30,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--purple);
+  background: var(--lime);
+  color: var(--ink);
 }
 .hero-v2 h1 {
   position: relative;
@@ -83,8 +84,8 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: var(--purple);
-  color: #fff;
+  background: var(--lime);
+  color: var(--ink);
 }
 @keyframes spin {
   to {
@@ -197,7 +198,7 @@
   aspect-ratio: 1;
   transform: translate(-50%, 32%);
   background: var(--lavender);
-  border: 1px solid #e2dbf7;
+  border: 1px solid #dcefb5;
   border-radius: 50%;
 }
 .hero-v2-photo img {
@@ -232,11 +233,11 @@
   font-size: 0.95rem;
 }
 .btn-purple {
-  background: var(--purple);
-  color: #fff;
+  background: var(--lime);
+  color: var(--ink);
 }
 .btn-purple:hover {
-  background: #6f52c0;
+  background: #b6e04f;
 }
 .btn-white {
   background: #fff;

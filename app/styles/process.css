@@ -44,7 +44,7 @@
   margin-bottom: 20px;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 0 12px 36px rgba(131, 101, 210, 0.18);
+  box-shadow: 0 12px 36px rgba(74, 122, 0, 0.14);
 }
 .process-icon img {
   width: 52px;
@@ -83,7 +83,7 @@
   width: calc(100% - 72px);
   height: 60px;
   fill: none;
-  stroke: #c9bdf0;
+  stroke: #b5d97a;
   stroke-width: 2;
   stroke-dasharray: 6 6;
 }

@@ -103,7 +103,8 @@
   font-weight: 500;
 }
 .ab-button:hover {
-  background: var(--purple);
+  background: var(--lime);
+  color: var(--ink);
 }
 
 @media (max-width: 800px) {

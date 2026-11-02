@@ -2,14 +2,18 @@
 @theme inline {
   --color-background: #fafaf7;
   --color-foreground: #141419;
-  --color-lavender: #f1edfc;
-  --color-purple: #8365d2;
+  --color-lavender: #eef8d6;
+  --color-purple: #4a7a00;
 }
 :root {
   --ink: #141419;
   --muted: #67666f;
-  --lavender: #f1edfc;
-  --purple: #8365d2;
+  /* Charte du site : modifie ces couleurs ici, elles s'appliquent partout.
+     (les noms --purple / --lavender sont gardés pour ne rien casser) */
+  --lime: #c8f169; /* vert citron : pastilles, boutons, points */
+  --lavender: #eef8d6; /* vert très pâle : fonds d'étiquettes */
+  --purple: #4a7a00; /* vert foncé : mots mis en avant, liens (lisible sur blanc) */
+  --font-hand: var(--font-sans); /* une seule police sur tout le site */
   --line: #e7e5ed;
 }
 * {
@@ -750,7 +754,7 @@ p {
 }
 .form-status {
   padding: 18px;
-  background: #f1edfc;
+  background: var(--lavender);
   border-radius: 12px;
   font-size: 0.9rem;
 }
@@ -1389,11 +1393,11 @@ p {
   display: flex;
   align-items: center;
   gap: 9px;
-  border: 1px solid #d5cae5;
+  border: 1px solid #d4e8a8;
   border-radius: 50px;
-  background: #faf7ff;
-  color: #2a2138;
-  box-shadow: 0 5px 24px #40305016;
+  background: #fbfdf5;
+  color: var(--ink);
+  box-shadow: 0 5px 24px #2a3a1016;
   padding: 13px 17px;
   cursor: pointer;
   font: inherit;

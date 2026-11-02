@@ -185,33 +185,26 @@ export const projectCraft: Record<string, ProjectCraftDetails> = {
     ],
     "fonts": [
       {
-        "name": "Poppins",
+        "name": "Inter",
         "usage": {
-          "fr": "Texte et interface · 400, 500, 600",
-          "en": "Body and interface · 400, 500, 600"
-        }
-      },
-      {
-        "name": "Caveat",
-        "usage": {
-          "fr": "Annotations manuscrites · 500",
-          "en": "Handwritten annotations · 500"
+          "fr": "Titres, texte et interface · 400 à 700",
+          "en": "Headings, body and interface · 400 to 700"
         }
       }
     ],
     "palette": [
       {
-        "hex": "#8365D2",
+        "hex": "#C8F169",
         "name": {
-          "fr": "Violet",
-          "en": "Purple"
+          "fr": "Vert citron",
+          "en": "Lime green"
         }
       },
       {
-        "hex": "#F1EDFC",
+        "hex": "#EEF8D6",
         "name": {
-          "fr": "Lavande",
-          "en": "Lavender"
+          "fr": "Vert pâle",
+          "en": "Pale green"
         }
       },
       {
@@ -251,7 +244,7 @@ export const projectCraft: Record<string, ProjectCraftDetails> = {
           },
           {
             "title": "Une signature cohérente",
-            "text": "Les panneaux clairs, les accents violets et les annotations manuscrites relient les pages. La navigation et les contenus existent en français et en anglais."
+            "text": "Les panneaux clairs, les boutons noirs et les accents vert citron relient les pages. La navigation et les contenus existent en français et en anglais."
           }
         ],
         "stackNote": "",
@@ -271,7 +264,7 @@ export const projectCraft: Record<string, ProjectCraftDetails> = {
           },
           {
             "title": "A consistent signature",
-            "text": "Light panels, purple accents and handwritten notes connect the pages. Navigation and content are available in French and English."
+            "text": "Light panels, black buttons and lime-green accents connect the pages. Navigation and content are available in French and English."
           }
         ],
         "stackNote": "",

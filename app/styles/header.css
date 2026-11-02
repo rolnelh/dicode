@@ -46,7 +46,7 @@
 }
 .nav-links a:hover,
 .nav-links a.active {
-  color: #b9a6f0; /* violet clair, lisible sur fond noir */
+  color: var(--lime); /* vert citron, lisible sur fond noir */
 }
 .nav-links a.active {
   text-decoration: underline;
@@ -76,8 +76,8 @@
   border-radius: 99px;
 }
 .nav-lang button[aria-pressed="true"] {
-  background: var(--purple);
-  color: #fff;
+  background: var(--lime);
+  color: var(--ink);
 }
 
 /* Le bouton blanc "Parlons-en" */

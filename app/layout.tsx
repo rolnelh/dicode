@@ -18,7 +18,6 @@ import "./styles/about.css";
 import "./styles/articles.css";
 import { LanguageProvider } from "@/components/language-provider";
 import { SkipLink } from "@/components/skip-link";
-import { ResourceWidget } from "@/components/resource-widget";
 const sans = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -110,7 +109,6 @@ export default function RootLayout({
           <Header />
           <main id="contenu">{children}</main>
           <Footer />
-          <ResourceWidget />
         </LanguageProvider>
         <script
           type="application/ld+json"

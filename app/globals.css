@@ -2817,9 +2817,3 @@ body:has([data-portfolio-preview]) *,body:has([data-portfolio-preview]) *:before
   .mobile-projects { margin-top: 44px; padding-top: 32px; }
   .mobile-projects .project-meta h4 { font-size: 1.25rem; }
 }
-
-/* Boutons flottants (« Un site avec l’IA ? » et WhatsApp) masqués à la demande.
-   Le code reste dans components/resource-widget.tsx : supprimer cette règle pour les réafficher. */
-.floating-actions {
-  display: none !important;
-}

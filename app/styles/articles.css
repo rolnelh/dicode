@@ -16,7 +16,7 @@
 .blog h1,
 .blog-head h2 {
   font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.04em;
 }
 .blog-all {

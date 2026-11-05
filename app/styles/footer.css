@@ -24,12 +24,14 @@
   flex-wrap: wrap;
 }
 .ft-logo {
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: -0.04em;
+  display: inline-block;
+  color: #fff; /* couleur des contours du logo */
 }
-.ft-logo b {
-  color: var(--purple);
+.ft-logo svg {
+  display: block;
+  height: 40px;
+  width: auto;
+  margin-bottom: 10px;
 }
 .ft-top p {
   font-size: 0.9rem;

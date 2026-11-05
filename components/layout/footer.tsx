@@ -9,6 +9,7 @@ import { ArrowUpRight } from "lucide-react";
 import { site } from "@/lib/site";
 import { useLanguage } from "@/components/language-provider";
 import { BrandIcon, type BrandName } from "@/components/ui/brand-icon";
+import { Logo } from "@/components/ui/logo";
 
 const socials: { name: BrandName; label: string; href: string }[] = [
   { name: "linkedin", label: "LinkedIn", href: site.linkedin },
@@ -32,8 +33,8 @@ export function Footer() {
     <footer className="ft wrap">
       <div className="ft-top">
         <div>
-          <Link href="/" className="ft-logo">
-            Dicode<b>.</b>
+          <Link href="/" className="ft-logo" aria-label={en ? "Dicode, home" : "Dicode, accueil"}>
+            <Logo strokeWidth={7} />
           </Link>
           <p>{en ? "A website to create, rethink or finish." : "Un site à créer, repenser ou finaliser."}</p>
         </div>

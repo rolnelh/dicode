@@ -8,12 +8,22 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { site } from "@/lib/site";
+import { Logo } from "@/components/ui/logo";
 
 export function Header() {
   const [open, setOpen] = useState(false); // menu mobile ouvert ou fermé
   const { language, setLanguage } = useLanguage();
   const en = language === "en";
   const path = usePathname();
+  const [scrolled, setScrolled] = useState(false); // la page a-t-elle défilé ?
+
+  // La nav est transparente en haut de page, et prend un fond dès qu'on défile.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // On referme le menu mobile quand on change de page.
   useEffect(() => {
@@ -31,13 +41,10 @@ export function Header() {
   ];
 
   return (
-    <header className="nav-wrap">
+    <header className={scrolled || open ? "nav-wrap scrolled" : "nav-wrap"}>
       <div className="nav">
         <Link href="/" className="nav-logo" aria-label={en ? "Dicode, home" : "Dicode, accueil"}>
-          <img src="/favicon.svg" alt="" width={34} height={34} />
-          <span>
-            Dicode<b>.</b>
-          </span>
+          <Logo className="nav-logo-svg" />
         </Link>
 
         <nav className="nav-links" aria-label={en ? "Main navigation" : "Navigation principale"}>

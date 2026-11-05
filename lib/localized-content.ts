@@ -17,6 +17,16 @@ const englishProjects: Record<string, ProjectCopy> = {
       "Baobab home page: “Comics for everyone” and a family reading a comic on a sofa",
     tags: ["Showcase website", "UI design", "Responsive"],
   },
+  "baobab-app": {
+    category: "Mobile app · Comic reading",
+    summary: "The Baobab world in your pocket: pick your stories, read and download your comics.",
+    description:
+      "The Baobab app mockups extend the website: sign-in and account creation, choosing story categories, a library with reading progress, then downloading comics to read them offline.",
+    imageAlt:
+      "Baobab app mockups: category picker, library, download in progress and a comic ready to read offline",
+    tags: ["Mobile UI", "User journey", "Offline reading"],
+    note: "Interface mockups for the Baobab mobile app.",
+  },
   post: {
     "category": "Mobile app · Prototype in progress",
     "summary": "Exploring content creation and scheduling through a mobile prototype.",

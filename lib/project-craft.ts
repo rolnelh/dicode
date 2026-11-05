@@ -78,6 +78,61 @@ export const projectCraft: Record<string, ProjectCraftDetails> = {
       },
     },
   },
+  // Fiche Baobab — Application : palette relevée sur les maquettes.
+  // Pense à compléter "technologies" et "fonts" avec ta vraie stack.
+  "baobab-app": {
+    technologies: ["Application mobile"],
+    fonts: [],
+    palette: [
+      { hex: "#154036", name: { fr: "Vert forêt", en: "Forest green" } },
+      { hex: "#FC9534", name: { fr: "Orange", en: "Orange" } },
+      { hex: "#F7F7F5", name: { fr: "Blanc cassé", en: "Off-white" } },
+      { hex: "#141414", name: { fr: "Encre", en: "Ink" } },
+    ],
+    sources: [],
+    copy: {
+      fr: {
+        role: "Conception des interfaces mobiles",
+        design: [
+          {
+            title: "Un accueil chaleureux",
+            text: "Les écrans de connexion et d’inscription tutoient le lecteur et gardent une illustration au centre : on entre dans une histoire, pas dans un formulaire.",
+          },
+          {
+            title: "Choisir son histoire",
+            text: "Les catégories prennent la forme de grandes pastilles illustrées. Une catégorie choisie s’entoure d’orange, puis un seul bouton mène aux BD.",
+          },
+          {
+            title: "Lire partout, même sans réseau",
+            text: "La bibliothèque montre la progression de lecture. Le téléchargement s’affiche dans un panneau avec sa barre de progression, puis confirme que la BD est prête hors connexion.",
+          },
+        ],
+        stackNote: "Maquettes d’interface de l’application mobile.",
+        fontNote: "Typographie à préciser.",
+        paletteNote: "Couleurs relevées sur les maquettes de l’application.",
+      },
+      en: {
+        role: "Mobile interface design",
+        design: [
+          {
+            title: "A warm welcome",
+            text: "The sign-in and sign-up screens speak to the reader directly and keep an illustration at the centre: you step into a story, not a form.",
+          },
+          {
+            title: "Picking a story",
+            text: "Categories appear as large illustrated buttons. A selected category gets an orange ring, then a single button leads to the comics.",
+          },
+          {
+            title: "Read anywhere, even offline",
+            text: "The library shows reading progress. Downloads appear in a sheet with a progress bar, then confirm that the comic is ready offline.",
+          },
+        ],
+        stackNote: "Interface mockups for the mobile app.",
+        fontNote: "Typography to be confirmed.",
+        paletteNote: "Colours sampled from the app mockups.",
+      },
+    },
+  },
   post: {
     "technologies": [
       "React Native",

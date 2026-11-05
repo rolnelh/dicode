@@ -13,9 +13,9 @@ import { site } from "@/lib/site";
 // Les cartes de projets, de gauche à droite. Chaque carte mène à sa fiche.
 const cards = [
   { slug: "baobab", name: "Baobab", image: "/images/baobab-accueil.webp", width: 1333, height: 899 },
-  { slug: "lexpo", name: "L’Expo", image: "/images/hero/lexpo.webp", width: 560, height: 359 },
+  // Emplacement réservé à Essor : remplacer par son image dès qu'elle est fournie.
   { slug: "gozem", name: "Gozem", image: "/images/gozem-after-hero.jpg", width: 1165, height: 747 },
-  { slug: "quebec-signature", name: "Québec Signature", image: "/images/hero/quebec-signature.webp", width: 560, height: 385 },
+  { slug: "mefolio", name: "MeFolio", image: "/images/mefolio-dashboard.png", width: 1366, height: 768 },
 ];
 
 export function Hero() {
@@ -30,7 +30,7 @@ export function Hero() {
           <span className="hero-v3-icon" aria-hidden="true">
             <Logo variant="mark" strokeWidth={14} />
           </span>{" "}
-          <mark>{en ? "B2B & consumer fintech startups" : "startups fintech B2B et grand public"}</mark>{" "}
+          <mark>startups</mark>{" "}
           {en
             ? "design, redesign and scale their digital products"
             : "à concevoir, refondre et faire grandir leurs produits digitaux"}{" "}

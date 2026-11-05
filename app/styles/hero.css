@@ -108,15 +108,15 @@
   --r: 0deg;
   --y: 0px;
   flex: 0 0 auto;
-  width: clamp(150px, 21vw, 290px);
+  width: clamp(170px, 25vw, 330px);
   margin-inline: -12px; /* les cartes se chevauchent un peu */
   transform: translateY(var(--y)) rotate(var(--r));
   transition: transform 0.35s ease;
 }
 /* inclinaisons alternées, comme sur la maquette */
 .hero-v3-cards .card-1 { --r: -9deg; --y: 18px; z-index: 1; }
-.hero-v3-cards .card-2 { --r: 6deg; --y: 0px; z-index: 2; }
-.hero-v3-cards .card-3 { --r: -5deg; --y: 10px; z-index: 3; }
+.hero-v3-cards .card-2 { --r: -3deg; --y: -6px; z-index: 2; }
+.hero-v3-cards .card-3 { --r: 7deg; --y: 16px; z-index: 1; }
 .hero-v3-cards .card-4 { --r: 8deg; --y: -4px; z-index: 2; }
 .hero-v3-cards li:hover {
   transform: translateY(calc(var(--y) - 14px)) rotate(calc(var(--r) * 0.5));

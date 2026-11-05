@@ -144,26 +144,156 @@
   font-size: 0.9rem;
   color: var(--muted);
 }
+.ab-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
 .ab-button {
   display: inline-flex;
-  align-self: flex-start;
   align-items: center;
   gap: 8px;
-  margin-top: auto;
   padding: 12px 22px;
   background: var(--ink);
   color: #fff;
   border-radius: 14px;
   font-weight: 500;
 }
-.ab-bio + .ab-button {
-  margin-top: 22px;
-}
 .ab-button svg {
   color: var(--lime);
 }
 .ab-button:hover {
   background: #2a2a33;
+}
+
+/* --- Le bouton ebook et sa fenêtre (components/ebook-button.tsx) --- */
+.eb-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: var(--lime);
+  color: var(--ink);
+  border: 0;
+  border-radius: 14px;
+  font-weight: 500;
+}
+.eb-trigger:hover {
+  background: #c6ea1c;
+}
+.eb-dialog {
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100dvh - 40px);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: 26px;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 30px 90px rgba(20, 20, 25, 0.35);
+}
+.eb-dialog::backdrop {
+  background: rgba(20, 20, 25, 0.55);
+  backdrop-filter: blur(4px);
+}
+.eb-inner {
+  position: relative;
+  padding: 18px 26px 26px;
+}
+.eb-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  box-shadow: 0 4px 14px rgba(20, 20, 25, 0.15);
+}
+.eb-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+.eb-kicker {
+  margin-top: 18px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.eb-dialog h2 {
+  margin-top: 4px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.eb-text {
+  margin-top: 6px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.eb-dialog h3 {
+  margin: 18px 0 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.eb-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.eb-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.eb-list li + li {
+  margin-top: 9px;
+}
+.eb-list span {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--lime);
+}
+.eb-download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 14px 20px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 14px;
+  font-weight: 500;
+}
+.eb-download svg {
+  color: var(--lime);
+}
+.eb-download:hover {
+  background: #2a2a33;
+}
+.eb-note {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 
 /* --- Les trois cartes du bas --- */

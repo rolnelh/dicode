@@ -10,6 +10,7 @@ import { ArrowUpRight, Check, Quote } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { BrandIcon, type BrandName } from "@/components/ui/brand-icon";
 import { site } from "@/lib/site";
+import { EbookButton } from "@/components/ebook-button";
 
 // Les langages et outils affichés avec leur icône (fichiers public/icons/<icon>.svg).
 const stack = [
@@ -133,9 +134,13 @@ export function About() {
                 : "Je réalise des sites vitrines, des landing pages et des interfaces SaaS, principalement avec Next.js, React et Laravel. Que vous partiez de zéro, repensiez l’existant ou finalisiez un projet commencé avec l’IA."}
             </p>
 
-            <Link href="/contact" className="ab-button">
-              {en ? "Let’s talk about your project" : "Parlons de votre projet"} <ArrowUpRight size={16} />
-            </Link>
+            <div className="ab-actions">
+              <Link href="/contact" className="ab-button">
+                {en ? "Let’s talk about your project" : "Parlons de votre projet"} <ArrowUpRight size={16} />
+              </Link>
+              {/* Ouvre la fenêtre qui présente l'ebook */}
+              <EbookButton />
+            </div>
           </div>
         </div>
 

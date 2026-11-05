@@ -61,7 +61,7 @@ test('Post is part of the projects carousel', () => {
   const { projects } = load('@/lib/content');
   assert.equal(projects.filter((p) => p.slug === 'post').length, 1);
   const html = renderToStaticMarkup(React.createElement(LanguageProvider, null, React.createElement(Projects)));
-  assert.match(html, /aria-label="Post"/);
+  assert.match(html, /href="\/projets\/post"/); // une carte de la rangée de projets
 });
 
 test('all four Post PNGs exist and match their declared dimensions', () => {
@@ -90,13 +90,13 @@ test('the built homepage, project route, sitemap and social image remain valid',
   const home = fs.readFileSync(buildPath('index.html'), 'utf8').replaceAll('%2F', '/');
   const detail = fs.readFileSync(buildPath('projets/post/index.html'), 'utf8').replaceAll('%2F', '/');
   const sitemap = fs.readFileSync(buildPath('sitemap.xml'), 'utf8');
-  assert.ok(home.includes('aria-label="Post"')); // un point du carrousel
+  assert.ok(home.includes('href="/projets/post"')); // une carte de la rangée de projets
   assert.ok(detail.includes('pd-steps')); // carrousel des étapes de la page détail
   assert.equal((detail.match(/<h1(?:\s|>)/g) || []).length, 1);
   assert.match(detail, /rel="canonical"[^>]*\/projets\/post/);
   assert.ok(detail.includes('/og/dieudonne-houndagnon.png'));
   assert.ok(detail.includes(post.image));
   assert.ok(sitemap.includes('/projets/post'));
-  assert.equal((sitemap.match(/<loc>/g) || []).length, 14);
+  assert.equal((sitemap.match(/<loc>/g) || []).length, 15);
   assert.doesNotMatch(detail, /Découvrir Post|Vidmake|ngrok|exp:\/\//);
 });

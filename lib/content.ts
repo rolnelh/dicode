@@ -228,6 +228,37 @@ export const projects: readonly Project[] = [
     note: "Refonte personnelle publiée sur GitHub Pages. Cette présentation ne revendique ni commande client ni affiliation officielle avec Gozem.",
   },
   {
+    slug: "baobab-app",
+    platform: "mobile",
+    name: "Baobab — Application",
+    category: "Application mobile · Lecture de BD",
+    summary: "L’univers Baobab dans la poche : choisir ses histoires, lire et télécharger ses BD.",
+    description:
+      "Les maquettes de l’application Baobab prolongent le site : connexion et création de compte, choix des catégories d’histoires, bibliothèque avec la progression de lecture, puis téléchargement des BD pour les lire sans connexion.",
+    image: "/images/baobab-app/parcours.webp",
+    imageAlt:
+      "Maquettes de l’application Baobab : choix des catégories, bibliothèque, téléchargement en cours et BD prête à lire hors connexion",
+    imageWidth: 1536,
+    imageHeight: 1024,
+    kind: "presentation",
+    tags: ["UI mobile", "Parcours utilisateur", "Lecture hors ligne"],
+    url: null,
+    note: "Maquettes d’interface de l’application mobile Baobab.",
+    gallery: [
+      {
+        image: "/images/baobab-app/connexion.webp",
+        imageWidth: 1315,
+        imageHeight: 1197,
+        title: "Se connecter ou créer son compte",
+        titleEn: "Sign in or create an account",
+        imageAlt: "Maquettes Baobab des écrans de connexion et de création de compte",
+        imageAltEn: "Baobab sign-in and account-creation screen mockups",
+        caption: "Connexion et inscription : un ton chaleureux, des champs clairs et un accès sans compte.",
+        captionEn: "Sign-in and sign-up: a warm tone, clear fields and access without an account.",
+      },
+    ],
+  },
+  {
     "slug": "post",
     "platform": "mobile",
     "name": "Post",

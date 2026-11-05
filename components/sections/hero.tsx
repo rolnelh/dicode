@@ -8,6 +8,8 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { Logo } from "@/components/ui/logo";
+import { BrandIcon } from "@/components/ui/brand-icon";
+import { site } from "@/lib/site";
 
 // Les interfaces affichées côte à côte sous le titre, de gauche à droite.
 const shots = [
@@ -29,10 +31,10 @@ export function Hero() {
           <span className="hero-v3-icon" aria-hidden="true">
             <Logo variant="mark" strokeWidth={14} />
           </span>{" "}
-          <mark>startups</mark>{" "}
+          <mark>{en ? "startups and entrepreneurs" : "startups et entrepreneurs"}</mark>{" "}
           {en
-            ? "design, redesign and scale their digital products"
-            : "à concevoir, refondre et faire grandir leurs produits digitaux"}
+            ? "design, redesign and grow their digital products"
+            : "à concevoir, refondre et faire évoluer leurs produits numériques"}
         </h1>
 
         <p className="hero-v3-subtitle">
@@ -41,9 +43,16 @@ export function Hero() {
             : "De la première maquette au produit en ligne : des interfaces claires que vos utilisateurs comprennent, sur un code solide, prêt à évoluer."}
         </p>
 
-        <Link href="/contact" className="hero-v3-primary">
-          {en ? "Start my project" : "Démarrer mon projet"} <ArrowUpRight size={17} />
-        </Link>
+        {/* Deux boutons : le formulaire de contact, ou WhatsApp en direct */}
+        <div className="hero-v3-actions">
+          <Link href="/contact" className="hero-v3-primary">
+            {en ? "Let’s talk about your project" : "Parlons de votre projet"} <ArrowUpRight size={17} />
+          </Link>
+          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="hero-v3-whatsapp">
+            <BrandIcon name="whatsapp" />
+            {en ? "Chat on WhatsApp" : "Discutons sur WhatsApp"}
+          </a>
+        </div>
       </div>
 
       {/* Les interfaces, alignées côte à côte. Même hauteur pour toutes :

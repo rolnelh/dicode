@@ -1,59 +1,65 @@
 /* ===== Barre de navigation (components/layout/header.tsx) ===== */
-/* Les couleurs viennent de app/globals.css : --ink (noir), --purple, --lavender */
+/* Charte du logo : noir (--ink), blanc et vert citron (--lime). */
 
 .nav-wrap {
+  --lime: #d5f82c;
   position: sticky; /* la nav reste visible en haut quand on fait défiler */
-  top: 14px;
+  top: 12px;
   z-index: 50;
   width: min(1180px, calc(100% - 32px));
-  margin: 14px auto 0;
+  margin: 12px auto 0;
 }
 
 .nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 20px;
-  padding: 8px 8px 8px 14px;
-  background: var(--ink);
-  color: #fff;
+  padding: 10px 10px 10px 18px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid #ededed;
   border-radius: 99px;
-  box-shadow: 0 10px 30px rgba(20, 20, 25, 0.18);
+  box-shadow: 0 8px 24px rgba(20, 20, 25, 0.06);
 }
 
 .nav-logo {
+  justify-self: start;
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: -0.04em;
 }
 .nav-logo-svg {
   display: block;
   height: 30px;
   width: auto;
-  color: #fff; /* couleur des contours du logo */
+  color: var(--ink); /* couleur des contours du logo */
 }
 
+/* Les liens au centre, regroupés dans une pilule */
 .nav-links {
   display: flex;
-  gap: 26px;
-  font-size: 0.85rem;
+  gap: 2px;
+  padding: 4px;
+  background: #fff;
+  border: 1px solid #ededed;
+  border-radius: 99px;
+  font-size: 0.82rem;
 }
 .nav-links a {
-  color: #d6d4dc;
+  padding: 7px 16px;
+  border-radius: 99px;
+  color: var(--ink);
 }
-.nav-links a:hover,
-.nav-links a.active {
-  color: #b9a6f0; /* violet clair, lisible sur fond noir */
+.nav-links a:hover {
+  background: #f3f3f3;
 }
 .nav-links a.active {
-  text-decoration: underline;
-  text-underline-offset: 6px;
+  background: var(--ink);
+  color: #fff;
 }
 
 .nav-right {
+  justify-self: end;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -63,34 +69,34 @@
 .nav-lang {
   display: flex;
   padding: 3px;
-  border: 1px solid #3a3842;
+  border: 1px solid #ededed;
   border-radius: 99px;
 }
 .nav-lang button {
   border: 0;
   background: transparent;
-  color: #aaa7b3;
+  color: #8a8990;
   font-size: 0.72rem;
   font-weight: 600;
   padding: 6px 10px;
   border-radius: 99px;
 }
 .nav-lang button[aria-pressed="true"] {
-  background: var(--purple);
-  color: #fff;
+  background: var(--lime);
+  color: var(--ink);
 }
 
-/* Le bouton blanc "Parlons-en" */
+/* Le bouton noir "Parlons-en" */
 .nav-cta {
-  background: #fff;
-  color: var(--ink);
+  background: var(--ink);
+  color: #fff;
   font-size: 0.85rem;
   font-weight: 500;
-  padding: 10px 20px;
+  padding: 11px 26px;
   border-radius: 99px;
 }
 .nav-cta:hover {
-  background: var(--lavender);
+  background: #2a2a33;
 }
 
 /* Le bouton menu (caché sur ordinateur) */
@@ -102,7 +108,7 @@
   justify-content: center;
   border: 0;
   border-radius: 50%;
-  background: #2a2830;
+  background: var(--ink);
   color: #fff;
 }
 
@@ -112,20 +118,26 @@
   flex-direction: column;
   margin-top: 8px;
   padding: 10px;
-  background: var(--ink);
+  background: #fff;
+  border: 1px solid #ededed;
   border-radius: 24px;
+  box-shadow: 0 12px 30px rgba(20, 20, 25, 0.1);
 }
 .nav-mobile a {
-  color: #fff;
+  color: var(--ink);
   padding: 12px 16px;
   border-radius: 14px;
 }
 .nav-mobile a:hover {
-  background: #2a2830;
+  background: #f3f3f3;
 }
 
 /* Tablette et mobile : on cache les liens et on montre le bouton menu */
 @media (max-width: 900px) {
+  .nav {
+    display: flex;
+    justify-content: space-between;
+  }
   .nav-links {
     display: none;
   }
@@ -136,5 +148,8 @@
 @media (max-width: 480px) {
   .nav-cta {
     display: none;
+  }
+  .nav-logo-svg {
+    height: 26px;
   }
 }

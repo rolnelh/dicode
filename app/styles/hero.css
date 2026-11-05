@@ -20,7 +20,7 @@
 .hero-v3 h1 {
   max-width: 1080px;
   font-size: clamp(1.8rem, 3.6vw, 3rem);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 1.22;
   text-wrap: balance;
@@ -66,26 +66,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 22px;
-  background: #fff;
-  color: var(--ink);
-  border: 1.5px solid var(--ink);
-  border-radius: 14px;
-  font-weight: 500;
-  font-size: 0.95rem;
-}
-.hero-v3-whatsapp .brand-icon {
-  width: 20px;
-  height: 20px;
-}
-.hero-v3-whatsapp:hover {
-  background: var(--lime);
-}
-.hero-v3-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 28px;
+  padding: 14px 26px;
   background: var(--ink);
   color: #fff;
   border-radius: 14px;
@@ -93,10 +74,12 @@
   font-size: 0.95rem;
   box-shadow: 0 10px 22px rgba(20, 20, 25, 0.2);
 }
-.hero-v3-primary svg {
-  color: var(--lime);
+.hero-v3-whatsapp .brand-icon {
+  width: 20px;
+  height: 20px;
+  filter: invert(1); /* icône en blanc sur le fond noir */
 }
-.hero-v3-primary:hover {
+.hero-v3-whatsapp:hover {
   background: #2a2a33;
   transform: translateY(-2px);
 }

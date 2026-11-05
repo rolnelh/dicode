@@ -4,8 +4,6 @@
 // alignées côte à côte comme preuve.
 // Les styles sont dans app/styles/hero.css
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { Logo } from "@/components/ui/logo";
 import { BrandIcon } from "@/components/ui/brand-icon";
@@ -43,11 +41,8 @@ export function Hero() {
             : "De la première maquette au produit en ligne : des interfaces claires que vos utilisateurs comprennent, sur un code solide, prêt à évoluer."}
         </p>
 
-        {/* Deux boutons : le formulaire de contact, ou WhatsApp en direct */}
+        {/* Le bouton du hero : WhatsApp en direct ("Parlons de votre projet" est déjà dans la nav) */}
         <div className="hero-v3-actions">
-          <Link href="/contact" className="hero-v3-primary">
-            {en ? "Let’s talk about your project" : "Parlons de votre projet"} <ArrowUpRight size={17} />
-          </Link>
           <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="hero-v3-whatsapp">
             <BrandIcon name="whatsapp" />
             {en ? "Chat on WhatsApp" : "Discutons sur WhatsApp"}

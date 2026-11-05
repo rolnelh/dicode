@@ -1,21 +1,20 @@
 "use client";
 // La section d'accueil (hero). Elle parle au visiteur, pas de moi :
-// à qui je m'adresse et ce que je lui apporte, puis des projets
-// présentés en cartes inclinées comme preuve.
+// à qui je m'adresse et ce que je lui apporte, puis des interfaces
+// alignées côte à côte comme preuve.
 // Les styles sont dans app/styles/hero.css
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { Logo } from "@/components/ui/logo";
 import { site } from "@/lib/site";
 
-// Les cartes de projets, de gauche à droite. Chaque carte mène à sa fiche.
-const cards = [
-  { slug: "baobab", name: "Baobab", image: "/images/baobab-accueil.webp", width: 1333, height: 899 },
-  // Emplacement réservé à Essor : remplacer par son image dès qu'elle est fournie.
-  { slug: "gozem", name: "Gozem", image: "/images/gozem-after-hero.jpg", width: 1165, height: 747 },
-  { slug: "mefolio", name: "MeFolio", image: "/images/mefolio-dashboard.png", width: 1366, height: 768 },
+// Les interfaces affichées côte à côte sous le titre, de gauche à droite.
+const shots = [
+  { name: "Baobab", image: "/images/baobab-accueil.webp", width: 1333, height: 899 },
+  { name: "Forma", image: "/images/hero/forma.webp", width: 1165, height: 883 },
+  { name: "Milka", image: "/images/hero/milka.webp", width: 1280, height: 853 },
+  { name: "Essor", image: "/images/hero/essor.webp", width: 1152, height: 800 },
 ];
 
 export function Hero() {
@@ -33,10 +32,7 @@ export function Hero() {
           <mark>startups</mark>{" "}
           {en
             ? "design, redesign and scale their digital products"
-            : "à concevoir, refondre et faire grandir leurs produits digitaux"}{" "}
-          <span className="hero-v3-pill" aria-hidden="true">
-            <Image src="/images/hero/mefolio.webp" alt="" width={560} height={315} sizes="140px" />
-          </span>
+            : "à concevoir, refondre et faire grandir leurs produits digitaux"}
         </h1>
 
         <p className="hero-v3-subtitle">
@@ -50,21 +46,37 @@ export function Hero() {
         </a>
       </div>
 
-      {/* Les projets en cartes inclinées */}
-      <ul className="hero-v3-cards" aria-label={en ? "Selected projects" : "Projets choisis"}>
-        {cards.map((card, i) => (
-          <li key={card.slug} className={`card-${i + 1}`}>
-            <Link href={`/projets/${card.slug}`}>
-              <Image
-                src={card.image}
-                alt={en ? `${card.name} project` : `Projet ${card.name}`}
-                width={card.width}
-                height={card.height}
-                sizes="(max-width: 700px) 45vw, 280px"
-                priority={i < 2}
-              />
-              <span className="hero-v3-card-name">{card.name}</span>
-            </Link>
+      {/* Les interfaces, alignées côte à côte. Même hauteur pour toutes :
+          chaque image prend une largeur proportionnelle à son format. */}
+      <ul className="hero-v3-shots" aria-label={en ? "Interfaces I designed" : "Interfaces conçues"}>
+        {shots.map((shot, i) => (
+          <li key={shot.name} style={{ flexGrow: shot.width / shot.height }}>
+            <Image
+              src={shot.image}
+              alt={en ? `${shot.name} interface` : `Interface ${shot.name}`}
+              width={shot.width}
+              height={shot.height}
+              sizes="(max-width: 700px) 92vw, 26vw"
+              priority={i === 1}
+            />
+            {/* Le badge rond qui tourne, posé sur la première image */}
+            {i === 0 && (
+              <a href={site.booking} className="hero-v3-badge" aria-label={en ? "Book a call" : "Réserver un appel"}>
+                <svg className="badge-text" viewBox="0 0 100 100" aria-hidden="true">
+                  <defs>
+                    <path id="badge-circle" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0" />
+                  </defs>
+                  <text>
+                    <textPath href="#badge-circle">
+                      {en ? "BOOK A CALL • DICODE • BOOK A CALL • " : "RÉSERVER UN APPEL • DICODE • "}
+                    </textPath>
+                  </text>
+                </svg>
+                <span className="badge-arrow">
+                  <ArrowUpRight size={20} />
+                </span>
+              </a>
+            )}
           </li>
         ))}
       </ul>

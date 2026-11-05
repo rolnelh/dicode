@@ -1,222 +1,200 @@
-/* ===== Section projets en carrousel (components/sections/projects.tsx) ===== */
+/* ===== Section « Projets récents » (components/sections/projects.tsx) ===== */
+/* Charte du logo : noir (--ink), blanc et vert citron (--lime). */
 
-.projects-v2 {
+.pj {
+  --bg: #fff; /* couleur du fond : les encoches des cartes la reprennent */
   padding: 90px 0;
+  background: var(--bg);
 }
-.projects-v2-box {
-  position: relative;
-  padding: 50px 0 56px;
-  text-align: center;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 32px;
-  overflow: hidden;
+
+.pj-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
 }
-.projects-v2 h2 {
-  margin: 0 0 40px;
-  padding: 0 20px;
-  font-size: clamp(1.9rem, 4.5vw, 3rem);
+.pj h2 {
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
   font-weight: 600;
   letter-spacing: -0.04em;
 }
-
-/* --- Le carrousel --- */
-.carousel {
-  position: relative;
+.pj-arrows {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-}
-
-/* La carte du projet affiché */
-.slide {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  align-items: center;
-  width: min(760px, calc(100% - 32px));
-  flex-shrink: 0;
-  padding: 16px;
-  text-align: left;
-  background: #f6f5f9;
-  border-radius: 28px;
-  animation: fade 0.4s ease;
-}
-@keyframes fade {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-}
-.slide-image {
-  aspect-ratio: 4 / 3;
-  padding: 10px;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #fff;
-}
-.slide-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* le mockup est affiché en entier, sans être coupé */
-}
-.slide-category {
-  font-size: 0.78rem;
-  color: var(--purple);
-  font-weight: 500;
-}
-.slide h3 {
-  margin: 6px 0 10px;
-  font-size: 1.6rem;
-  font-weight: 600;
-}
-.slide-summary {
-  font-size: 0.92rem;
-}
-.slide-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 16px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-.slide-link:hover {
-  color: var(--purple);
-}
-.slide-tags {
-  display: flex;
-  flex-wrap: wrap;
   gap: 8px;
-  margin: 26px 0 0;
-  padding: 18px 0 0;
-  border-top: 1px solid var(--line);
-  list-style: none;
 }
-.slide-tags li {
-  padding: 4px 12px;
-  background: #fff;
-  border-radius: 99px;
-  font-size: 0.78rem;
-  font-weight: 500;
-}
-
-/* Les aperçus des projets précédent et suivant, sur les côtés */
-.peek {
-  flex-shrink: 0;
-  width: 220px;
-  height: 300px;
-  padding: 0;
-  border: 0;
-  border-radius: 24px;
-  overflow: hidden;
-  background: #f6f5f9;
-  opacity: 0.45;
-}
-.peek:hover {
-  opacity: 0.8;
-}
-.peek img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* Les flèches rondes noires */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+.pj-arrows button {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  border: 0;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+}
+.pj-arrows button:hover {
+  background: var(--ink);
+  color: var(--lime);
+}
+
+/* --- La rangée de cartes qui défile --- */
+.pj-row {
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0 0 8px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.pj-row::-webkit-scrollbar {
+  display: none;
+}
+.pj-card {
+  flex: 0 0 calc((100% - 40px) / 3); /* 3 cartes visibles */
+  scroll-snap-align: start;
+}
+
+.pj-media {
+  position: relative;
+  aspect-ratio: 4 / 3; /* format des mockups : ils restent entiers */
+  border-radius: 26px;
+  overflow: hidden;
+  background: #f3f3f1;
+}
+.pj-media > a,
+.pj-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.pj-media img {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+.pj-card:hover .pj-media img {
+  transform: scale(1.04);
+}
+
+/* Les encoches : un bloc couleur du fond, avec deux coins arrondis
+   « inversés » dessinés par des dégradés radiaux. */
+.pj-tags,
+.pj-go {
+  --r: 20px;
+  position: absolute;
+  right: 0;
+  background: var(--bg);
+}
+.pj-tags::before,
+.pj-tags::after,
+.pj-go::before,
+.pj-go::after {
+  content: "";
+  position: absolute;
+  width: var(--r);
+  height: var(--r);
+}
+
+/* Encoche du haut : les étiquettes */
+.pj-tags {
+  top: 0;
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  padding: 0 0 8px 8px;
+  list-style: none;
+  border-bottom-left-radius: var(--r);
+}
+.pj-tags::before {
+  top: 0;
+  left: calc(var(--r) * -1);
+  background: radial-gradient(circle at 0 100%, transparent var(--r), var(--bg) calc(var(--r) + 0.5px));
+}
+.pj-tags::after {
+  top: 100%;
+  right: 0;
+  background: radial-gradient(circle at 0 100%, transparent var(--r), var(--bg) calc(var(--r) + 0.5px));
+}
+.pj-tags li {
+  padding: 5px 12px;
+  background: #f1f1ee;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Encoche du bas : le bouton flèche */
+.pj-go {
+  bottom: 0;
+  padding: 8px 0 0 8px;
+  border-top-left-radius: var(--r);
+}
+.pj-go::before {
+  bottom: 100%;
+  right: 0;
+  background: radial-gradient(circle at 0 0, transparent var(--r), var(--bg) calc(var(--r) + 0.5px));
+}
+.pj-go::after {
+  bottom: 0;
+  left: calc(var(--r) * -1);
+  background: radial-gradient(circle at 0 0, transparent var(--r), var(--bg) calc(var(--r) + 0.5px));
+}
+.pj-go a {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: var(--ink);
-  color: #fff;
+  color: var(--lime);
 }
-.arrow:hover {
-  background: var(--purple);
-}
-.arrow-left {
-  left: 24px;
-}
-.arrow-right {
-  right: 24px;
+.pj-go a:hover {
+  transform: rotate(45deg);
 }
 
-/* Les petits points */
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 26px;
+.pj-card h3 {
+  margin-top: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
-.dots button {
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  border: 0;
-  border-radius: 99px;
-  background: #d9d6e2;
-}
-.dots button.active {
-  width: 24px;
-  background: var(--purple);
+.pj-card p {
+  font-size: 0.85rem;
+  color: var(--muted);
 }
 
-/* Le bouton du bas */
-.projects-v2-cta {
-  display: inline-block;
-  margin-top: 30px;
+.pj-cta {
+  display: table;
+  margin: 36px auto 0;
   padding: 12px 24px;
   background: var(--ink);
   color: #fff;
-  border-radius: 99px;
-  font-size: 0.9rem;
+  border-radius: 14px;
   font-weight: 500;
+  font-size: 0.95rem;
 }
-.projects-v2-cta:hover {
-  background: var(--purple);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .slide {
-    animation: none;
-  }
+.pj-cta:hover {
+  background: #2a2a33;
 }
 
-/* Mobile : l'image passe au-dessus du texte, on cache les aperçus */
-@media (max-width: 800px) {
-  .projects-v2-box {
-    width: calc(100% - 24px);
-  }
-  .peek {
-    display: none;
-  }
-  .slide {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-  .slide-image {
-    aspect-ratio: 4 / 3;
-  }
-  .arrow {
-    top: 32%;
-  }
-  .arrow-left {
-    left: 8px;
-  }
-  .arrow-right {
-    right: 8px;
+@media (max-width: 900px) {
+  .pj-card {
+    flex-basis: calc((100% - 20px) / 2);
   }
 }
-
-/* Page détail de Baobab : le mockup garde son format, sans bande grise */
-.project-art.presentation-mosaic.baobab-presentation {
-  aspect-ratio: 1672 / 941;
+@media (max-width: 600px) {
+  .pj {
+    padding: 64px 0;
+  }
+  .pj-card {
+    flex-basis: 84%;
+  }
+  .pj-arrows button {
+    width: 40px;
+    height: 40px;
+  }
 }

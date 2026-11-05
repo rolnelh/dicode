@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
-import { site } from "@/lib/site";
 import { Logo } from "@/components/ui/logo";
 
 export function Header() {
@@ -68,9 +67,11 @@ export function Header() {
               EN
             </button>
           </div>
-          <a href={site.booking} className="nav-cta">
-            {en ? "Let’s talk" : "Parlons-en"}
-          </a>
+          <Link href="/contact" className="nav-cta">
+            {/* Libellé complet sur ordinateur, court sur tablette et mobile */}
+            <span className="nav-cta-long">{en ? "Let’s talk about your project" : "Parlons de votre projet"}</span>
+            <span className="nav-cta-short">{en ? "Let’s talk" : "Discutons"}</span>
+          </Link>
           <button
             type="button"
             className="nav-burger"
@@ -92,7 +93,7 @@ export function Header() {
               {link.label}
             </Link>
           ))}
-          <a href={site.booking}>{en ? "Book a call ↗" : "Réserver un appel ↗"}</a>
+          <Link href="/contact">{en ? "Let’s talk about your project ↗" : "Parlons de votre projet ↗"}</Link>
         </nav>
       )}
     </header>

@@ -1,11 +1,12 @@
 "use client";
-// La section "Projets" : un carrousel qui montre un projet à la fois.
-// On change de projet avec les flèches ou les petits points.
+// La section "Projets récents" : une rangée de cartes qui défile.
+// Chaque carte : l'image du projet, ses étiquettes dans une encoche en haut
+// à droite, un bouton flèche dans une encoche en bas à droite, puis le nom.
 // Les projets eux-mêmes sont dans lib/content.ts
 // Les styles sont dans app/styles/projects.css
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { ProjectMockup } from "@/components/projects/project-mockup";
 import { projects, type Project } from "@/lib/content";
@@ -17,87 +18,92 @@ export function ProjectImage({ project }: { project: Project }) {
   return <ProjectMockup project={project} />;
 }
 
+// Les visuels des cartes : de préférence un mockup complet (écran, tablette…)
+// pour que le projet reste lisible en entier. "position" recadre si besoin.
+const showcase: Record<string, { src: string; position?: string }> = {
+  baobab: { src: "/images/baobab-mockup-4x3.webp" },
+  "dicode-portfolio": { src: "/images/dicode-macbook-presentation.png" },
+  mefolio: { src: "/images/mefolio-tablette.webp" },
+  lexpo: { src: "/images/lexpo.png" },
+  gozem: { src: "/images/gozem-sections-mosaic.png" },
+};
+
+// L'ordre d'affichage sur l'accueil (les projets non listés suivent).
+const homeOrder = ["baobab", "dicode-portfolio", "mefolio", "lexpo", "gozem"];
+const rank = (slug: string) => {
+  const i = homeOrder.indexOf(slug);
+  return i === -1 ? homeOrder.length : i;
+};
+
 export function Projects() {
   const { language } = useLanguage();
   const en = language === "en";
   const text = copy[language].projects;
-  const list = projects.map((project) => getLocalizedProject(project, language));
+  const list = [...projects]
+    .sort((a, b) => rank(a.slug) - rank(b.slug))
+    .map((project) => getLocalizedProject(project, language));
+  const row = useRef<HTMLUListElement>(null);
 
-  // "current" = la position du projet affiché dans la liste.
-  const [current, setCurrent] = useState(0);
-  const total = list.length;
-
-  // Le "+ total" et le "% total" permettent de revenir au début après le dernier projet.
-  const goTo = (index: number) => setCurrent((index + total) % total);
-  const previous = list[(current - 1 + total) % total];
-  const project = list[current];
-  const next = list[(current + 1) % total];
+  // Fait défiler la rangée d'une carte vers la gauche (-1) ou la droite (1).
+  const scroll = (direction: number) => {
+    const el = row.current;
+    if (!el) return;
+    const card = el.querySelector("li");
+    const step = card ? card.getBoundingClientRect().width + 20 : el.clientWidth;
+    el.scrollBy({ left: direction * step, behavior: "smooth" });
+  };
 
   return (
-    <section id="projets" className="projects-v2 section-anchor">
-      <div className="projects-v2-box wrap">
-        <h2>{text.title}</h2>
-
-        <div className="carousel">
-          {/* Aperçu du projet précédent (à gauche) */}
-          <button type="button" className="peek peek-left" onClick={() => goTo(current - 1)} aria-label={`${en ? "Previous project" : "Projet précédent"} : ${previous.name}`}>
-            <Image src={previous.cover ?? previous.image} alt="" width={400} height={300} />
-          </button>
-
-          {/* Le projet affiché */}
-          <article className="slide" key={project.slug}>
-            <div className="slide-image">
-              <Image
-                src={project.cover ?? project.image}
-                alt={project.imageAlt}
-                width={900}
-                height={700}
-                sizes="(max-width: 800px) 90vw, 420px"
-              />
-            </div>
-            <div className="slide-text">
-              <p className="slide-category">{project.category}</p>
-              <h3>{project.name}</h3>
-              <p className="slide-summary">{project.summary}</p>
-              <Link href={`/projets/${project.slug}`} className="slide-link">
-                {text.discover} <ArrowUpRight size={16} />
-              </Link>
-              <ul className="slide-tags">
-                {project.tags.slice(0, 3).map((tag) => (
-                  <li key={tag}>{tag}</li>
-                ))}
-              </ul>
-            </div>
-          </article>
-
-          {/* Aperçu du projet suivant (à droite) */}
-          <button type="button" className="peek peek-right" onClick={() => goTo(current + 1)} aria-label={`${en ? "Next project" : "Projet suivant"} : ${next.name}`}>
-            <Image src={next.cover ?? next.image} alt="" width={400} height={300} />
-          </button>
-
-          <button type="button" className="arrow arrow-left" onClick={() => goTo(current - 1)} aria-label={en ? "Previous project" : "Projet précédent"}>
-            <ArrowLeft size={18} />
-          </button>
-          <button type="button" className="arrow arrow-right" onClick={() => goTo(current + 1)} aria-label={en ? "Next project" : "Projet suivant"}>
-            <ArrowRight size={18} />
-          </button>
+    <section id="projets" className="pj section-anchor">
+      <div className="wrap">
+        <div className="pj-head">
+          <h2>{text.title}</h2>
+          <div className="pj-arrows">
+            <button type="button" onClick={() => scroll(-1)} aria-label={en ? "Previous projects" : "Projets précédents"}>
+              <ArrowLeft size={18} />
+            </button>
+            <button type="button" onClick={() => scroll(1)} aria-label={en ? "Next projects" : "Projets suivants"}>
+              <ArrowRight size={18} />
+            </button>
+          </div>
         </div>
 
-        {/* Les petits points : un par projet */}
-        <div className="dots">
-          {list.map((p, i) => (
-            <button
-              key={p.slug}
-              type="button"
-              className={i === current ? "active" : ""}
-              onClick={() => goTo(i)}
-              aria-label={p.name}
-              aria-current={i === current}
-            />
+        <ul className="pj-row" ref={row}>
+          {list.map((project) => (
+            <li key={project.slug} className="pj-card">
+              <div className="pj-media">
+                <Link href={`/projets/${project.slug}`} tabIndex={-1} aria-hidden="true">
+                  <Image
+                    src={showcase[project.slug]?.src ?? project.cover ?? project.image}
+                    alt=""
+                    width={900}
+                    height={700}
+                    sizes="(max-width: 700px) 82vw, 380px"
+                    style={{ objectPosition: showcase[project.slug]?.position }}
+                  />
+                </Link>
+                {/* Les étiquettes, dans l'encoche du haut */}
+                <ul className="pj-tags">
+                  {project.tags.slice(0, 2).map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+                {/* Le bouton flèche, dans l'encoche du bas */}
+                <span className="pj-go">
+                  <Link href={`/projets/${project.slug}`} aria-label={`${text.discover} : ${project.name}`}>
+                    <ArrowUpRight size={20} />
+                  </Link>
+                </span>
+              </div>
+              <h3>
+                <Link href={`/projets/${project.slug}`}>{project.name}</Link>
+              </h3>
+              <p>{project.category}</p>
+            </li>
           ))}
-        </div>
+        </ul>
 
-        <Link href="/contact" className="projects-v2-cta">
+        <Link href="/contact" className="pj-cta">
           {text.question} {text.talk}
         </Link>
       </div>

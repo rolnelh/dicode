@@ -11,7 +11,6 @@ import "./styles/header.css";
 import "./styles/hero.css";
 import "./styles/projects.css";
 import "./styles/services.css";
-import "./styles/process.css";
 import "./styles/project-detail.css";
 import "./styles/footer.css";
 import "./styles/about.css";

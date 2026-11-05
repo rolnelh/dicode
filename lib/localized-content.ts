@@ -163,11 +163,12 @@ export const copy = {
   fr: {
     services: {
       eyebrow: "MES SERVICES",
-      title: ["Ce que je peux", "faire pour vous."],
+      title: ["Comment je travaille", "avec vous."],
       intro: [
-        "Créer votre site, repenser l’existant ou finaliser un projet.",
-        "Un accompagnement adapté à votre point de départ.",
+        "Trois étapes claires, des échanges à chaque moment clé,",
+        "et un accompagnement adapté à votre point de départ.",
       ],
+      offerTitle: "Ce que je peux faire pour vous",
       scope: "Un périmètre défini ensemble",
       communication: "Des échanges à chaque étape",
       contact: "Parlons de votre projet ↗",
@@ -179,21 +180,27 @@ export const copy = {
       steps: [
         {
           title: "On clarifie votre besoin",
+          label: "Étape 01 · Cadrage",
+          tags: ["Objectifs", "Fonctionnalités", "Budget & délais"],
           text: "Nous définissons vos objectifs, les fonctionnalités utiles, le budget et les délais.",
         },
         {
           title: "Je conçois et développe",
+          label: "Étape 02 · Création",
+          tags: ["Maquettes", "Design UI", "Développement"],
           text: "Vous validez la direction visuelle, puis je développe votre site avec des points réguliers.",
         },
         {
           title: "On teste et on lance",
+          label: "Étape 03 · Lancement",
+          tags: ["Tests mobile", "Mise en ligne", "Prise en main"],
           text: "Nous vérifions les parcours sur ordinateur et mobile avant la mise en ligne et la prise en main.",
         },
       ],
     },
     projects: {
       eyebrow: "SÉLECTION DE PROJETS",
-      title: "Des projets, des univers singuliers.",
+      title: "Projets récents",
       mobileTitle: "Projets mobiles",
       hand: "Un aperçu de mon univers.",
       bottom: [
@@ -280,11 +287,12 @@ export const copy = {
   en: {
     services: {
       eyebrow: "MY SERVICES",
-      title: ["What I can", "do for you."],
+      title: ["How I work", "with you."],
       intro: [
-        "Build your website, rethink what’s there or finish a project.",
-        "Support that meets you where you are.",
+        "Three clear steps, a conversation at every key moment,",
+        "and support that meets you where you are.",
       ],
+      offerTitle: "What I can do for you",
       scope: "A scope we define together",
       communication: "A conversation at every step",
       contact: "Let’s talk about your project ↗",
@@ -296,21 +304,27 @@ export const copy = {
       steps: [
         {
           title: "We clarify what you need",
+          label: "Step 01 · Scoping",
+          tags: ["Goals", "Features", "Budget & timeline"],
           text: "We define your goals, useful features, budget and timeline.",
         },
         {
           title: "I design and develop",
+          label: "Step 02 · Creation",
+          tags: ["Mockups", "UI design", "Development"],
           text: "You approve the visual direction, then I build your website with regular check-ins.",
         },
         {
           title: "We test and launch",
+          label: "Step 03 · Launch",
+          tags: ["Mobile testing", "Go live", "Handover"],
           text: "We check the desktop and mobile journeys before launch and handover.",
         },
       ],
     },
     projects: {
       eyebrow: "SELECTED PROJECTS",
-      title: "Different projects. Distinctive worlds.",
+      title: "Recent projects",
       mobileTitle: "Mobile projects",
       hand: "A glimpse into my world.",
       bottom: [

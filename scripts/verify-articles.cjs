@@ -14,8 +14,8 @@ for (const [slug, file] of [
  assert.ok(fs.existsSync(buildPath(`images/${file}`)), 'Exported image exists');
 }
 const home = fs.readFileSync(buildPath('index.html'),'utf8');
-assert.ok(home.includes('Me contacter'));
+assert.ok(home.includes('Discutons sur WhatsApp'));
 assert.ok(home.includes('sur WhatsApp'));
 assert.ok(home.includes('https://wa.me/2290166374586'));
 assert.ok(home.includes('/icons/whatsapp.svg'));
-console.log('PASS: three article illustrations and explicit WhatsApp contact widget.');
+console.log('PASS: three article illustrations and explicit WhatsApp contact button in the hero.');

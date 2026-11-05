@@ -1,250 +1,174 @@
 /* ===== Section d'accueil (components/sections/hero.tsx) ===== */
 
-.hero-v2 {
-  background: #fafaf7; /* fond crème uni (mets #fff pour du blanc) */
+.hero-v3 {
+  --lime: #d5f82c;
+  position: relative;
   margin-top: -76px; /* le fond passe sous la nav */
-  padding-top: 120px;
+  padding-top: 150px;
   overflow: hidden;
+  /* fond clair avec une grille très légère, qui s'efface vers le bas */
+  background:
+    linear-gradient(to bottom, transparent 55%, #fafaf7 92%),
+    linear-gradient(#ecebe6 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(90deg, #ecebe6 1px, transparent 1px) 0 0 / 56px 56px,
+    #fafaf7;
 }
 
-/* --- 1. Le titre --- */
-.hero-v2-top {
-  position: relative;
+/* --- 1. Le titre et les actions --- */
+.hero-v3-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
-.hero-v2-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 99px;
-  font-size: 0.8rem;
-  color: var(--ink);
-}
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--purple);
-}
-.hero-v2 h1 {
-  position: relative;
-  display: inline-block;
-  margin-top: 18px;
-  font-size: clamp(2.6rem, 7vw, 5rem);
+.hero-v3 h1 {
+  max-width: 980px;
+  font-size: clamp(2rem, 4.3vw, 3.5rem);
   font-weight: 600;
-  letter-spacing: -0.05em;
-  line-height: 1.05;
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+  text-wrap: balance;
 }
-.hero-v2 h1 .name {
-  color: var(--purple);
+/* Le passage surligné : le public visé */
+.hero-v3 h1 mark {
+  color: var(--ink);
+  background: linear-gradient(transparent 12%, var(--lime) 12%, var(--lime) 88%, transparent 88%);
+  padding: 0 0.12em;
+  border-radius: 0.18em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
-.hero-v2 h1 .sparks {
-  position: absolute;
-  top: -10px;
-  right: -34px;
-  width: 26px;
-  color: var(--purple);
-}
-.hero-v2-subtitle {
-  margin-top: 12px;
+.hero-v3-subtitle {
+  max-width: 600px;
+  margin-top: 22px;
   font-size: 1.05rem;
+  color: var(--muted);
+  text-wrap: pretty;
 }
 
-/* Le badge rond qui tourne */
-.hero-v2-round {
-  position: absolute;
-  top: 40px;
-  right: 2%;
-  width: 116px;
-  height: 116px;
-  display: grid;
-  place-items: center;
-  background: var(--ink);
-  border-radius: 50%;
-}
-.hero-v2-round .round-text {
-  position: absolute;
-  inset: 0;
-  fill: #fff;
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  animation: spin 14s linear infinite;
-}
-.hero-v2-round .round-arrow {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: var(--purple);
-  color: #fff;
-}
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* --- 2. Photo + colonnes gauche/droite --- */
-.hero-v2-middle {
-  display: grid;
-  grid-template-columns: 1fr 400px 1fr;
-  align-items: end;
-  gap: 24px;
-  margin-top: 10px;
-}
-.hero-v2-left,
-.hero-v2-right {
-  padding-bottom: 80px;
-}
-.hero-v2-right {
-  text-align: right;
-}
-.hero-v2-label {
-  font-size: 0.85rem;
-  margin-bottom: 10px;
-}
-.hero-v2-socials {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 36px;
-}
-.hero-v2-socials a {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-}
-.hero-v2-socials a:hover {
-  background: var(--lavender);
-}
-.hero-v2-socials .brand-icon {
-  width: 18px;
-  height: 18px;
-}
-.hero-v2-stat {
-  font-size: 0.9rem;
-  margin-top: 12px;
-}
-.hero-v2-stat strong {
-  display: block;
-  color: var(--purple);
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.hero-v2-quote {
-  font-family: var(--font-hand), cursive;
-  font-size: 2rem;
-  line-height: 1.1;
-  color: var(--ink);
-}
-.hero-v2-quote span {
-  color: var(--purple);
-  margin-right: 4px;
-}
-.hero-v2-text {
-  max-width: 260px;
-  margin: 10px 0 28px auto;
-  font-size: 0.9rem;
-}
-.hero-v2-skills {
+.hero-v3-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
-  max-width: 280px;
-  margin-left: auto;
-  padding: 0;
-  list-style: none;
-}
-.hero-v2-skills li {
-  padding: 5px 14px;
-  border-radius: 99px;
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-.hero-v2-skills .dark {
-  background: var(--ink);
-  color: #fff;
-}
-.hero-v2-skills .light {
-  background: var(--lavender);
-  color: var(--purple);
-}
-
-/* La photo et le grand cercle lavande derrière */
-.hero-v2-photo {
-  position: relative;
-  display: flex;
   justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
 }
-.hero-v2-circle {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 115%;
-  aspect-ratio: 1;
-  transform: translate(-50%, 32%);
-  background: var(--lavender);
-  border: 1px solid #e2dbf7;
-  border-radius: 50%;
-}
-.hero-v2-photo img {
-  position: relative; /* passe devant le cercle */
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Les deux boutons posés sur la photo */
-.hero-v2-buttons {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 6px;
-  padding: 6px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  border-radius: 99px;
-  white-space: nowrap;
-}
-.btn-purple,
-.btn-white {
+.hero-v3-primary,
+.hero-v3-secondary {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 22px;
+  padding: 13px 24px;
   border-radius: 99px;
   font-weight: 500;
   font-size: 0.95rem;
 }
-.btn-purple {
-  background: var(--purple);
+.hero-v3-primary {
+  background: var(--ink);
   color: #fff;
+  box-shadow: 0 10px 24px rgba(20, 20, 25, 0.18);
 }
-.btn-purple:hover {
-  background: #6f52c0;
+.hero-v3-primary:hover {
+  background: #2a2a33;
+  transform: translateY(-2px);
 }
-.btn-white {
+.hero-v3-secondary {
   background: #fff;
   color: var(--ink);
-  border: 1.5px solid var(--ink);
+  border: 1px solid var(--line);
 }
-.btn-white:hover {
+.hero-v3-secondary:hover {
   background: var(--lavender);
+}
+
+/* Petite ligne de confiance sous les boutons */
+.hero-v3-proof {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 22px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.hero-v3-proof li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-v3-proof li::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--lime);
+  outline: 1px solid var(--ink);
+}
+
+/* --- 2. Les projets en éventail --- */
+/* --i va de -2 (gauche) à 2 (droite) ; 0 = carte du milieu */
+.hero-v3-cards {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 64px 0 0;
+  padding: 0 16px 70px;
+  list-style: none;
+}
+.hero-v3-cards li {
+  --abs: max(var(--i), calc(var(--i) * -1));
+  flex: 0 0 auto;
+  width: clamp(150px, 20vw, 250px);
+  margin-inline: -14px; /* les cartes se chevauchent un peu */
+  transform: translateY(calc(var(--abs) * 26px)) rotate(calc(var(--i) * 7deg));
+  z-index: calc(10 - var(--abs));
+  transition: transform 0.35s ease;
+}
+.hero-v3-cards li:hover {
+  transform: translateY(calc(var(--abs) * 26px - 14px)) rotate(calc(var(--i) * 4deg));
+  z-index: 20;
+}
+.hero-v3-cards a {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 4.4;
+  padding: 7px;
+  background: #fff;
+  border-radius: 26px;
+  box-shadow:
+    0 1px 0 var(--line),
+    0 22px 40px -14px rgba(20, 20, 25, 0.35);
+}
+.hero-v3-cards img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  border-radius: 20px;
+  display: block;
+}
+.hero-v3-card-name {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  padding: 4px 12px;
+  background: rgba(20, 20, 25, 0.82);
+  color: #fff;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.25s,
+    transform 0.25s;
+}
+.hero-v3-cards li:hover .hero-v3-card-name,
+.hero-v3-cards a:focus-visible .hero-v3-card-name {
+  opacity: 1;
+  transform: none;
 }
 
 /* --- 3. La bande qui défile --- */
@@ -252,7 +176,7 @@
   position: relative;
   background: var(--ink);
   color: #fff;
-  border-bottom: 5px solid var(--purple);
+  border-bottom: 5px solid var(--lime, #d5f82c);
   padding: 16px 0;
   overflow: hidden;
 }
@@ -270,7 +194,7 @@
   font-weight: 500;
 }
 .hero-v2-marquee b {
-  color: var(--purple);
+  color: var(--lime, #d5f82c);
 }
 @keyframes scroll {
   to {
@@ -280,52 +204,48 @@
 
 /* Si la personne a demandé moins d'animations, on arrête tout */
 @media (prefers-reduced-motion: reduce) {
-  .hero-v2-round .round-text,
   .hero-v2-marquee .track {
     animation: none;
   }
+  .hero-v3-cards li {
+    transition: none;
+  }
 }
 
-/* --- Tablette et mobile : tout passe en une colonne --- */
+/* --- Tablette et mobile --- */
 @media (max-width: 900px) {
-  .hero-v2-middle {
-    grid-template-columns: 1fr;
-    justify-items: center;
+  .hero-v3 {
+    padding-top: 130px;
   }
-  .hero-v2-photo {
-    width: min(400px, 100%);
-    order: -1; /* la photo passe en premier */
+  .hero-v3-cards {
+    margin-top: 48px;
   }
-  .hero-v2-left,
-  .hero-v2-right {
-    padding-bottom: 0;
-    text-align: center;
-  }
-  .hero-v2-socials,
-  .hero-v2-skills {
-    justify-content: center;
-    margin-inline: auto;
-  }
-  .hero-v2-text {
-    margin-inline: auto;
-  }
-  .hero-v2-right {
-    padding-bottom: 50px;
-  }
-  .hero-v2-round {
-    display: none;
+  .hero-v3-cards li {
+    margin-inline: -20px;
   }
 }
-@media (max-width: 480px) {
-  .hero-v2-buttons {
-    bottom: 14px;
+@media (max-width: 600px) {
+  .hero-v3-subtitle {
+    font-size: 0.98rem;
   }
-  .btn-purple,
-  .btn-white {
-    padding: 10px 16px;
-    font-size: 0.85rem;
-  }
-  .hero-v2 h1 .sparks {
+  /* 3 cartes seulement sur petit écran */
+  .hero-v3-cards li:first-child,
+  .hero-v3-cards li:last-child {
     display: none;
+  }
+  .hero-v3-cards li {
+    width: 40vw;
+    margin-inline: -12px;
+  }
+  .hero-v3-cards a {
+    border-radius: 20px;
+    padding: 5px;
+  }
+  .hero-v3-cards img {
+    border-radius: 15px;
+  }
+  .hero-v3-primary,
+  .hero-v3-secondary {
+    padding: 12px 20px;
   }
 }

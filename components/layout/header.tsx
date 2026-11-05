@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { site } from "@/lib/site";
+import { Logo } from "@/components/ui/logo";
 
 export function Header() {
   const [open, setOpen] = useState(false); // menu mobile ouvert ou fermé
@@ -34,10 +35,7 @@ export function Header() {
     <header className="nav-wrap">
       <div className="nav">
         <Link href="/" className="nav-logo" aria-label={en ? "Dicode, home" : "Dicode, accueil"}>
-          <img src="/favicon.svg" alt="" width={34} height={34} />
-          <span>
-            Dicode<b>.</b>
-          </span>
+          <Logo className="nav-logo-svg" />
         </Link>
 
         <nav className="nav-links" aria-label={en ? "Main navigation" : "Navigation principale"}>

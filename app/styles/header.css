@@ -29,11 +29,11 @@
   font-weight: 600;
   letter-spacing: -0.04em;
 }
-.nav-logo img {
-  border-radius: 50%;
-}
-.nav-logo b {
-  color: var(--purple);
+.nav-logo-svg {
+  display: block;
+  height: 30px;
+  width: auto;
+  color: #fff; /* couleur des contours du logo */
 }
 
 .nav-links {

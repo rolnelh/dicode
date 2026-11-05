@@ -29,6 +29,10 @@ const hand = Caveat({
   variable: "--font-hand",
   display: "swap",
 });
+// Texte affiché sous l'image quand le lien est partagé (WhatsApp, LinkedIn, X…).
+const shareDescription =
+  "Design UX/UI et développement web & mobile : je conçois, refonds et fais évoluer vos sites, applications et interfaces SaaS.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -46,16 +50,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     siteName: site.name,
-    title: "Dicode · De votre idée à un site prêt pour vos clients",
-    description: site.description,
+    title: "Dicode · J’aide les startups et entrepreneurs à faire évoluer leurs produits numériques",
+    description: shareDescription,
     url: "/",
     images: [socialImage],
   },
   twitter: {
     card: "summary_large_image",
     images: [socialImage],
-    title: "Dicode · Développement web & SaaS",
-    description: site.description,
+    title: "Dicode · J’aide les startups et entrepreneurs à faire évoluer leurs produits numériques",
+    description: shareDescription,
   },
   icons: { icon: "/favicon.svg" },
 };

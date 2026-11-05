@@ -59,7 +59,7 @@
 
 .pj-media {
   position: relative;
-  aspect-ratio: 1 / 0.86;
+  aspect-ratio: 4 / 3; /* format des mockups : ils restent entiers */
   border-radius: 26px;
   overflow: hidden;
   background: #f3f3f1;
@@ -72,7 +72,7 @@
 }
 .pj-media img {
   object-fit: cover;
-  object-position: top left;
+  object-position: center;
   transition: transform 0.5s ease;
 }
 .pj-card:hover .pj-media img {

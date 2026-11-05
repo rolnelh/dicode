@@ -24,18 +24,17 @@
   gap: 20px;
 }
 .ab-photo {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
   min-height: 460px;
   overflow: hidden;
   border-radius: 28px;
-  background: radial-gradient(circle at 50% 110%, var(--lime) 0 38%, #eef9b8 60%, #f6f6f2 100%);
+  background: #e9b06b; /* couleur du fond de la photo, le temps qu'elle charge */
 }
 .ab-photo img {
   display: block;
-  width: min(78%, 420px);
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
 }
 
 .ab-card {

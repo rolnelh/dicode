@@ -74,11 +74,11 @@ export function About() {
           {/* La photo */}
           <div className="ab-photo">
             <Image
-              src="/images/hero/dieudonne-portrait.webp"
+              src="/images/dieudonne-photo.webp"
               alt="Dieudonné Houndagnon"
-              width={1024}
-              height={1386}
-              sizes="(max-width: 800px) 90vw, 560px"
+              width={1239}
+              height={1280}
+              sizes="(max-width: 800px) 90vw, 640px"
             />
           </div>
 
@@ -92,7 +92,7 @@ export function About() {
             </p>
 
             <div className="ab-person">
-              <Image src="/images/hero/dieudonne-portrait.webp" alt="" width={1024} height={1386} sizes="52px" />
+              <Image src="/images/dieudonne-avatar.webp" alt="" width={160} height={160} />
               <div>
                 <strong>Dieudonné Houndagnon</strong>
                 <span>{en ? "Web developer & UI designer" : "Développeur web & designer UI"}</span>

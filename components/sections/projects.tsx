@@ -18,11 +18,30 @@ export function ProjectImage({ project }: { project: Project }) {
   return <ProjectMockup project={project} />;
 }
 
+// Les visuels des cartes : de préférence un mockup complet (écran, tablette…)
+// pour que le projet reste lisible en entier. "position" recadre si besoin.
+const showcase: Record<string, { src: string; position?: string }> = {
+  baobab: { src: "/images/baobab-mockup-4x3.webp" },
+  "dicode-portfolio": { src: "/images/dicode-macbook-presentation.png" },
+  mefolio: { src: "/images/mefolio-tablette.webp" },
+  lexpo: { src: "/images/lexpo.png" },
+  gozem: { src: "/images/gozem-sections-mosaic.png" },
+};
+
+// L'ordre d'affichage sur l'accueil (les projets non listés suivent).
+const homeOrder = ["baobab", "dicode-portfolio", "mefolio", "lexpo", "gozem"];
+const rank = (slug: string) => {
+  const i = homeOrder.indexOf(slug);
+  return i === -1 ? homeOrder.length : i;
+};
+
 export function Projects() {
   const { language } = useLanguage();
   const en = language === "en";
   const text = copy[language].projects;
-  const list = projects.map((project) => getLocalizedProject(project, language));
+  const list = [...projects]
+    .sort((a, b) => rank(a.slug) - rank(b.slug))
+    .map((project) => getLocalizedProject(project, language));
   const row = useRef<HTMLUListElement>(null);
 
   // Fait défiler la rangée d'une carte vers la gauche (-1) ou la droite (1).
@@ -55,11 +74,12 @@ export function Projects() {
               <div className="pj-media">
                 <Link href={`/projets/${project.slug}`} tabIndex={-1} aria-hidden="true">
                   <Image
-                    src={project.cover ?? project.image}
+                    src={showcase[project.slug]?.src ?? project.cover ?? project.image}
                     alt=""
                     width={900}
                     height={700}
                     sizes="(max-width: 700px) 82vw, 380px"
+                    style={{ objectPosition: showcase[project.slug]?.position }}
                   />
                 </Link>
                 {/* Les étiquettes, dans l'encoche du haut */}

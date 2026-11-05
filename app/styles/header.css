@@ -111,6 +111,10 @@
   background: #2a2a33;
 }
 
+.nav-cta-short {
+  display: none;
+}
+
 /* Le bouton menu (caché sur ordinateur) */
 .nav-burger {
   display: none;
@@ -146,6 +150,12 @@
 
 /* Tablette et mobile : on cache les liens et on montre le bouton menu */
 @media (max-width: 1100px) {
+  .nav-cta-long {
+    display: none;
+  }
+  .nav-cta-short {
+    display: inline;
+  }
   .nav {
     display: flex;
     justify-content: space-between;
@@ -158,10 +168,21 @@
   }
 }
 @media (max-width: 480px) {
+  .nav {
+    gap: 8px;
+    padding-left: 12px;
+  }
+  .nav-right {
+    gap: 6px;
+  }
   .nav-cta {
-    display: none;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+  }
+  .nav-lang button {
+    padding: 6px 8px;
   }
   .nav-logo-svg {
-    height: 26px;
+    height: 24px;
   }
 }

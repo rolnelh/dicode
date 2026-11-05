@@ -68,7 +68,9 @@ export function Header() {
             </button>
           </div>
           <Link href="/contact" className="nav-cta">
-            {en ? "Let’s talk about your project" : "Parlons de votre projet"}
+            {/* Libellé complet sur ordinateur, court sur tablette et mobile */}
+            <span className="nav-cta-long">{en ? "Let’s talk about your project" : "Parlons de votre projet"}</span>
+            <span className="nav-cta-short">{en ? "Let’s talk" : "Discutons"}</span>
           </Link>
           <button
             type="button"

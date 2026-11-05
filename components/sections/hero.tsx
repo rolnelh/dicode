@@ -59,24 +59,6 @@ export function Hero() {
               sizes="(max-width: 700px) 92vw, 26vw"
               priority={i === 1}
             />
-            {/* Le badge rond qui tourne, posé sur la première image */}
-            {i === 0 && (
-              <Link href="/contact" className="hero-v3-badge" aria-label={en ? "Start my project" : "Démarrer mon projet"}>
-                <svg className="badge-text" viewBox="0 0 100 100" aria-hidden="true">
-                  <defs>
-                    <path id="badge-circle" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0" />
-                  </defs>
-                  <text>
-                    <textPath href="#badge-circle">
-                      {en ? "START YOUR PROJECT • DICODE • " : "DÉMARRER UN PROJET • DICODE • "}
-                    </textPath>
-                  </text>
-                </svg>
-                <span className="badge-arrow">
-                  <ArrowUpRight size={20} />
-                </span>
-              </Link>
-            )}
           </li>
         ))}
       </ul>

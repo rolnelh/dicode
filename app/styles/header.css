@@ -16,10 +16,20 @@
   align-items: center;
   gap: 20px;
   padding: 10px 10px 10px 18px;
+  /* transparente en haut de page : elle se fond dans le hero */
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 99px;
+  transition:
+    background 0.25s,
+    box-shadow 0.25s,
+    border-color 0.25s;
+}
+/* une fois la page défilée, un fond blanc la garde lisible */
+.nav-wrap.scrolled .nav {
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(10px);
-  border: 1px solid #ededed;
-  border-radius: 99px;
+  border-color: #ededed;
   box-shadow: 0 8px 24px rgba(20, 20, 25, 0.06);
 }
 

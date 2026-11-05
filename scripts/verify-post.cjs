@@ -94,7 +94,7 @@ test('the built homepage, project route, sitemap and social image remain valid',
   assert.ok(detail.includes('pd-steps')); // carrousel des étapes de la page détail
   assert.equal((detail.match(/<h1(?:\s|>)/g) || []).length, 1);
   assert.match(detail, /rel="canonical"[^>]*\/projets\/post/);
-  assert.ok(detail.includes('/og/dieudonne-houndagnon.png'));
+  assert.ok(detail.includes('/og/dicode-partage.png'));
   assert.ok(detail.includes(post.image));
   assert.ok(sitemap.includes('/projets/post'));
   assert.equal((sitemap.match(/<loc>/g) || []).length, 15);

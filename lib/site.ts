@@ -2,7 +2,7 @@ export const site = {
   name: "Dicode",
   person: "Dieudonné Houndagnon",
   url: (
-    process.env.NEXT_PUBLIC_SITE_URL || "https://dieudonne-dev.vercel.app"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://dicodee.vercel.app"
   ).replace(/\/$/, ""),
   email: "houndagnondieudonne4@gmail.com",
   github: "https://github.com/rolnelh",

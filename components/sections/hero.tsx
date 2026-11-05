@@ -4,10 +4,10 @@
 // alignées côte à côte comme preuve.
 // Les styles sont dans app/styles/hero.css
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { Logo } from "@/components/ui/logo";
-import { site } from "@/lib/site";
 
 // Les interfaces affichées côte à côte sous le titre, de gauche à droite.
 const shots = [
@@ -41,9 +41,9 @@ export function Hero() {
             : "De la première maquette au produit en ligne : des interfaces claires que vos utilisateurs comprennent, sur un code solide, prêt à évoluer."}
         </p>
 
-        <a href={site.booking} className="hero-v3-primary">
-          {en ? "Book a call" : "Réserver un appel"} <ArrowUpRight size={17} />
-        </a>
+        <Link href="/contact" className="hero-v3-primary">
+          {en ? "Start my project" : "Démarrer mon projet"} <ArrowUpRight size={17} />
+        </Link>
       </div>
 
       {/* Les interfaces, alignées côte à côte. Même hauteur pour toutes :
@@ -61,21 +61,21 @@ export function Hero() {
             />
             {/* Le badge rond qui tourne, posé sur la première image */}
             {i === 0 && (
-              <a href={site.booking} className="hero-v3-badge" aria-label={en ? "Book a call" : "Réserver un appel"}>
+              <Link href="/contact" className="hero-v3-badge" aria-label={en ? "Start my project" : "Démarrer mon projet"}>
                 <svg className="badge-text" viewBox="0 0 100 100" aria-hidden="true">
                   <defs>
                     <path id="badge-circle" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0" />
                   </defs>
                   <text>
                     <textPath href="#badge-circle">
-                      {en ? "BOOK A CALL • DICODE • BOOK A CALL • " : "RÉSERVER UN APPEL • DICODE • "}
+                      {en ? "START YOUR PROJECT • DICODE • " : "DÉMARRER UN PROJET • DICODE • "}
                     </textPath>
                   </text>
                 </svg>
                 <span className="badge-arrow">
                   <ArrowUpRight size={20} />
                 </span>
-              </a>
+              </Link>
             )}
           </li>
         ))}

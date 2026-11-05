@@ -8,6 +8,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Check, Quote } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
+import { BrandIcon, type BrandName } from "@/components/ui/brand-icon";
+import { site } from "@/lib/site";
 
 // Les langages et outils affichés avec leur icône (fichiers public/icons/<icon>.svg).
 const stack = [
@@ -21,6 +23,14 @@ const stack = [
   { icon: "mysql", name: "MySQL" },
   { icon: "supabase", name: "Supabase" },
   { icon: "figma", name: "Figma" },
+];
+
+// Mes réseaux sociaux (icônes dans public/icons).
+const socials: { name: BrandName; label: string; href: string }[] = [
+  { name: "linkedin", label: "LinkedIn", href: site.linkedin },
+  { name: "github", label: "GitHub", href: site.github },
+  { name: "dribbble", label: "Dribbble", href: site.dribbble },
+  { name: "threads", label: "Threads", href: site.threads },
 ];
 
 export function About() {
@@ -97,6 +107,15 @@ export function About() {
                 <strong>Dieudonné Houndagnon</strong>
                 <span>{en ? "Web developer & UI designer" : "Développeur web & designer UI"}</span>
               </div>
+              <ul className="ab-socials" aria-label={en ? "My social networks" : "Mes réseaux sociaux"}>
+                {socials.map((social) => (
+                  <li key={social.name}>
+                    <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
+                      <BrandIcon name={social.name} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <dl className="ab-facts">

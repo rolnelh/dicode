@@ -92,6 +92,31 @@
   font-weight: 600;
   line-height: 1.2;
 }
+/* Les réseaux sociaux, à droite du nom */
+.ab-socials {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.ab-socials a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+}
+.ab-socials a:hover {
+  background: var(--lime);
+  border-color: var(--lime);
+}
+.ab-socials .brand-icon {
+  width: 17px;
+  height: 17px;
+}
 .ab-person span {
   font-size: 0.85rem;
   color: var(--muted);
@@ -235,6 +260,13 @@
   }
 }
 @media (max-width: 600px) {
+  .ab-person {
+    flex-wrap: wrap;
+  }
+  .ab-socials {
+    margin: 4px 0 0;
+    width: 100%;
+  }
   .ab {
     padding: 64px 0;
   }

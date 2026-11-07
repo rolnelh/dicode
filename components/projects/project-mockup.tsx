@@ -33,7 +33,7 @@ export function ProjectMockup({ project }: { project: MockupProject }) {
         />
       </div>
     );
-  if (project.slug === "post" || project.slug === "gozem")
+  if (["post", "gozem", "fiacre-studio"].includes(project.slug))
     return (
       <div className={`project-art presentation-mosaic${project.slug === "post" ? " post-presentation" : ""}`}>
         <Image

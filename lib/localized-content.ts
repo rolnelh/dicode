@@ -8,6 +8,16 @@ type ProjectCopy = Pick<
   "category" | "summary" | "description" | "imageAlt" | "tags" | "note"
 >;
 const englishProjects: Record<string, ProjectCopy> = {
+  "fiacre-studio": {
+    category: "Photographer portfolio · Mockup & development",
+    summary:
+      "A website that showcases a photographer’s work and sessions, and makes booking easy.",
+    description:
+      "Fiacre Studio is the portfolio of a portrait photographer working in the studio and outdoors. I designed the mockup and then built the website: a hero that sets the mood, a behind-the-scenes video, a portfolio organised in folders, the services offered, the occasions covered, client reviews and a booking flow with date and time selection. Contact stays within reach everywhere, with a booking button and a WhatsApp number.",
+    imageAlt:
+      "Fiacre Studio homepage on a laptop: a photographer behind a tripod and the headline “Photo studio for your portraits”",
+    tags: ["Next.js", "Tailwind CSS", "UI/UX", "Responsive"],
+  },
   post: {
     "category": "Mobile app · Prototype in progress",
     "summary": "Exploring content creation and scheduling through a mobile prototype.",

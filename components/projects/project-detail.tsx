@@ -55,6 +55,22 @@ export function ProjectDetail({ project }: { project: Project }) {
         ))}
       </div>
       <p className="detail-copy">{p.description}</p>
+      {p.video && (
+        <figure className="project-video">
+          <video
+            controls
+            muted
+            playsInline
+            preload="metadata"
+            poster={p.video.poster}
+            width={p.video.width}
+            height={p.video.height}
+          >
+            <source src={p.video.src} type="video/mp4" />
+          </video>
+          <figcaption>{language === "fr" ? p.video.caption : p.video.captionEn}</figcaption>
+        </figure>
+      )}
       {p.slug === "lexpo" && <ProjectGallery project={p} language={language} />}
       <ProjectPresentation slug={p.slug} language={language} />
       <ProjectCraft slug={p.slug} language={language} />

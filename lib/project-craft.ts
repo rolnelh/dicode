@@ -21,6 +21,75 @@ export type ProjectCraftDetails = {
 
 /** Scope and exact values are grounded in project source or qualified observations. */
 export const projectCraft: Record<string, ProjectCraftDetails> = {
+  "fiacre-studio": {
+    technologies: ["Next.js", "React", "Tailwind CSS"],
+    fonts: [
+      {
+        name: "Sans-serif géométrique",
+        usage: {
+          fr: "Navigation, titres et textes courants",
+          en: "Navigation, headings and body text",
+        },
+      },
+      {
+        name: "Serif italique",
+        usage: {
+          fr: "Mots mis en avant : Portfolio, occasions, Fiacre",
+          en: "Highlighted words: Portfolio, occasions, Fiacre",
+        },
+      },
+    ],
+    palette: [
+      { hex: "#181816", name: { fr: "Encre", en: "Ink" } },
+      { hex: "#2D2125", name: { fr: "Prune profond", en: "Deep plum" } },
+      { hex: "#F5F5F3", name: { fr: "Fond cassé", en: "Off-white background" } },
+      { hex: "#E8E8E6", name: { fr: "Gris perle", en: "Pearl grey" } },
+      { hex: "#EDDCD5", name: { fr: "Rose poudré", en: "Powder pink" } },
+    ],
+    sources: [],
+    copy: {
+      fr: {
+        role: "Conception de la maquette et développement du site",
+        design: [
+          {
+            title: "Laisser les photos parler",
+            text: "Une base neutre, blanc cassé et gris, met en valeur les portraits. Le hero en noir et blanc présente directement le photographe au travail.",
+          },
+          {
+            title: "Un portfolio rangé comme des dossiers",
+            text: "Chaque série s’ouvre comme un dossier : portraits de nuit, séances en studio et coulisses. Le visiteur voit tout de suite combien de photos et de vidéos l’attendent.",
+          },
+          {
+            title: "Être contacté facilement",
+            text: "Le bouton « Réserver une séance » reste visible, une bande sombre relance la prise de rendez-vous et le contact final propose WhatsApp ou une réservation avec choix de la date et de l’heure.",
+          },
+        ],
+        stackNote: "Site développé avec Next.js et Tailwind CSS, à partir de ma propre maquette.",
+        fontNote: "Familles typographiques observées sur la maquette : une sans-serif géométrique associée à une serif italique.",
+        paletteNote: "Couleurs relevées sur les captures du site.",
+      },
+      en: {
+        role: "Mockup design and website development",
+        design: [
+          {
+            title: "Letting the photos speak",
+            text: "A neutral off-white and grey base highlights the portraits. The black-and-white hero introduces the photographer at work straight away.",
+          },
+          {
+            title: "A portfolio organised like folders",
+            text: "Each series opens like a folder: night portraits, studio sessions and behind the scenes. Visitors immediately see how many photos and videos are inside.",
+          },
+          {
+            title: "Making contact easy",
+            text: "The “Book a session” button stays visible, a dark banner invites visitors to schedule a session, and the final contact block offers WhatsApp or booking with date and time selection.",
+          },
+        ],
+        stackNote: "Built with Next.js and Tailwind CSS from my own mockup.",
+        fontNote: "Type families observed in the mockup: a geometric sans-serif paired with an italic serif.",
+        paletteNote: "Colours sampled from the website screenshots.",
+      },
+    },
+  },
   post: {
     "technologies": [
       "React Native",

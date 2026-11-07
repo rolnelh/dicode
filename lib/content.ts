@@ -56,6 +56,14 @@ export type Project = {
     imageHeight: number;
   };
   gallery?: readonly ProjectGalleryView[];
+  video?: {
+    src: string;
+    poster: string;
+    width: number;
+    height: number;
+    caption: string;
+    captionEn: string;
+  };
 };
 export const projects: readonly Project[] = [
   {
@@ -189,6 +197,59 @@ export const projects: readonly Project[] = [
     tags: ["UI/UX", "Refonte web", "Intégration"],
     url: "https://rolnelh.github.io/gozem-refonte/",
     note: "Refonte personnelle publiée sur GitHub Pages. Cette présentation ne revendique ni commande client ni affiliation officielle avec Gozem.",
+  },
+  {
+    slug: "fiacre-studio",
+    name: "Fiacre Studio",
+    category: "Portfolio de photographe · Maquette & développement",
+    summary:
+      "Un site pour présenter le travail d’un photographe, ses séances et faciliter la prise de rendez-vous.",
+    description:
+      "Fiacre Studio est le portfolio d’un photographe de portraits, en studio comme en extérieur. J’ai conçu la maquette puis développé le site : un hero qui installe l’univers, une vidéo des coulisses, un portfolio rangé en dossiers, les services proposés, les occasions couvertes, les avis clients et un parcours de réservation avec choix de la date et de l’heure. Le contact reste accessible partout, avec un bouton de réservation et un numéro WhatsApp.",
+    image: "/images/fiacre/carte.jpg",
+    imageAlt:
+      "Page d’accueil Fiacre Studio sur un ordinateur portable : photographe derrière son trépied et titre « Studio photo pour vos portraits »",
+    imageWidth: 848,
+    imageHeight: 636,
+    kind: "presentation",
+    tags: ["Next.js", "Tailwind CSS", "UI/UX", "Responsive"],
+    url: null,
+    video: {
+      src: "/images/fiacre/presentation.mp4",
+      poster: "/images/fiacre/video-poster.jpg",
+      width: 848,
+      height: 848,
+      caption: "Parcours complet du site, du hero à la prise de rendez-vous.",
+      captionEn: "A full walkthrough of the website, from the hero to booking a session.",
+    },
+    gallery: [
+      {
+        image: "/images/fiacre/maquette-complete.jpg",
+        imageWidth: 1080,
+        imageHeight: 1080,
+        title: "Toute la page d’accueil, de la maquette au site",
+        titleEn: "The whole homepage, from mockup to website",
+        imageAlt:
+          "Maquette complète Fiacre Studio : hero, coulisses, portfolio, services, occasions, à propos, avis clients, contact et pied de page",
+        imageAltEn:
+          "Full Fiacre Studio mockup: hero, behind the scenes, portfolio, services, occasions, about, client reviews, contact and footer",
+        caption: "Les sections s’enchaînent pour montrer le travail, les services puis inviter au contact.",
+        captionEn: "Sections flow from the work to the services, then invite visitors to get in touch.",
+      },
+      {
+        image: "/images/fiacre/reservation.jpg",
+        imageWidth: 848,
+        imageHeight: 636,
+        title: "Réserver une séance en quelques clics",
+        titleEn: "Booking a session in a few clicks",
+        imageAlt:
+          "Fenêtre « Prenez rendez-vous » de Fiacre Studio : calendrier de novembre et créneaux horaires",
+        imageAltEn:
+          "Fiacre Studio “Book an appointment” dialog: November calendar and time slots",
+        caption: "Le visiteur choisit un jour et un horaire, puis laisse ses coordonnées.",
+        captionEn: "Visitors pick a day and a time slot, then leave their details.",
+      },
+    ],
   },
   {
     "slug": "post",

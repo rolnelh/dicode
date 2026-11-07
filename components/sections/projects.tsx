@@ -1,83 +1,112 @@
 "use client";
-import { ProjectMockup } from "@/components/projects/project-mockup";
+// La section "Projets récents" : une rangée de cartes qui défile.
+// Chaque carte : l'image du projet, ses étiquettes dans une encoche en haut
+// à droite, un bouton flèche dans une encoche en bas à droite, puis le nom.
+// Les projets eux-mêmes sont dans lib/content.ts
+// Les styles sont dans app/styles/projects.css
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { useRef } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ProjectMockup } from "@/components/projects/project-mockup";
 import { projects, type Project } from "@/lib/content";
 import { useLanguage } from "@/components/language-provider";
 import { copy, getLocalizedProject } from "@/lib/localized-content";
-import { Sparks } from "@/components/ui/decorations";
-export function ProjectImage({
-  project,
-}: {
-  project: (typeof projects)[number];
-}) {
+
+// Utilisé par la page de détail d'un projet (app/projets/[slug]).
+export function ProjectImage({ project }: { project: Project }) {
   return <ProjectMockup project={project} />;
 }
-function ProjectCard({ project, mobile = false }: { project: Project; mobile?: boolean }) {
-  const Heading = mobile ? "h4" : "h3";
-  return (
-    <Link className="project-card" href={`/projets/${project.slug}`}>
-      <ProjectImage project={project} />
-      <div className="project-meta">
-        <div>
-          <Heading>{project.name}</Heading>
-          <p>{project.category}</p>
-        </div>
-        <span className="circle-arrow">
-          <ArrowUpRight size={22} />
-        </span>
-      </div>
-    </Link>
-  );
-}
+
+// Les visuels des cartes : de préférence un mockup complet (écran, tablette…)
+// pour que le projet reste lisible en entier. "position" recadre si besoin.
+const showcase: Record<string, { src: string; position?: string }> = {
+  baobab: { src: "/images/baobab-mockup-4x3.webp" },
+  "dicode-portfolio": { src: "/images/dicode-macbook-presentation.png" },
+  mefolio: { src: "/images/mefolio-tablette.webp" },
+  "baobab-app": { src: "/images/baobab-app/parcours.webp" },
+  lexpo: { src: "/images/lexpo.png" },
+  gozem: { src: "/images/gozem-sections-mosaic.png" },
+  "fiacre-studio": { src: "/images/fiacre/carte.jpg" },
+};
+
+// L'ordre d'affichage sur l'accueil (les projets non listés suivent).
+const homeOrder = ["baobab", "fiacre-studio", "dicode-portfolio", "mefolio", "baobab-app", "lexpo", "gozem"];
+const rank = (slug: string) => {
+  const i = homeOrder.indexOf(slug);
+  return i === -1 ? homeOrder.length : i;
+};
+
 export function Projects() {
   const { language } = useLanguage();
+  const en = language === "en";
   const text = copy[language].projects;
-  const localizedProjects = projects.map((project) =>
-    getLocalizedProject(project, language),
-  );
-  const webProjects = localizedProjects.filter((project) => project.platform !== "mobile");
-  const mobileProjects = localizedProjects.filter((project) => project.platform === "mobile");
+  const list = [...projects]
+    .sort((a, b) => rank(a.slug) - rank(b.slug))
+    .map((project) => getLocalizedProject(project, language));
+  const row = useRef<HTMLUListElement>(null);
+
+  // Fait défiler la rangée d'une carte vers la gauche (-1) ou la droite (1).
+  const scroll = (direction: number) => {
+    const el = row.current;
+    if (!el) return;
+    const card = el.querySelector("li");
+    const step = card ? card.getBoundingClientRect().width + 20 : el.clientWidth;
+    el.scrollBy({ left: direction * step, behavior: "smooth" });
+  };
+
   return (
-    <section id="projets" className="projects wrap section-anchor">
-      <div className="section-heading">
-        <div>
-          <p className="eyebrow">{text.eyebrow}</p>
-          <h2>
-            {text.title}
-            <Sparks />
-          </h2>
-        </div>
-        <span className="hand">{text.hand}</span>
-      </div>
-      <div className="project-grid">
-        {webProjects.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
-      {mobileProjects.length > 0 && (
-        <section id="projets-mobiles" className="mobile-projects section-anchor" aria-labelledby="mobile-projects-title">
-          <h3 id="mobile-projects-title">{text.mobileTitle}</h3>
-          <div className="project-grid">
-            {mobileProjects.map((project) => (
-              <ProjectCard key={project.slug} project={project} mobile />
-            ))}
+    <section id="projets" className="pj section-anchor">
+      <div className="wrap">
+        <div className="pj-head">
+          <h2>{text.title}</h2>
+          <div className="pj-arrows">
+            <button type="button" onClick={() => scroll(-1)} aria-label={en ? "Previous projects" : "Projets précédents"}>
+              <ArrowLeft size={18} />
+            </button>
+            <button type="button" onClick={() => scroll(1)} aria-label={en ? "Next projects" : "Projets suivants"}>
+              <ArrowRight size={18} />
+            </button>
           </div>
-        </section>
-      )}
-      <div className="project-bottom">
-        <p>
-          {text.bottom[0]}
-          <br />
-          {text.bottom[1]}
-        </p>
-        <Link className="orbit-cta" href="/contact">
-          <MessageCircle size={24} />
-          <span>
-            {text.question}
-            <br />
-            <strong>{text.talk}</strong>
-          </span>
+        </div>
+
+        <ul className="pj-row" ref={row}>
+          {list.map((project) => (
+            <li key={project.slug} className="pj-card">
+              <div className="pj-media">
+                <Link href={`/projets/${project.slug}`} tabIndex={-1} aria-hidden="true">
+                  <Image
+                    src={showcase[project.slug]?.src ?? project.cover ?? project.image}
+                    alt=""
+                    width={900}
+                    height={700}
+                    sizes="(max-width: 700px) 82vw, 380px"
+                    style={{ objectPosition: showcase[project.slug]?.position }}
+                  />
+                </Link>
+                {/* Les étiquettes, dans l'encoche du haut */}
+                <ul className="pj-tags">
+                  {project.tags.slice(0, 2).map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+                {/* Le bouton flèche, dans l'encoche du bas */}
+                <span className="pj-go">
+                  <Link href={`/projets/${project.slug}`} aria-label={`${text.discover} : ${project.name}`}>
+                    <ArrowUpRight size={20} />
+                  </Link>
+                </span>
+              </div>
+              <h3>
+                <Link href={`/projets/${project.slug}`}>{project.name}</Link>
+              </h3>
+              <p>{project.category}</p>
+            </li>
+          ))}
+        </ul>
+
+        <Link href="/contact" className="pj-cta">
+          {text.question} {text.talk}
         </Link>
       </div>
     </section>

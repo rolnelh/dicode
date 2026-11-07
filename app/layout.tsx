@@ -6,9 +6,17 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { site } from "@/lib/site";
 import "./globals.css";
+// Les styles des sections refaites, un fichier par section :
+import "./styles/header.css";
+import "./styles/hero.css";
+import "./styles/projects.css";
+import "./styles/services.css";
+import "./styles/project-detail.css";
+import "./styles/footer.css";
+import "./styles/about.css";
+import "./styles/articles.css";
 import { LanguageProvider } from "@/components/language-provider";
 import { SkipLink } from "@/components/skip-link";
-import { ResourceWidget } from "@/components/resource-widget";
 const sans = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -21,6 +29,10 @@ const hand = Caveat({
   variable: "--font-hand",
   display: "swap",
 });
+// Texte affiché sous l'image quand le lien est partagé (WhatsApp, LinkedIn, X…).
+const shareDescription =
+  "Design UX/UI et développement web & mobile : je conçois, refonds et fais évoluer vos sites, applications et interfaces SaaS.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -38,16 +50,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     siteName: site.name,
-    title: "Dicode · De votre idée à un site prêt pour vos clients",
-    description: site.description,
+    title: "Dicode · J’aide les startups et entrepreneurs à faire évoluer leurs produits numériques",
+    description: shareDescription,
     url: "/",
     images: [socialImage],
   },
   twitter: {
     card: "summary_large_image",
     images: [socialImage],
-    title: "Dicode · Développement web & SaaS",
-    description: site.description,
+    title: "Dicode · J’aide les startups et entrepreneurs à faire évoluer leurs produits numériques",
+    description: shareDescription,
   },
   icons: { icon: "/favicon.svg" },
 };
@@ -100,7 +112,6 @@ export default function RootLayout({
           <Header />
           <main id="contenu">{children}</main>
           <Footer />
-          <ResourceWidget />
         </LanguageProvider>
         <script
           type="application/ld+json"

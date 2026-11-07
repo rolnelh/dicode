@@ -42,6 +42,8 @@ export type Project = {
   summary: string;
   description: string;
   image: string;
+  /** Image affichée dans le carrousel de l'accueil (sinon on utilise "image"). */
+  cover?: string;
   imageAlt: string;
   imageWidth: number;
   imageHeight: number;
@@ -67,7 +69,39 @@ export type Project = {
 };
 export const projects: readonly Project[] = [
   {
+    slug: "baobab",
+    name: "Baobab",
+    category: "Site vitrine · Bandes dessinées",
+    summary:
+      "Des bandes dessinées pour tous, et des histoires qui vous ressemblent.",
+    description:
+      "Baobab présente des bandes dessinées pour les enfants comme pour les adultes, avec la possibilité de commander une BD personnalisée dont on devient le héros. L’accueil met en avant l’univers illustré, les BD disponibles et un parcours dédié aux parents.",
+    image: "/images/baobab-mockup.webp",
+    cover: "/images/baobab-accueil.webp",
+    imageAlt:
+      "Page d’accueil Baobab : « Des bandes dessinées pour tous » et une famille qui lit une BD sur un canapé",
+    imageWidth: 1672,
+    imageHeight: 941,
+    kind: "presentation",
+    tags: ["Site vitrine", "UI design", "Responsive"],
+    url: "https://baobab-bd.vercel.app/",
+    gallery: [
+      {
+        image: "/images/baobab-accueil.webp",
+        imageWidth: 1333,
+        imageHeight: 899,
+        imageAlt:
+          "Capture de la page d’accueil Baobab : titre, illustration de la famille et bande « Des mondes à explorer »",
+        imageAltEn:
+          "Baobab home page screenshot: headline, family illustration and the “Worlds to explore” band",
+        caption: "Page d’accueil · Titre, illustration et appels à l’action",
+        captionEn: "Home page · Headline, illustration and calls to action",
+      },
+    ],
+  },
+  {
     slug: "dicode-portfolio",
+    cover: "/images/dicode-macbook-presentation.png",
     name: "Dicode — Portfolio",
     category: "Portfolio personnel · Desktop & mobile",
     summary:
@@ -84,6 +118,7 @@ export const projects: readonly Project[] = [
   },
   {
     slug: "rynva",
+    cover: "/images/rynva-dashboard.png",
     name: "Rynva",
     category: "Interface créative · Dashboard",
     summary:
@@ -102,6 +137,7 @@ export const projects: readonly Project[] = [
   },
   {
     slug: "mefolio",
+    cover: "/images/mefolio-tablette.webp",
     name: "MeFolio",
     category: "Plateforme créative",
     summary: "Mettre les projets et le talent des créatifs au premier plan.",
@@ -123,7 +159,7 @@ export const projects: readonly Project[] = [
     summary:
       "Repenser un site de déménagement pour clarifier l’offre et la prise de contact.",
     description:
-      "À partir du site Déménagement Québec Signature, j’ai repensé la hiérarchie de la page d’accueil, la navigation et la présentation des services. L’étude ci-dessous compare le site d’origine à ma proposition visuelle.",
+      "À partir du site Déménagement Québec Signature, j’ai repensé la hiérarchie de la page d’accueil, la navigation et la présentation des services.",
     image: "/images/quebec-signature-hero.png",
     imageAlt:
       "Proposition de refonte Déménagement Québec Signature : hero bleu et jaune avec illustrations de déménagement",
@@ -158,6 +194,7 @@ export const projects: readonly Project[] = [
   },
   {
     slug: "lexpo",
+    cover: "/images/lexpo-hero.jpg",
     name: "L’Expo",
     category: "Galerie numérique · Artisans",
     summary:
@@ -172,7 +209,7 @@ export const projects: readonly Project[] = [
     kind: "screenshot",
     tags: ["React JS", "Tailwind CSS", "Laravel API"],
     url: "https://lexpo-gallery.vercel.app/",
-    note: "Captures réelles du site les 5 et 6 octobre 2026. L’accueil est présenté dans deux fenêtres superposées ; les autres pages et le dashboard sont visibles en grand ci-dessous. Les chiffres et témoignages du site source ne sont pas des résultats vérifiés ici.",
+    note: "Captures réelles du site les 5 et 6 octobre 2026. Les chiffres et témoignages du site source ne sont pas des résultats vérifiés ici.",
     gallery: lexpoGallery,
     secondaryImage: {
       image: "/images/lexpo-page.jpg",
@@ -207,6 +244,7 @@ export const projects: readonly Project[] = [
     description:
       "Fiacre Studio est le portfolio d’un photographe de portraits, en studio comme en extérieur. J’ai conçu la maquette puis développé le site : un hero qui installe l’univers, une vidéo des coulisses, un portfolio rangé en dossiers, les services proposés, les occasions couvertes, les avis clients et un parcours de réservation avec choix de la date et de l’heure. Le contact reste accessible partout, avec un bouton de réservation et un numéro WhatsApp.",
     image: "/images/fiacre/carte.jpg",
+    cover: "/images/fiacre/carte.jpg",
     imageAlt:
       "Page d’accueil Fiacre Studio sur un ordinateur portable : photographe derrière son trépied et titre « Studio photo pour vos portraits »",
     imageWidth: 848,
@@ -248,6 +286,37 @@ export const projects: readonly Project[] = [
           "Fiacre Studio “Book an appointment” dialog: November calendar and time slots",
         caption: "Le visiteur choisit un jour et un horaire, puis laisse ses coordonnées.",
         captionEn: "Visitors pick a day and a time slot, then leave their details.",
+      },
+    ],
+  },
+  {
+    slug: "baobab-app",
+    platform: "mobile",
+    name: "Baobab — Application",
+    category: "Application mobile · Lecture de BD",
+    summary: "L’univers Baobab dans la poche : choisir ses histoires, lire et télécharger ses BD.",
+    description:
+      "Les maquettes de l’application Baobab prolongent le site : connexion et création de compte, choix des catégories d’histoires, bibliothèque avec la progression de lecture, puis téléchargement des BD pour les lire sans connexion.",
+    image: "/images/baobab-app/parcours.webp",
+    imageAlt:
+      "Maquettes de l’application Baobab : choix des catégories, bibliothèque, téléchargement en cours et BD prête à lire hors connexion",
+    imageWidth: 1536,
+    imageHeight: 1024,
+    kind: "presentation",
+    tags: ["UI mobile", "Parcours utilisateur", "Lecture hors ligne"],
+    url: null,
+    note: "Maquettes d’interface de l’application mobile Baobab.",
+    gallery: [
+      {
+        image: "/images/baobab-app/connexion.webp",
+        imageWidth: 1315,
+        imageHeight: 1197,
+        title: "Se connecter ou créer son compte",
+        titleEn: "Sign in or create an account",
+        imageAlt: "Maquettes Baobab des écrans de connexion et de création de compte",
+        imageAltEn: "Baobab sign-in and account-creation screen mockups",
+        caption: "Connexion et inscription : un ton chaleureux, des champs clairs et un accès sans compte.",
+        captionEn: "Sign-in and sign-up: a warm tone, clear fields and access without an account.",
       },
     ],
   },

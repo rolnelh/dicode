@@ -1,141 +1,71 @@
 "use client";
+// Le pied de page : un seul bloc sombre, simple.
+//   Ligne 1 : logo + phrase + bouton de rendez-vous
+//   Ligne 2 : liens + réseaux sociaux
+//   Ligne 3 : copyright + e-mail
+// Les styles sont dans app/styles/footer.css
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { site } from "@/lib/site";
 import { useLanguage } from "@/components/language-provider";
 import { BrandIcon, type BrandName } from "@/components/ui/brand-icon";
+import { Logo } from "@/components/ui/logo";
+
+const socials: { name: BrandName; label: string; href: string }[] = [
+  { name: "linkedin", label: "LinkedIn", href: site.linkedin },
+  { name: "github", label: "GitHub", href: site.github },
+  { name: "dribbble", label: "Dribbble", href: site.dribbble },
+  { name: "threads", label: "Threads", href: site.threads },
+];
+
 export function Footer() {
   const { language } = useLanguage();
   const en = language === "en";
-  const socials: { name: string; icon: BrandName; url: string | null }[] = [
-    { name: "LinkedIn", icon: "linkedin", url: site.linkedin },
-    { name: "Threads", icon: "threads", url: site.threads },
-    { name: "Substack", icon: "substack", url: site.substack },
-    { name: "Dribbble", icon: "dribbble", url: site.dribbble },
-    { name: "GitHub", icon: "github", url: site.github },
+
+  const links = [
+    { href: "/#projets", label: en ? "Projects" : "Projets" },
+    { href: "/#services", label: "Services" },
+    { href: "/articles", label: "Articles" },
+    { href: "/contact", label: "Contact" },
   ];
+
   return (
-    <footer className="footer footer-studio wrap">
-      <div className="footer-studio-top">
+    <footer className="ft wrap">
+      <div className="ft-top">
         <div>
-          <Link href="/" className="wordmark">
-            Dicode<span>.</span>
+          <Link href="/" className="ft-logo" aria-label={en ? "Dicode, home" : "Dicode, accueil"}>
+            <Logo strokeWidth={7} />
           </Link>
-          <h2>
-            {en ? "An idea to build." : "Une idée à créer."}
-            <br />
-            <em>
-              {en
-                ? "A product to take further."
-                : "Un produit à faire grandir."}
-            </em>
-          </h2>
-          <a href={site.booking} className="button small">
-            Book a call <ArrowUpRight size={18} />
-          </a>
+          <p>{en ? "A website to create, rethink or finish." : "Un site à créer, repenser ou finaliser."}</p>
         </div>
-        <nav
-          className="footer-studio-nav"
-          aria-label={en ? "Explore Dicode" : "Explorer Dicode"}
-        >
-          <Link href="/#a-propos">↗ {en ? "About" : "À propos"}</Link>
-          <Link href="/#projets">↗ {en ? "Projects" : "Projets"}</Link>
-          <Link href="/#services">↗ Services</Link>
-          <Link href="/articles">↗ Articles</Link>
-          <Link href="/contact">↗ Contact</Link>
-          <a href={site.ebook} target="_blank" rel="noopener noreferrer">
-            ↗ {en ? "The ebook" : "L’ebook"}
-          </a>
-        </nav>
+        <a href={site.booking} className="ft-button">
+          {en ? "Book a call" : "Réserver un appel"} <ArrowUpRight size={16} />
+        </a>
       </div>
-      <div
-        className="footer-stack"
-        aria-label={
-          en
-            ? "Technologies I work with"
-            : "Les technologies avec lesquelles je travaille"
-        }
-      >
-        <p className="eyebrow">
-          {en ? "IN MY TOOLKIT" : "DANS MA BOÎTE À OUTILS"}
-        </p>
-        <ul className="stack-scene">
-          {[
-            ["react", "React"],
-            ["nextdotjs", "Next.js"],
-            ["typescript", "TypeScript"],
-            ["tailwindcss", "Tailwind CSS"],
-            ["laravel", "Laravel"],
-            ["github", "GitHub"],
-          ].map(([slug, name]) => (
-            <li className={`stack-tile stack-${slug}`} key={slug}>
-              <Image src={`/icons/${slug}.svg`} alt="" width={42} height={42} />
-              <span>{name}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="footer-contact-row">
-        <div>
-          <a href={`mailto:${site.email}`} className="footer-email">
-            {en ? "Let’s talk" : "Échangeons"} <ArrowUpRight size={22} />
-          </a>
-          <p>
-            {en
-              ? "A website to create, rethink or finish."
-              : "Un site à créer, repenser ou finaliser."}
-          </p>
-          <Link href="/contact" className="text-link">
-            {en ? "Prefer to write?" : "Vous préférez écrire ?"} ↗
-          </Link>
-        </div>
-        <div className="socials">
-          {socials.map((s) =>
-            s.url ? (
-              <a
-                key={s.icon}
-                href={s.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${s.name} · Dieudonné`}
-                title={s.name}
-              >
-                <BrandIcon name={s.icon} />
-              </a>
-            ) : (
-              <span
-                className="social-pending"
-                key={s.icon}
-                role="img"
-                aria-label={
-                  en
-                    ? "Substack · link coming soon"
-                    : "Substack · lien à renseigner"
-                }
-                title={
-                  en
-                    ? "Substack link coming soon"
-                    : "Lien Substack à renseigner"
-                }
-              >
-                <BrandIcon name={s.icon} />
-              </span>
-            ),
-          )}
-        </div>
-      </div>
-      <div className="footer-bottom">
+
+      <div className="ft-middle">
         <nav aria-label={en ? "Footer" : "Pied de page"}>
-          <Link href="/#services">Services</Link>
-          <Link href="/#projets">{en ? "Projects" : "Projets"}</Link>
-          <Link href="/articles">Articles</Link>
-          <Link href="/contact">Contact</Link>
+          {links.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+          <a href={site.ebook} target="_blank" rel="noopener noreferrer">
+            {en ? "The ebook" : "L’ebook"}
+          </a>
         </nav>
-        <Link href="/" className="wordmark">
-          Dicode.
-        </Link>
-        <span>© {new Date().getFullYear()} Dicode</span>
+        <div className="ft-socials">
+          {socials.map((s) => (
+            <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+              <BrandIcon name={s.name} />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div className="ft-bottom">
+        <span>© {new Date().getFullYear()} Dicode · {site.person}</span>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
       </div>
     </footer>
   );

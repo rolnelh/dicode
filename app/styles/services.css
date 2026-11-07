@@ -1,0 +1,221 @@
+/* ===== Section « Comment je travaille avec vous » (components/sections/services.tsx) ===== */
+/* Charte du logo : noir (--ink), blanc et vert citron (--lime). */
+
+.wk {
+  padding: 90px 0;
+}
+.wk-head {
+  max-width: 640px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+.wk h2 {
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+.wk-head p {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+/* --- 1. La piste : une pilule en dégradé blanc → citron --- */
+.wk-track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding: 14px 0;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #fafaf7 0%, #eef9b8 45%, var(--lime) 100%);
+  box-shadow: inset 0 0 0 1px rgba(20, 20, 25, 0.05);
+}
+.wk-track span {
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 10px 24px -10px rgba(20, 20, 25, 0.25);
+}
+.wk-track span.last {
+  background: var(--ink);
+  color: var(--lime);
+}
+
+/* --- 2. Les étapes, alignées sous les pastilles --- */
+.wk-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin: 34px 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+.wk-steps h3 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.wk-label {
+  margin-top: 4px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.wk-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.wk-tags li {
+  padding: 6px 14px;
+  background: #f1f1ee;
+  border-radius: 99px;
+  font-size: 0.8rem;
+}
+.wk-text {
+  max-width: 300px;
+  margin: 14px auto 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+/* --- 3. Les services --- */
+.wk-offer {
+  margin-top: 64px;
+  padding: 32px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 28px;
+}
+.wk-offer > h3 {
+  margin-bottom: 22px;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+.wk-offer ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.wk-offer li {
+  display: flex;
+  gap: 14px;
+  padding: 20px;
+  background: #1f1f26;
+  border: 1px solid #2c2c35;
+  border-radius: 20px;
+}
+.wk-offer-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--lime);
+  color: var(--ink);
+}
+.wk-offer h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.wk-offer p {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #b9b8c1;
+}
+.wk-offer-tags {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.75rem;
+  color: var(--lime);
+}
+
+.wk-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 28px;
+  margin-top: 30px;
+  font-size: 0.9rem;
+}
+.wk-footer > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.wk-footer svg {
+  color: var(--ink);
+}
+.wk-footer > span svg {
+  padding: 2px;
+  background: var(--lime);
+  border-radius: 50%;
+}
+.wk-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 14px;
+  font-weight: 500;
+}
+.wk-cta svg {
+  color: var(--lime);
+}
+.wk-cta:hover {
+  background: #2a2a33;
+}
+
+/* --- Tablette et mobile --- */
+@media (max-width: 900px) {
+  .wk-offer ul {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .wk {
+    padding: 64px 0;
+  }
+  /* Sur mobile, la piste est masquée : chaque étape devient une carte */
+  .wk-track {
+    display: none;
+  }
+  .wk-steps {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    text-align: left;
+  }
+  .wk-steps > li {
+    padding: 20px;
+    border-radius: 22px;
+    background: linear-gradient(120deg, #fafaf7, #f3fbd0);
+  }
+  .wk-tags {
+    justify-content: flex-start;
+  }
+  .wk-text {
+    margin-left: 0;
+  }
+  .wk-offer {
+    padding: 22px;
+  }
+}

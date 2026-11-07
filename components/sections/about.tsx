@@ -1,74 +1,186 @@
 "use client";
+// La section "À propos", en fiche de présentation :
+// la photo à gauche, une carte d'identité à droite (citation, nom, repères),
+// puis trois cartes : ce que j'apporte, mes langages et outils, ce que je réalise.
+// Les icônes des langages sont dans public/icons (voir ATTRIBUTION.md).
+// Les styles sont dans app/styles/about.css
 import Image from "next/image";
-import { ButtonLink } from "@/components/ui/button-link";
-import { Sparks } from "@/components/ui/decorations";
+import Link from "next/link";
+import { ArrowUpRight, Check, Quote } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
+import { BrandIcon, type BrandName } from "@/components/ui/brand-icon";
+import { site } from "@/lib/site";
+import { EbookButton } from "@/components/ebook-button";
+
+// Les langages et outils affichés avec leur icône (fichiers public/icons/<icon>.svg).
+const stack = [
+  { icon: "nextdotjs", name: "Next.js" },
+  { icon: "react", name: "React" },
+  { icon: "typescript", name: "TypeScript" },
+  { icon: "javascript", name: "JavaScript" },
+  { icon: "tailwindcss", name: "Tailwind CSS" },
+  { icon: "laravel", name: "Laravel" },
+  { icon: "php", name: "PHP" },
+  { icon: "mysql", name: "MySQL" },
+  { icon: "supabase", name: "Supabase" },
+  { icon: "figma", name: "Figma" },
+];
+
+// Mes réseaux sociaux (icônes dans public/icons).
+const socials: { name: BrandName; label: string; href: string }[] = [
+  { name: "linkedin", label: "LinkedIn", href: site.linkedin },
+  { name: "github", label: "GitHub", href: site.github },
+  { name: "dribbble", label: "Dribbble", href: site.dribbble },
+  { name: "threads", label: "Threads", href: site.threads },
+];
+
 export function About() {
   const { language } = useLanguage();
   const en = language === "en";
+
+  // Les repères de la carte d'identité.
+  const facts = en
+    ? [
+        { label: "Experience", value: "3+ years" },
+        { label: "Based in", value: "Benin" },
+        { label: "Languages", value: "French, English" },
+        { label: "Work", value: "Remote, worldwide" },
+      ]
+    : [
+        { label: "Expérience", value: "3+ ans" },
+        { label: "Basé au", value: "Bénin" },
+        { label: "Langues", value: "Français, anglais" },
+        { label: "Travail", value: "À distance, partout" },
+      ];
+
+  // Ce que j'apporte, en 3 points.
+  const values = en
+    ? [
+        "A clear offer, in the design and in the content",
+        "Pages that work just as well on mobile and desktop",
+        "AI-generated code picked up, fixed and finished",
+      ]
+    : [
+        "Une offre claire, dans le design comme dans les textes",
+        "Des pages qui fonctionnent aussi bien sur mobile que sur ordinateur",
+        "Du code généré par l’IA repris, corrigé et finalisé",
+      ];
+
+  // Ce que je réalise.
+  const work = en
+    ? ["Showcase websites", "Landing pages", "SaaS interfaces", "Redesigns", "Dashboards", "Mobile apps"]
+    : ["Sites vitrines", "Landing pages", "Interfaces SaaS", "Refontes", "Dashboards", "Apps mobiles"];
+
   return (
-    <section id="a-propos" className="about wrap section-space section-anchor">
-      <div className="portrait-wrap">
-        <div className="portrait">
-          <Image
-            src="/images/dieudonne.jpeg"
-            alt="Dieudonné Houndagnon"
-            width={1239}
-            height={1280}
-            sizes="(max-width: 700px) 90vw, 40vw"
-          />
+    <section id="a-propos" className="ab section-anchor">
+      <div className="wrap">
+        <div className="ab-head">
+          <h2>
+            {en ? "Building your product, " : "Développer votre produit, "}
+            <span>{en ? "understanding your business." : "comprendre votre activité."}</span>
+          </h2>
         </div>
-        <span className="hand portrait-note">
-          {en ? "The person behind Dicode." : "Le visage derrière Dicode."}
-        </span>
-        <Sparks />
-      </div>
-      <div className="about-copy">
-        <p className="eyebrow">{en ? "BEYOND THE CODE" : "AU-DELÀ DU CODE"}</p>
-        <h2>
-          {en ? "Building your product." : "Développer votre produit."}
-          <br />
-          <span className="about-accent">
-            {en ? "Understanding your business." : "Comprendre votre activité."}
-          </span>
-        </h2>
-        <p>
-          {en
-            ? "I’m Dieudonné Houndagnon, a web developer based in Benin with over three years of experience. Whether you’re starting from scratch, redesigning or finishing an existing project, I focus on making your website easy to use and your offer easy to understand."
-            : "Je suis Dieudonné Houndagnon, développeur web au Bénin avec plus de trois ans d’expérience. Je vous accompagne dans la création, la refonte ou la finalisation de votre projet, avec le même souci : rendre votre site agréable à utiliser et votre offre facile à comprendre."}
-        </p>
-        <p>
-          {en ? "I’m also a co-founder of " : "Je suis aussi cofondateur de "}
-          <a href="https://vibeango.com" className="text-link">
-            VibenGo
-          </a>
-          {en
-            ? ", where I handle marketing and acquisition. That experience shapes how I build: I consider what your visitors are looking for, what helps them take the next step and how your product fits into your business."
-            : ", où je m’occupe du marketing et de l’acquisition. Cette expérience nourrit ma façon de développer : je m’intéresse à ce que vos visiteurs cherchent, à ce qui les aide à avancer et à la place de votre produit dans votre activité."}
-        </p>
-        <ul className="about-values">
-          {(en
-            ? [
-                "Make your offer clear through design and content",
-                "Refine the experience across mobile and desktop",
-                "Pick up AI-generated code and finish the project",
-              ]
-            : [
-                "Clarifier votre offre dans le design et les contenus",
-                "Soigner les parcours sur mobile comme sur ordinateur",
-                "Reprendre le code généré par l’IA et finaliser le projet",
-              ]
-          ).map((v, i) => (
-            <li key={i}>
-              <span aria-hidden="true">0{i + 1}</span>
-              {v}
-            </li>
-          ))}
-        </ul>
-        <p className="hand signature">Dieudonné Houndagnon</p>
-        <ButtonLink href="/contact">
-          {en ? "Let’s talk about your project" : "Parlons de votre projet"} ↗
-        </ButtonLink>
+
+        <div className="ab-grid">
+          {/* La photo */}
+          <div className="ab-photo">
+            <Image
+              src="/images/dieudonne-photo.webp"
+              alt="Dieudonné Houndagnon"
+              width={1239}
+              height={1280}
+              sizes="(max-width: 800px) 90vw, 640px"
+            />
+          </div>
+
+          {/* La carte d'identité */}
+          <div className="ab-card ab-id">
+            <p className="ab-quote">
+              <Quote size={18} aria-hidden="true" />
+              {en
+                ? "Understand what your visitors are looking for, make your offer easy to grasp, then deliver a fast, reliable product."
+                : "Comprendre ce que vos visiteurs cherchent, rendre votre offre facile à saisir, puis livrer un produit rapide et fiable."}
+            </p>
+
+            <div className="ab-person">
+              <Image src="/images/dieudonne-avatar.webp" alt="" width={160} height={160} />
+              <div>
+                <strong>Dieudonné Houndagnon</strong>
+                <span>{en ? "Web developer & UI designer" : "Développeur web & designer UI"}</span>
+              </div>
+              <ul className="ab-socials" aria-label={en ? "My social networks" : "Mes réseaux sociaux"}>
+                {socials.map((social) => (
+                  <li key={social.name}>
+                    <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
+                      <BrandIcon name={social.name} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <dl className="ab-facts">
+              {facts.map((fact) => (
+                <div key={fact.label}>
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <p className="ab-bio">
+              {en
+                ? "I build showcase websites, landing pages and SaaS interfaces, mainly with Next.js, React and Laravel. Whether you’re starting from scratch, redesigning or finishing a project started with AI."
+                : "Je réalise des sites vitrines, des landing pages et des interfaces SaaS, principalement avec Next.js, React et Laravel. Que vous partiez de zéro, repensiez l’existant ou finalisiez un projet commencé avec l’IA."}
+            </p>
+
+            <div className="ab-actions">
+              <Link href="/contact" className="ab-button">
+                {en ? "Let’s talk about your project" : "Parlons de votre projet"} <ArrowUpRight size={16} />
+              </Link>
+              {/* Ouvre la fenêtre qui présente l'ebook */}
+              <EbookButton />
+            </div>
+          </div>
+        </div>
+
+        {/* Les trois cartes du bas */}
+        <div className="ab-bottom">
+          <div className="ab-card ab-values">
+            <h3>{en ? "What I bring" : "Ce que j’apporte"}</h3>
+            <ul>
+              {values.map((value) => (
+                <li key={value}>
+                  <span aria-hidden="true">
+                    <Check size={14} strokeWidth={2.5} />
+                  </span>
+                  {value}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="ab-card ab-stack">
+            <h3>{en ? "Languages & tools" : "Langages & outils"}</h3>
+            <ul>
+              {stack.map((tool) => (
+                <li key={tool.icon}>
+                  <Image src={`/icons/${tool.icon}.svg`} alt="" width={20} height={20} />
+                  {tool.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="ab-card ab-work">
+            <h3>{en ? "What I build" : "Ce que je réalise"}</h3>
+            <ul>
+              {work.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   );

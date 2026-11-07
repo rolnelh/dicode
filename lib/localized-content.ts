@@ -17,6 +17,24 @@ const englishProjects: Record<string, ProjectCopy> = {
     imageAlt:
       "Fiacre Studio homepage on a laptop: a photographer behind a tripod and the headline “Photo studio for your portraits”",
     tags: ["Next.js", "Tailwind CSS", "UI/UX", "Responsive"],
+  },  baobab: {
+    category: "Showcase website · Comics",
+    summary: "Comics for everyone, with stories that look like you.",
+    description:
+      "Baobab presents comics for children and adults alike, with the option to order a personalised comic where you become the hero. The home page highlights the illustrated universe, the available comics and a path designed for parents.",
+    imageAlt:
+      "Baobab home page: “Comics for everyone” and a family reading a comic on a sofa",
+    tags: ["Showcase website", "UI design", "Responsive"],
+  },
+  "baobab-app": {
+    category: "Mobile app · Comic reading",
+    summary: "The Baobab world in your pocket: pick your stories, read and download your comics.",
+    description:
+      "The Baobab app mockups extend the website: sign-in and account creation, choosing story categories, a library with reading progress, then downloading comics to read them offline.",
+    imageAlt:
+      "Baobab app mockups: category picker, library, download in progress and a comic ready to read offline",
+    tags: ["Mobile UI", "User journey", "Offline reading"],
+    note: "Interface mockups for the Baobab mobile app.",
   },
   post: {
     "category": "Mobile app · Prototype in progress",
@@ -63,7 +81,7 @@ const englishProjects: Record<string, ProjectCopy> = {
     summary:
       "Rethinking a moving company’s website to clarify its offer and contact paths.",
     description:
-      "Starting from the Déménagement Québec Signature website, I rethought homepage hierarchy, navigation and service presentation. The study below compares the original website with my visual proposal.",
+      "Starting from the Déménagement Québec Signature website, I rethought homepage hierarchy, navigation and service presentation.",
     imageAlt:
       "Déménagement Québec Signature redesign proposal: blue and yellow hero with moving illustrations",
     tags: ["Visual direction", "Web design", "Business website"],
@@ -78,7 +96,7 @@ const englishProjects: Record<string, ProjectCopy> = {
     imageAlt:
       "Actual screenshot of L’Expo’s homepage, a digital gallery for artisans",
     tags: ["React JS", "Tailwind CSS", "Laravel API"],
-    note: "Real site screenshots taken on 5 and 6 October 2026. The homepage appears in two overlapping windows; other pages and the dashboard are shown at a larger scale below. Source-site figures and testimonials have not been independently verified here.",
+    note: "Real site screenshots taken on 5 and 6 October 2026. Source-site figures and testimonials have not been independently verified here.",
   },
   gozem: {
     category: "Independent redesign · Before / after",
@@ -164,11 +182,12 @@ export const copy = {
   fr: {
     services: {
       eyebrow: "MES SERVICES",
-      title: ["Ce que je peux", "faire pour vous."],
+      title: ["Comment je travaille", "avec vous."],
       intro: [
-        "Créer votre site, repenser l’existant ou finaliser un projet.",
-        "Un accompagnement adapté à votre point de départ.",
+        "Trois étapes claires, des échanges à chaque moment clé,",
+        "et un accompagnement adapté à votre point de départ.",
       ],
+      offerTitle: "Ce que je peux faire pour vous",
       scope: "Un périmètre défini ensemble",
       communication: "Des échanges à chaque étape",
       contact: "Parlons de votre projet ↗",
@@ -180,21 +199,27 @@ export const copy = {
       steps: [
         {
           title: "On clarifie votre besoin",
+          label: "Étape 01 · Cadrage",
+          tags: ["Objectifs", "Fonctionnalités", "Budget & délais"],
           text: "Nous définissons vos objectifs, les fonctionnalités utiles, le budget et les délais.",
         },
         {
           title: "Je conçois et développe",
+          label: "Étape 02 · Création",
+          tags: ["Maquettes", "Design UI", "Développement"],
           text: "Vous validez la direction visuelle, puis je développe votre site avec des points réguliers.",
         },
         {
           title: "On teste et on lance",
+          label: "Étape 03 · Lancement",
+          tags: ["Tests mobile", "Mise en ligne", "Prise en main"],
           text: "Nous vérifions les parcours sur ordinateur et mobile avant la mise en ligne et la prise en main.",
         },
       ],
     },
     projects: {
       eyebrow: "SÉLECTION DE PROJETS",
-      title: "Des projets, des univers singuliers.",
+      title: "Projets récents",
       mobileTitle: "Projets mobiles",
       hand: "Un aperçu de mon univers.",
       bottom: [
@@ -281,11 +306,12 @@ export const copy = {
   en: {
     services: {
       eyebrow: "MY SERVICES",
-      title: ["What I can", "do for you."],
+      title: ["How I work", "with you."],
       intro: [
-        "Build your website, rethink what’s there or finish a project.",
-        "Support that meets you where you are.",
+        "Three clear steps, a conversation at every key moment,",
+        "and support that meets you where you are.",
       ],
+      offerTitle: "What I can do for you",
       scope: "A scope we define together",
       communication: "A conversation at every step",
       contact: "Let’s talk about your project ↗",
@@ -297,21 +323,27 @@ export const copy = {
       steps: [
         {
           title: "We clarify what you need",
+          label: "Step 01 · Scoping",
+          tags: ["Goals", "Features", "Budget & timeline"],
           text: "We define your goals, useful features, budget and timeline.",
         },
         {
           title: "I design and develop",
+          label: "Step 02 · Creation",
+          tags: ["Mockups", "UI design", "Development"],
           text: "You approve the visual direction, then I build your website with regular check-ins.",
         },
         {
           title: "We test and launch",
+          label: "Step 03 · Launch",
+          tags: ["Mobile testing", "Go live", "Handover"],
           text: "We check the desktop and mobile journeys before launch and handover.",
         },
       ],
     },
     projects: {
       eyebrow: "SELECTED PROJECTS",
-      title: "Different projects. Distinctive worlds.",
+      title: "Recent projects",
       mobileTitle: "Mobile projects",
       hand: "A glimpse into my world.",
       bottom: [

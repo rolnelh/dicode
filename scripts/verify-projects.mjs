@@ -12,7 +12,7 @@ async function readFile(file, encoding) {
   // Next.js server builds encode local image paths inside optimisation URLs.
   return typeof content === "string" ? content.replaceAll("%2F", "/") : content;
 }
-const slugs = ["baobab", "baobab-app", "dicode-portfolio", "rynva", "mefolio", "quebec-signature", "lexpo", "gozem", "post"];
+const slugs = ["baobab", "baobab-app", "dicode-portfolio", "rynva", "mefolio", "quebec-signature", "lexpo", "gozem", "fiacre-studio", "post"];
 const home = await readFile("out/index.html", "utf8");
 for (const slug of slugs) {
   assert.ok(home.includes(`/projets/${slug}`), `Accueil : lien ${slug}`);
@@ -31,9 +31,9 @@ assert.ok(gozem.includes("Refonte indépendante"));
 assert.ok(!gozem.includes("Découvrir MeFolio"));
 assert.ok(!expo.includes("Découvrir MeFolio"));
 const sitemap = await readFile("out/sitemap.xml", "utf8");
-assert.equal((sitemap.match(/<loc>/g) || []).length, 15);
+assert.equal((sitemap.match(/<loc>/g) || []).length, 16);
 for (const slug of slugs) assert.ok(sitemap.includes(`/projets/${slug}`));
-console.log("9 projets, 9 fiches, images et liens, 15 URL sitemap vérifiés.");
+console.log("10 projets, 10 fiches, images et liens, 16 URL sitemap vérifiés.");
 const mefolio = await readFile("out/projets/mefolio/index.html", "utf8");
 assert.ok(mefolio.includes("/images/mefolio-dashboard.png"));
 const quebec = await readFile(

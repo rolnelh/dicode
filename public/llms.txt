@@ -16,6 +16,7 @@
 - [MeFolio](/projets/mefolio) : plateforme créative.
 - [L’Expo](/projets/lexpo) : galerie numérique pour les artisans ; visuel de présentation repris du portfolio d’origine.
 - [Gozem](/projets/gozem) : concept de refonte indépendant, sans commande client ou affiliation officielle revendiquée.
+- [Fiacre Studio](/projets/fiacre-studio) : portfolio de photographe, de la maquette au développement, avec réservation de séance.
 
 
 ## Articles

@@ -80,6 +80,24 @@ export function ProjectDetail({ project }: { project: Project }) {
         </div>
       </section>
 
+      {/* Vidéo de présentation, si le projet en a une */}
+      {p.video && (
+        <figure className="project-video wrap">
+          <video
+            controls
+            muted
+            playsInline
+            preload="metadata"
+            poster={p.video.poster}
+            width={p.video.width}
+            height={p.video.height}
+          >
+            <source src={p.video.src} type="video/mp4" />
+          </video>
+          <figcaption>{en ? p.video.captionEn : p.video.caption}</figcaption>
+        </figure>
+      )}
+
       {/* ===== 2. Comment je l'ai conçu ===== */}
       {step && (
         <section className="pd-steps wrap">

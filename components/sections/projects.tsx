@@ -27,10 +27,11 @@ const showcase: Record<string, { src: string; position?: string }> = {
   "baobab-app": { src: "/images/baobab-app/parcours.webp" },
   lexpo: { src: "/images/lexpo.png" },
   gozem: { src: "/images/gozem-sections-mosaic.png" },
+  "fiacre-studio": { src: "/images/fiacre/carte.jpg" },
 };
 
 // L'ordre d'affichage sur l'accueil (les projets non listés suivent).
-const homeOrder = ["baobab", "dicode-portfolio", "mefolio", "baobab-app", "lexpo", "gozem"];
+const homeOrder = ["baobab", "fiacre-studio", "dicode-portfolio", "mefolio", "baobab-app", "lexpo", "gozem"];
 const rank = (slug: string) => {
   const i = homeOrder.indexOf(slug);
   return i === -1 ? homeOrder.length : i;

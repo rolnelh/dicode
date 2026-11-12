@@ -77,7 +77,7 @@ export function Projects() {
                 <Link href={`/projets/${project.slug}`} tabIndex={-1} aria-hidden="true">
                   <Image
                     src={showcase[project.slug]?.src ?? project.cover ?? project.image}
-                    alt=""
+                    alt={`${project.name} — ${project.category}`}
                     width={900}
                     height={700}
                     sizes="(max-width: 700px) 82vw, 380px"

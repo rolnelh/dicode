@@ -5,6 +5,7 @@ import { Poppins, Caveat } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { site } from "@/lib/site";
+import { homeSeo, jsonLd, personSchema, websiteSchema } from "@/lib/seo";
 import "./globals.css";
 // Les styles des sections refaites, un fichier par section :
 import "./styles/header.css";
@@ -36,10 +37,11 @@ const shareDescription =
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Dicode | Développeur web au Bénin · Sites & SaaS",
+    default: homeSeo.title,
     template: "%s | Dicode",
   },
-  description: site.description,
+  description: homeSeo.description,
+  applicationName: site.name,
   verification: {
     google: "_M81974KQb_dBv3rXZBgunEoqTN5dL7bHQHXkLisgRQ",
   },
@@ -73,37 +75,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const json = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": `${site.url}/#person`,
-        name: site.person,
-        alternateName: "Dicode",
-        url: site.url,
-        image: `${site.url}/images/dieudonne.jpeg`,
-        jobTitle: "Développeur web",
-        description: site.description,
-        knowsAbout: [
-          "Développement web",
-          "React",
-          "Next.js",
-          "TypeScript",
-          "Interfaces SaaS",
-        ],
-        sameAs: [site.github, site.linkedin, site.threads, site.dribbble],
-      },
-      {
-        "@type": "WebSite",
-        "@id": `${site.url}/#website`,
-        url: site.url,
-        name: "Dicode",
-        inLanguage: ["fr", "en"],
-        publisher: { "@id": `${site.url}/#person` },
-      },
-    ],
-  };
   return (
     <html lang="fr" className={`${sans.variable} ${hand.variable}`}>
       <body>
@@ -116,7 +87,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(json).replace(/</g, "\\u003c"),
+            __html: jsonLd(personSchema(), websiteSchema()),
           }}
         />
 

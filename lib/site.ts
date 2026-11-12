@@ -14,5 +14,5 @@ export const site = {
   whatsapp: "https://wa.me/2290166374586",
   ebook: "https://losrfvhm.mychariow.market/prd_p9cm1pqt",
   description:
-    "Dieudonné Houndagnon, développeur web au Bénin. Création de sites sur mesure, refonte et développement d’interfaces SaaS avec React et Next.js.",
+    "Dieudonné Houndagnon, développeur Front-End freelance basé à Cotonou (Bénin). Création de sites sur mesure, refonte et développement d’interfaces web avec React, Next.js et TypeScript, au Bénin et à distance.",
 };

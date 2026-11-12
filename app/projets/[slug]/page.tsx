@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { socialImage } from "@/lib/social-image";
 import { notFound } from "next/navigation";
 import { projects } from "@/lib/content";
 import { ProjectDetail } from "@/components/projects/project-detail";
+import { breadcrumbSchema, jsonLd, projectSchema, projectSeo } from "@/lib/seo";
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
+// L'image de partage de chaque projet est générée par opengraph-image.tsx (même dossier).
 export async function generateMetadata({
   params,
 }: {
@@ -14,17 +15,18 @@ export async function generateMetadata({
   const { slug } = await params;
   const p = projects.find((p) => p.slug === slug);
   if (!p) return {};
+  const { title, description } = projectSeo(p);
   return {
-    title: `${p.name} · ${p.category}`,
-    description: p.summary,
+    title,
+    description,
     alternates: { canonical: `/projets/${p.slug}` },
     openGraph: {
+      type: "article",
       title: `${p.name} | Dicode`,
-      description: p.summary,
+      description,
       url: `/projets/${p.slug}`,
-      images: [socialImage],
     },
-    twitter: { title: `${p.name} | Dicode`, description: p.summary, images: [socialImage] },
+    twitter: { title: `${p.name} | Dicode`, description },
   };
 }
 export default async function Project({
@@ -35,5 +37,17 @@ export default async function Project({
   const { slug } = await params;
   const p = projects.find((p) => p.slug === slug);
   if (!p) notFound();
-  return <ProjectDetail project={p} />;
+  const json = jsonLd(
+    projectSchema(p, p.cover ?? p.image),
+    breadcrumbSchema([
+      { name: "Accueil", path: "/" },
+      { name: p.name, path: `/projets/${p.slug}` },
+    ]),
+  );
+  return (
+    <>
+      <ProjectDetail project={p} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />
+    </>
+  );
 }

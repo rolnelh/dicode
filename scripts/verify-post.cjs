@@ -94,9 +94,11 @@ test('the built homepage, project route, sitemap and social image remain valid',
   assert.ok(detail.includes('pd-steps')); // carrousel des étapes de la page détail
   assert.equal((detail.match(/<h1(?:\s|>)/g) || []).length, 1);
   assert.match(detail, /rel="canonical"[^>]*\/projets\/post/);
-  assert.ok(detail.includes('/og/dicode-partage.png'));
+  assert.ok(detail.includes('/projets/post/opengraph-image')); // image de partage générée pour le projet
   assert.ok(detail.includes(post.image));
   assert.ok(sitemap.includes('/projets/post'));
-  assert.equal((sitemap.match(/<loc>/g) || []).length, 15);
+  // accueil, contact, articles + une URL par projet et par article
+  const articleCount = (fs.readFileSync(path.join(__dirname, '../lib/articles.ts'), 'utf8').match(/publishedAt/g) || []).length - 1;
+  assert.equal((sitemap.match(/<loc>/g) || []).length, 3 + projects.length + articleCount);
   assert.doesNotMatch(detail, /Découvrir Post|Vidmake|ngrok|exp:\/\//);
 });

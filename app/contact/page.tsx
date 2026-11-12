@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { socialImage } from "@/lib/social-image";
 import { ContactContent } from "@/components/contact/contact-content";
 export const metadata: Metadata = {
-  title: "Contact · Parlons de votre projet web",
+  title: "Contact · Développeur Front-End freelance",
   description:
-    "Présentez votre projet de création, refonte ou interface SaaS à Dieudonné Houndagnon, développeur web. Échangeons sur vos besoins et votre budget.",
+    "Un site à créer ou à refondre ? Écrivez à Dieudonné Houndagnon, développeur Front-End freelance à Cotonou (React, Next.js), disponible au Bénin et à distance.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Parlons de votre projet web | Dicode",

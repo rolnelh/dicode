@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { socialImage } from "@/lib/social-image";
 import { ArticleList } from "@/components/articles/article-list";
+import { articleCards } from "@/lib/articles";
 export const metadata: Metadata = {
-  title: "Articles · QA, VibenGo et développement web",
+  title: "Articles · Qualité web, QA et développement Front-End",
   description:
-    "Guides et perspectives sur les tests QA, VibenGo et la création de sites web avec ou sans IA.",
+    "Guides pratiques de Dieudonné Houndagnon, développeur Front-End : tests QA avant mise en ligne, VibenGo et création de sites web avec ou sans IA.",
   alternates: { canonical: "/articles" },
   twitter: {
     title: "Articles | Dicode",
@@ -20,5 +21,5 @@ export const metadata: Metadata = {
   },
 };
 export default function Articles() {
-  return <ArticleList />;
+  return <ArticleList cards={articleCards()} />;
 }

@@ -61,7 +61,7 @@ export function Hero() {
               width={shot.width}
               height={shot.height}
               sizes="(max-width: 700px) 92vw, 26vw"
-              priority={i === 1}
+              priority={i < 2} /* la 1re image est l’élément principal (LCP) : chargée en priorité */
             />
           </li>
         ))}

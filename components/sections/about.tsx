@@ -42,13 +42,13 @@ export function About() {
   const facts = en
     ? [
         { label: "Experience", value: "3+ years" },
-        { label: "Based in", value: "Benin" },
+        { label: "Based in", value: "Cotonou, Benin" },
         { label: "Languages", value: "French, English" },
         { label: "Work", value: "Remote, worldwide" },
       ]
     : [
         { label: "Expérience", value: "3+ ans" },
-        { label: "Basé au", value: "Bénin" },
+        { label: "Basé à", value: "Cotonou, Bénin" },
         { label: "Langues", value: "Français, anglais" },
         { label: "Travail", value: "À distance, partout" },
       ];
@@ -106,7 +106,7 @@ export function About() {
               <Image src="/images/dieudonne-avatar.webp" alt="" width={160} height={160} />
               <div>
                 <strong>Dieudonné Houndagnon</strong>
-                <span>{en ? "Web developer & UI designer" : "Développeur web & designer UI"}</span>
+                <span>{en ? "Front-End developer · UI/UX" : "Développeur Front-End · UI/UX"}</span>
               </div>
               <ul className="ab-socials" aria-label={en ? "My social networks" : "Mes réseaux sociaux"}>
                 {socials.map((social) => (

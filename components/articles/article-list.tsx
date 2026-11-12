@@ -1,14 +1,14 @@
 "use client";
 // La liste des articles (sur l'accueil en version courte, et sur la page /articles).
 // Chaque carte : une image, une petite étiquette de catégorie, le titre.
-// Les articles sont dans lib/articles.ts
+// Les articles sont dans lib/articles.ts ; la page passe seulement leurs titres (articleCards).
 // Les styles sont dans app/styles/articles.css
 import Link from "next/link";
 import { useLanguage } from "@/components/language-provider";
-import { articles } from "@/lib/articles";
+import type { ArticleCard } from "@/lib/articles";
 import { ArticleIllustration } from "./article-illustration";
 
-export function ArticleList({ compact = false }: { compact?: boolean }) {
+export function ArticleList({ compact = false, cards }: { compact?: boolean; cards: ArticleCard[] }) {
   const { language } = useLanguage();
   const en = language === "en";
   // Sur l'accueil le titre de section est un h2, sur la page /articles c'est le h1.
@@ -30,7 +30,7 @@ export function ArticleList({ compact = false }: { compact?: boolean }) {
       </div>
 
       <div className="blog-grid">
-        {articles.map((article) => {
+        {cards.map((article) => {
           const t = article[language];
           return (
             <Link key={article.slug} href={`/articles/${article.slug}`} className="blog-card">

@@ -465,3 +465,18 @@ export const articles: Article[] = [
 export function getArticle(slug: string): Article | undefined {
   return articles.find((article) => article.slug === slug);
 }
+
+/** Ce qu'il faut pour afficher une carte d'article : sans le texte complet,
+ *  pour ne pas l'envoyer dans le JavaScript du navigateur. */
+export type ArticleCard = {
+  slug: string;
+  fr: { title: string; category: string };
+  en: { title: string; category: string };
+};
+export function articleCards(): ArticleCard[] {
+  return articles.map((a) => ({
+    slug: a.slug,
+    fr: { title: a.fr.title, category: a.fr.category },
+    en: { title: a.en.title, category: a.en.category },
+  }));
+}

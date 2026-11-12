@@ -86,7 +86,7 @@
 .nav-lang button {
   border: 0;
   background: transparent;
-  color: #8a8990;
+  color: #5f5e66; /* contraste suffisant (WCAG AA) sur fond clair */
   font-size: 0.72rem;
   font-weight: 600;
   padding: 6px 10px;

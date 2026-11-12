@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { socialImage } from "@/lib/social-image";
 import { notFound } from "next/navigation";
 import { articles } from "@/lib/articles";
 import { site } from "@/lib/site";
 import { ArticleContent } from "@/components/articles/article-content";
+import { articleSchema, breadcrumbSchema, jsonLd } from "@/lib/seo";
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
 }
@@ -27,7 +27,6 @@ export async function generateMetadata({
       publishedTime: a.publishedAt,
       modifiedTime: a.updatedAt,
       authors: [site.person],
-      images: [socialImage],
     },
     twitter: { title: a.fr.title, description: a.fr.description },
   };
@@ -40,29 +39,21 @@ export default async function Article({
   const { slug } = await params;
   const a = articles.find((a) => a.slug === slug);
   if (!a) notFound();
-  const json = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: a.fr.title,
-    description: a.fr.description,
-    datePublished: a.publishedAt,
-    dateModified: a.updatedAt ?? a.publishedAt,
-    inLanguage: "fr",
-    mainEntityOfPage: `${site.url}/articles/${a.slug}`,
-    author: {
-      "@type": "Person",
-      name: site.person,
-      url: `${site.url}/#a-propos`,
-    },
-    publisher: { "@type": "Organization", name: site.name, url: site.url },
-  };
+  const json = jsonLd(
+    articleSchema(a),
+    breadcrumbSchema([
+      { name: "Accueil", path: "/" },
+      { name: "Articles", path: "/articles" },
+      { name: a.fr.title, path: `/articles/${a.slug}` },
+    ]),
+  );
   return (
     <>
       <ArticleContent slug={a.slug} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(json).replace(/</g, "\\u003c"),
+          __html: json,
         }}
       />
     </>

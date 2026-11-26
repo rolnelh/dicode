@@ -45,8 +45,18 @@ const floating = [
 ];
 
 // Les projets qui défilent dans l'écran (section épinglée).
-const screens = [
+// "tall" = page entière, qui défile à l'intérieur de l'écran.
+const screens: { slug: string; name: string; kind: string; src: string; w?: number; h?: number; tall?: boolean }[] = [
   { slug: "baobab", name: "Baobab", kind: "Site vitrine · Bandes dessinées", src: "/images/baobab-accueil.webp" },
+  {
+    slug: "fiacre-studio",
+    name: "Fiacre Studio",
+    kind: "Portfolio de photographe · Maquette & développement",
+    src: "/images/fiacre/page-complete.webp",
+    w: 538,
+    h: 2581,
+    tall: true,
+  },
   { slug: "mefolio", name: "MeFolio", kind: "Plateforme créative", src: "/images/mefolio-dashboard.png" },
   { slug: "lexpo", name: "L’Expo", kind: "Galerie numérique · Artisans", src: "/images/lexpo-hero.jpg" },
   { slug: "gozem", name: "Gozem", kind: "Refonte indépendante", src: "/images/gozem-after-hero.jpg" },
@@ -183,20 +193,31 @@ export function Maquette() {
         scrollTrigger: {
           trigger: q(".mq-projects")[0],
           start: "top top",
-          end: `+=${(screens.length + 1) * 80}%`,
+          end: `+=${(screens.length + 3) * 80}%`,
           scrub: 0.6,
           pin: true,
           invalidateOnRefresh: true,
         },
       });
+      // Chaque projet entre par le bas ; une page entière défile ensuite dans l'écran.
+      let t = 0;
       shots.forEach((shot, i) => {
-        if (i === 0) return;
-        pj.to(shots[i - 1], { yPercent: -30, duration: 1 }, i - 1)
-          .fromTo(shot, { y: 0, yPercent: 100 }, { yPercent: 0, duration: 1 }, i - 1)
-          .to(q(".mq-names-track"), { y: () => -i * box.offsetHeight, duration: 1 }, i - 1)
-          .to(q(".mq-count-track"), { yPercent: (-100 * i) / screens.length, duration: 1 }, i - 1);
+        if (i > 0) {
+          pj.to(shots[i - 1], { yPercent: -30, duration: 1 }, t)
+            .fromTo(shot, { y: 0, yPercent: 100 }, { yPercent: 0, duration: 1 }, t)
+            .to(q(".mq-names-track"), { y: () => -i * box.offsetHeight, duration: 1 }, t)
+            .to(q(".mq-count-track"), { yPercent: (-100 * i) / screens.length, duration: 1 }, t);
+          t += 1;
+        }
+        const tall = shot.querySelector<HTMLElement>(".mq-tall");
+        if (tall) {
+          pj.to(tall, { y: () => -(tall.offsetHeight - shot.offsetHeight), duration: 2.4, ease: "none" }, t + 0.1);
+          t += 2.6;
+        } else {
+          t += 0.3;
+        }
       });
-      const end = screens.length - 1;
+      const end = t - 0.2;
       pj.to(q(".mq-pj-head, .mq-pj-caption"), { opacity: 0, duration: 0.4 }, end + 0.2)
         // L'écran et la case du milieu sont tous deux centrés : seule l'échelle change.
         .to(device, { scale: () => center.offsetWidth / device.offsetWidth, duration: 1.2 }, end + 0.2)
@@ -406,7 +427,14 @@ export function Maquette() {
           <div className="mq-screens">
             {screens.map((s) => (
               <div key={s.slug} className="mq-screen">
-                <Image src={s.src} alt={`${s.name} — ${s.kind}`} width={1400} height={875} sizes="560px" />
+                <Image
+                  src={s.src}
+                  alt={`${s.name} — ${s.kind}`}
+                  width={s.w ?? 1400}
+                  height={s.h ?? 875}
+                  sizes="560px"
+                  className={s.tall ? "mq-tall" : undefined}
+                />
               </div>
             ))}
           </div>

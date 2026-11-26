@@ -506,6 +506,9 @@ html.lenis body {
   object-fit: cover;
   object-position: top;
 }
+.mq-screen img.mq-tall {
+  height: auto;
+}
 .mq-pj-caption {
   position: absolute;
   left: 0;

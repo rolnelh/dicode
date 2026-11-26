@@ -6,7 +6,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Check, Code2, MousePointer2, Search } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
@@ -16,12 +16,12 @@ import { site } from "@/lib/site";
 
 // --- Le titre, composé comme celui de la référence ---
 // "light" = mots de liaison en gris clair ; "pill" = petite vignette d'interface dans la ligne.
-type Word = { t: string; light?: boolean } | { pill: string; alt: string };
+type Word = { t: string; light?: boolean } | { obj: "cursor" | "code" };
 const title: Word[] = [
   { t: "J’aide", light: true },
   { t: "les", light: true },
   { t: "startups" },
-  { pill: "/images/hero/mefolio.webp", alt: "Interface MeFolio" },
+  { obj: "cursor" },
   { t: "et", light: true },
   { t: "entrepreneurs" },
   { t: "à", light: true },
@@ -31,7 +31,7 @@ const title: Word[] = [
   { t: "faire", light: true },
   { t: "évoluer", light: true },
   { t: "leurs", light: true },
-  { pill: "/images/hero/lexpo.webp", alt: "Interface L’Expo" },
+  { obj: "code" },
   { t: "produits" },
   { t: "numériques" },
 ];
@@ -43,11 +43,6 @@ const floating = [
   { src: "/images/hero/milka.webp", w: 1280, h: 853, cls: "f3", speed: -140 },
   { src: "/images/hero/essor.webp", w: 1152, h: 800, cls: "f4", speed: -80 },
 ];
-
-const manifesto =
-  "Vous avez le talent, les compétences et des clients qui vous font confiance. Mais sur Internet, vous êtes où ? Je conçois des sites et des produits qui vous ressemblent, et qui travaillent pour vous.";
-// Les mots mis en valeur dans le manifeste.
-const strong = new Set(["où", "?", "ressemblent,", "travaillent"]);
 
 // Les projets qui défilent dans l'écran (section épinglée).
 const screens = [
@@ -114,16 +109,28 @@ export function Maquette() {
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
 
+    let removeGo = () => {};
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(el);
 
       // 1. Arrivée : les mots montent depuis un masque, ligne après ligne.
       const intro = gsap.timeline({ defaults: { ease: "expo.out" } });
       intro
-        .from(q(".mq-eyebrow"), { y: 20, opacity: 0, duration: 0.8 })
-        .from(q(".mq-title .mq-w > span"), { yPercent: 110, duration: 1.2, stagger: 0.045 }, "<0.1")
+        .from(q(".mq-title .mq-w > span"), { yPercent: 110, duration: 1.2, stagger: 0.045 })
         .from(q(".mq-sub, .mq-hero-actions"), { y: 24, opacity: 0, duration: 1, stagger: 0.1 }, "-=0.8")
-        .from(q(".mq-float"), { opacity: 0, scale: 0.85, duration: 1.4, stagger: 0.08 }, "-=1.1");
+        .from(q(".mq-float"), { opacity: 0, scale: 0.85, duration: 1.4, stagger: 0.08 }, "-=1.1")
+        .from(q(".mq-cursor"), { opacity: 0, x: -30, y: 30, duration: 1, stagger: 0.2 }, "-=1");
+      // Les curseurs se baladent doucement.
+      gsap.to(q(".mq-cursor-a"), { x: 40, y: -24, duration: 3.2, ease: "sine.inOut", repeat: -1, yoyo: true });
+      gsap.to(q(".mq-cursor-b"), { x: -36, y: 20, duration: 2.7, ease: "sine.inOut", repeat: -1, yoyo: true });
+      // Le bouton "Voir mes projets" fait défiler en douceur.
+      const go = q('a[href="#mq-projets"]')[0];
+      const onGo = (e: Event) => {
+        e.preventDefault();
+        lenis.scrollTo(q(".mq-projects")[0] as HTMLElement, { duration: 1.6 });
+      };
+      go?.addEventListener("click", onGo);
+      removeGo = () => go?.removeEventListener("click", onGo);
 
       // 2. Le hero reste en place pendant que le rideau citron monte par-dessus.
       ScrollTrigger.create({
@@ -150,30 +157,33 @@ export function Maquette() {
         });
       });
 
-      // 3. Manifeste : les mots s'allument un à un.
-      gsap.to(q(".mq-manifesto .mq-m"), {
-        opacity: 1,
-        stagger: 0.1,
-        ease: "none",
-        scrollTrigger: { trigger: q(".mq-manifesto")[0], start: "top top", end: "+=140%", scrub: true, pin: true },
+      // 3. Le constat : la recherche ne trouve rien… puis votre site apparaît.
+      const scene = gsap.timeline({
+        defaults: { ease: "power2.out" },
+        scrollTrigger: { trigger: q(".mq-manifesto")[0], start: "top top", end: "+=160%", scrub: 0.6, pin: true },
       });
-      gsap.to(q(".mq-mark"), {
-        rotate: 360,
-        ease: "none",
-        scrollTrigger: { trigger: q(".mq-manifesto")[0], start: "top bottom", end: "bottom top", scrub: true },
-      });
+      scene
+        .fromTo(q(".mq-typed"), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", ease: "steps(14)", duration: 1 })
+        .fromTo(q(".mq-none"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 })
+        .to(q(".mq-none"), { opacity: 0, y: -10, duration: 0.4 }, "+=0.4")
+        .fromTo(q(".mq-site"), { opacity: 0, y: 60, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 1 })
+        .fromTo(q(".mq-found"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" })
+        .fromTo(q(".mq-chip"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.15 }, "<")
+        .fromTo(q(".mq-cursor-scene"), { opacity: 0, x: 120, y: 120 }, { opacity: 1, x: 0, y: 0, duration: 0.8 }, "<0.2")
+        .fromTo(q(".mq-man-note"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 }, "<");
 
-      // 4. Projets : l'écran change de projet, puis recule dans une mosaïque.
+      // 4. Projets : les écrans défilent dans le petit cadre, puis tout recule dans une mosaïque.
       const device = q(".mq-device")[0];
       const center = q(".mq-tile-center")[0];
       const shots = q(".mq-screen");
       const box = q(".mq-names")[0];
+      el.classList.add("mq-ready");
       const pj = gsap.timeline({
-        defaults: { ease: "power2.inOut" },
+        defaults: { ease: "power3.inOut" },
         scrollTrigger: {
           trigger: q(".mq-projects")[0],
           start: "top top",
-          end: `+=${(screens.length + 1) * 90}%`,
+          end: `+=${(screens.length + 1) * 80}%`,
           scrub: 0.6,
           pin: true,
           invalidateOnRefresh: true,
@@ -181,25 +191,19 @@ export function Maquette() {
       });
       shots.forEach((shot, i) => {
         if (i === 0) return;
-        pj.to(shot, { clipPath: "inset(0% 0% 0% 0%)", duration: 1 }, i - 1)
+        pj.to(shots[i - 1], { yPercent: -30, duration: 1 }, i - 1)
+          .fromTo(shot, { y: 0, yPercent: 100 }, { yPercent: 0, duration: 1 }, i - 1)
           .to(q(".mq-names-track"), { y: () => -i * box.offsetHeight, duration: 1 }, i - 1)
           .to(q(".mq-count-track"), { yPercent: (-100 * i) / screens.length, duration: 1 }, i - 1);
       });
       const end = screens.length - 1;
-      pj.to(q(".mq-pj-info"), { opacity: 0, y: -20, duration: 0.5 }, end + 0.2)
-        .to(
-          device,
-          {
-            // L'écran et la case du milieu sont tous deux centrés : seule l'échelle change.
-            scale: () => center.offsetWidth / device.offsetWidth,
-            duration: 1.2,
-          },
-          end + 0.2,
-        )
+      pj.to(q(".mq-pj-head, .mq-pj-caption"), { opacity: 0, duration: 0.4 }, end + 0.2)
+        // L'écran et la case du milieu sont tous deux centrés : seule l'échelle change.
+        .to(device, { scale: () => center.offsetWidth / device.offsetWidth, duration: 1.2 }, end + 0.2)
         .fromTo(
           q(".mq-tile:not(.mq-tile-center)"),
-          { opacity: 0, scale: 0.6 },
-          { opacity: 1, scale: 1, duration: 0.9, stagger: { each: 0.06, from: "center" } },
+          { opacity: 0, scale: 0.7 },
+          { opacity: 1, scale: 1, duration: 0.9, stagger: { each: 0.05, from: "center" } },
           end + 0.6,
         )
         .to(q(".mq-mosaic-label"), { opacity: 1, y: 0, duration: 0.5 }, end + 1.2);
@@ -263,6 +267,7 @@ export function Maquette() {
     }, el);
 
     return () => {
+      removeGo();
       ctx.revert();
       gsap.ticker.remove(tick);
       lenis.destroy();
@@ -286,15 +291,30 @@ export function Maquette() {
           </div>
         ))}
 
+        {/* Curseurs façon Figma : vous et moi, sur le même projet */}
+        <span className="mq-cursor mq-cursor-a" aria-hidden="true">
+          <MousePointer2 fill="currentColor" strokeWidth={1} />
+          <em>Vous</em>
+        </span>
+        <span className="mq-cursor mq-cursor-b" aria-hidden="true">
+          <MousePointer2 fill="currentColor" strokeWidth={1} />
+          <em>Dieudonné</em>
+        </span>
+
         <div className="mq-hero-inner">
-          <p className="mq-eyebrow">Développeur Front-End · UI/UX</p>
           <h1 className="mq-title">
             {title.map((w, i) =>
-              "pill" in w ? (
-                <span key={i} className="mq-w mq-w-pill" aria-hidden="true">
-                  <span className="mq-pill">
-                    <Image src={w.pill} alt="" width={560} height={360} sizes="160px" />
-                  </span>
+              "obj" in w ? (
+                <span key={i} className="mq-w mq-w-obj" aria-hidden="true">
+                  {w.obj === "cursor" ? (
+                    <span className="mq-obj mq-obj-cursor">
+                      <MousePointer2 strokeWidth={1.6} />
+                    </span>
+                  ) : (
+                    <span className="mq-obj mq-obj-code">
+                      <Code2 strokeWidth={1.8} />
+                    </span>
+                  )}
                 </span>
               ) : (
                 <span key={i} className={w.light ? "mq-w mq-light" : "mq-w"}>
@@ -307,43 +327,62 @@ export function Maquette() {
             De la première maquette au produit en ligne : des interfaces claires, sur un code solide, prêt à évoluer.
           </p>
           <div className="mq-hero-actions">
-            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="mq-btn mq-btn-ink">
-              <BrandIcon name="whatsapp" /> Discutons sur WhatsApp
+            <a href="#mq-projets" className="mq-btn mq-btn-ink">
+              Voir mes projets <ArrowDown size={16} />
             </a>
           </div>
         </div>
         <p className="mq-scroll-hint">Faites défiler</p>
       </section>
 
-      {/* ===== 2. Manifeste, sur le rideau citron ===== */}
+      {/* ===== 2. Le constat, en illustration ===== */}
       <section className="mq-manifesto">
-        <span className="mq-mark" aria-hidden="true">
-          <Logo variant="mark" strokeWidth={12} />
-        </span>
-        <p className="mq-kicker">Le constat</p>
-        <p className="mq-manifesto-text">
-          {manifesto.split(" ").map((word, i) => (
-            <span key={i} className={strong.has(word) ? "mq-m mq-m-strong" : "mq-m"}>
-              {word}{" "}
+        <div className="mq-wrap mq-man-grid">
+          <div className="mq-man-text">
+            <p className="mq-kicker">Le constat</p>
+            <h2 className="mq-h2">
+              Sur Internet, <span className="mq-light">vous êtes</span> où&nbsp;?
+            </h2>
+            <p className="mq-man-note">Je crée le site qui vous rend visible.</p>
+          </div>
+
+          <div className="mq-scene" aria-hidden="true">
+            <div className="mq-search">
+              <Search size={18} />
+              <span className="mq-typed">Votre activité</span>
+              <i className="mq-caret" />
+            </div>
+            <p className="mq-none">Aucun résultat</p>
+            <div className="mq-site">
+              <div className="mq-bar">
+                <span />
+                <span />
+                <span />
+                <b>votre-activite.com</b>
+              </div>
+              <Image src="/images/baobab-accueil.webp" alt="" width={1333} height={899} sizes="420px" />
+              <span className="mq-found">
+                <Check size={14} strokeWidth={3} /> Trouvé
+              </span>
+            </div>
+            <span className="mq-chip mq-chip-1">Clients</span>
+            <span className="mq-chip mq-chip-2">Visibilité</span>
+            <span className="mq-chip mq-chip-3">Confiance</span>
+            <span className="mq-cursor mq-cursor-scene">
+              <MousePointer2 fill="currentColor" strokeWidth={1} />
+              <em>Vous</em>
             </span>
-          ))}
-        </p>
+          </div>
+        </div>
       </section>
 
-      {/* ===== 3. Projets : écran épinglé puis mosaïque ===== */}
-      <section className="mq-projects">
-        <div className="mq-pj-info">
+      {/* ===== 3. Projets : petit écran au centre, puis mosaïque ===== */}
+      <section className="mq-projects" id="mq-projets">
+        <div className="mq-pj-head">
           <p className="mq-kicker mq-kicker-lime">Projets récents</p>
-          <div className="mq-count">
-            <span className="mq-count-box">
-              <span className="mq-count-track">
-                {screens.map((_, i) => (
-                  <span key={i}>{String(i + 1).padStart(2, "0")}</span>
-                ))}
-              </span>
-            </span>
-            <span className="mq-count-total">/ {String(screens.length).padStart(2, "0")}</span>
-          </div>
+          <h2 className="mq-pj-title">
+            Des interfaces <span className="mq-light">pensées pour</span> être utilisées
+          </h2>
         </div>
 
         <div className="mq-mosaic">
@@ -359,14 +398,21 @@ export function Maquette() {
         </div>
 
         <div className="mq-device">
-          {screens.map((s, i) => (
-            <div key={s.slug} className="mq-screen" style={i === 0 ? { clipPath: "inset(0% 0% 0% 0%)" } : undefined}>
-              <Image src={s.src} alt={`${s.name} — ${s.kind}`} width={1400} height={875} sizes="80vw" />
-            </div>
-          ))}
+          <div className="mq-bar">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="mq-screens">
+            {screens.map((s) => (
+              <div key={s.slug} className="mq-screen">
+                <Image src={s.src} alt={`${s.name} — ${s.kind}`} width={1400} height={875} sizes="560px" />
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="mq-pj-info mq-pj-bottom">
+        <div className="mq-pj-caption">
           <div className="mq-names">
             <div className="mq-names-track">
               {screens.map((s) => (
@@ -376,6 +422,24 @@ export function Maquette() {
                 </Link>
               ))}
             </div>
+          </div>
+          <div className="mq-pj-nav" aria-hidden="true">
+            <span>
+              <ArrowLeft size={14} />
+            </span>
+            <span className="mq-count">
+              <span className="mq-count-box">
+                <span className="mq-count-track">
+                  {screens.map((_, i) => (
+                    <span key={i}>{String(i + 1).padStart(2, "0")}</span>
+                  ))}
+                </span>
+              </span>
+              / {String(screens.length).padStart(2, "0")}
+            </span>
+            <span>
+              <ArrowRight size={14} />
+            </span>
           </div>
         </div>
 

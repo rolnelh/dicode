@@ -1,0 +1,733 @@
+/* ===== Maquette « défilement narratif » (components/maquette/maquette.tsx) ===== */
+/* Charte : noir --ink, citron --lime, crème. Police d'affichage : Plus Jakarta Sans. */
+
+/* La maquette a sa propre nav et sa propre fin : on masque celles du site. */
+body:has(.mq) .nav-wrap,
+body:has(.mq) .ft {
+  display: none;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.mq {
+  --ink: #141419;
+  --lime: #d5f82c;
+  --cream: #f4f4ef;
+  --soft: #b9b9c1;
+  --display: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: clip;
+}
+.mq-wrap {
+  width: min(1240px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+/* --- Éléments communs --- */
+.mq-w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+.mq-w > span {
+  display: inline-block;
+}
+.mq-light {
+  color: var(--soft);
+}
+.mq-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+}
+.mq-kicker::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.mq-kicker-lime {
+  color: var(--lime);
+}
+.mq-h2 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 4.6vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  margin: 0 0 24px;
+}
+.mq-h2 .mq-w {
+  margin-right: 0.22em;
+}
+.mq-sub {
+  max-width: 520px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #55545c;
+  margin: 0;
+}
+.mq-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border-radius: 99px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: transform 0.25s;
+}
+.mq-btn:hover {
+  transform: translateY(-2px);
+}
+.mq-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.mq-btn-ink {
+  background: var(--ink);
+  color: #fff;
+}
+.mq-btn-line {
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+}
+
+/* ===== 1. Hero ===== */
+.mq-hero {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  height: 100svh;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--cream);
+}
+.mq-nav {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1240px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+.mq-logo {
+  height: 28px;
+  width: auto;
+  color: var(--ink);
+}
+.mq-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 11px 22px;
+  border-radius: 99px;
+}
+.mq-hero-inner {
+  position: relative;
+  z-index: 3;
+  width: min(1180px, calc(100% - 32px));
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mq-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 99px;
+  margin: 0 0 30px;
+}
+.mq-eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lime);
+}
+.mq-title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 6.2vw, 6.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+  margin: 0 0 30px;
+}
+.mq-title .mq-w {
+  margin-right: 0.2em;
+}
+.mq-w-pill {
+  vertical-align: middle;
+}
+.mq-pill {
+  display: inline-block;
+  width: 1.6em;
+  height: 0.82em;
+  border-radius: 99px;
+  overflow: hidden;
+  transform: translateY(-0.04em);
+  box-shadow: 0 6px 18px rgba(20, 20, 25, 0.12);
+}
+.mq-pill img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% top;
+}
+.mq-hero-actions {
+  margin-top: 34px;
+}
+.mq-float {
+  position: absolute;
+  z-index: 2;
+  width: clamp(150px, 17vw, 280px);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(20, 20, 25, 0.16);
+}
+.mq-float img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.f1 {
+  top: 15%;
+  left: -2%;
+  rotate: -7deg;
+}
+.f2 {
+  top: 12%;
+  right: -3%;
+  rotate: 6deg;
+}
+.f3 {
+  bottom: 5%;
+  left: 7%;
+  rotate: 5deg;
+}
+.f4 {
+  bottom: 3%;
+  right: 6%;
+  rotate: -5deg;
+}
+.mq-scroll-hint {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #77767e;
+  margin: 0;
+}
+
+/* ===== 2. Manifeste ===== */
+.mq-manifesto {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px max(16px, calc((100% - 1180px) / 2));
+  background: var(--lime);
+  border-radius: 48px 48px 0 0;
+}
+.mq-manifesto-text {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4.4vw, 4.3rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  max-width: 1120px;
+  margin: 0;
+}
+.mq-m {
+  opacity: 0.16;
+}
+.mq-m-strong {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.12em;
+}
+.mq-mark {
+  position: absolute;
+  right: max(24px, calc((100% - 1240px) / 2));
+  top: 64px;
+  width: clamp(64px, 8vw, 120px);
+  color: var(--ink);
+}
+.mq-mark svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ===== 3. Projets ===== */
+.mq-projects {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--ink);
+  color: #fff;
+}
+.mq-pj-info {
+  position: absolute;
+  top: 40px;
+  left: max(16px, calc((100% - 1240px) / 2));
+  right: max(16px, calc((100% - 1240px) / 2));
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 4;
+}
+.mq-count {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 2.4rem;
+  letter-spacing: -0.04em;
+}
+.mq-count-box {
+  display: inline-block;
+  height: 1.1em;
+  overflow: hidden;
+  line-height: 1.1;
+}
+.mq-count-track {
+  display: flex;
+  flex-direction: column;
+}
+.mq-count-total {
+  font-size: 1rem;
+  color: #8a8992;
+}
+.mq-pj-bottom {
+  top: auto;
+  bottom: 36px;
+}
+.mq-names {
+  height: 92px;
+  overflow: hidden;
+}
+.mq-name {
+  height: 92px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+.mq-name strong {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+.mq-name span {
+  margin-top: 8px;
+  color: var(--lime);
+  font-size: 0.9rem;
+}
+.mq-device {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(80vw, 1000px, calc((100vh - 290px) * 1.6));
+  aspect-ratio: 16 / 10;
+  height: auto;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #222;
+  border: 6px solid #2a2a33;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+.mq-screen {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(100% 0% 0% 0%);
+}
+.mq-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.mq-mosaic {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(94vw, 1300px, calc((100vh - 72px) * 1.6 + 32px));
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  z-index: 2;
+}
+.mq-tile {
+  aspect-ratio: 16 / 10;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #22222a;
+  opacity: 0;
+}
+.mq-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mq-tile-center {
+  visibility: hidden;
+}
+.mq-mosaic-label {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #cfcfd6;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(10px);
+}
+.mq-mosaic-label a {
+  color: var(--lime);
+}
+
+/* ===== 4. Méthode ===== */
+.mq-process {
+  position: relative;
+  z-index: 2;
+  padding: 160px 0 120px;
+  background: var(--cream);
+}
+.mq-split {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
+  align-items: start;
+}
+.mq-sticky {
+  position: sticky;
+  top: 20vh;
+}
+.mq-process .mq-sub {
+  color: inherit;
+  opacity: 0.7;
+}
+.mq-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.mq-step {
+  background: #fff;
+  color: var(--ink);
+  border-radius: 28px;
+  padding: 36px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(20, 20, 25, 0.06);
+}
+.mq-step:nth-child(2) {
+  background: var(--lime);
+}
+.mq-step:nth-child(3) {
+  background: var(--ink);
+  color: #fff;
+}
+.mq-step-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: auto;
+}
+.mq-step-n {
+  font-family: var(--display);
+  font-size: 4.4rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+.mq-step h3 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: -0.04em;
+  margin: 40px 0 10px;
+}
+.mq-step p {
+  margin: 0 0 22px;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+.mq-step ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.mq-step ul li {
+  font-size: 0.8rem;
+  padding: 7px 14px;
+  border-radius: 99px;
+  border: 1px solid currentColor;
+  opacity: 0.85;
+}
+
+/* ===== 5. À propos ===== */
+.mq-about {
+  position: relative;
+  z-index: 2;
+  padding: 80px 0 200px;
+  background: var(--cream);
+}
+.mq-about-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 70px;
+  align-items: center;
+}
+.mq-photo {
+  border-radius: 28px;
+  overflow: hidden;
+}
+.mq-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.mq-about-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #55545c;
+  max-width: 560px;
+  margin: 0 0 34px;
+}
+.mq-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0;
+}
+.mq-facts div {
+  border-top: 1.5px solid var(--ink);
+  padding-top: 14px;
+}
+.mq-facts dt {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #77767e;
+}
+.mq-facts dd {
+  margin: 6px 0 0;
+  font-weight: 500;
+}
+
+/* ===== 6. Fin ===== */
+.mq-final {
+  position: relative;
+  z-index: 3;
+  margin-top: -60px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 16px 40px;
+  background: var(--lime);
+  border-radius: 48px 48px 0 0;
+}
+.mq-big {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(3.6rem, 15vw, 15rem);
+  letter-spacing: -0.065em;
+  line-height: 1;
+  margin: 0 0 44px;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+.mq-big span {
+  display: inline-block;
+}
+.mq-final-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.mq-foot {
+  margin-top: auto;
+  padding-top: 80px;
+  width: min(1240px, 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.85rem;
+}
+
+/* ===== Sans animation (prefers-reduced-motion) ===== */
+.mq-static .mq-m,
+.mq-static .mq-tile,
+.mq-static .mq-mosaic-label {
+  opacity: 1;
+}
+.mq-static .mq-projects {
+  height: auto;
+  padding: 140px 16px 60px;
+}
+.mq-static .mq-device,
+.mq-static .mq-pj-bottom,
+.mq-static .mq-count,
+.mq-static .mq-tile-center {
+  display: none;
+}
+.mq-static .mq-mosaic,
+.mq-static .mq-mosaic-label {
+  position: static;
+  transform: none;
+  margin: 0 auto 30px;
+}
+
+/* ===== Tablette et mobile ===== */
+@media (max-width: 900px) {
+  .mq-split,
+  .mq-about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .mq-sticky {
+    position: static;
+  }
+  .mq-step {
+    min-height: 0;
+  }
+  .mq-step h3 {
+    margin-top: 28px;
+  }
+  .mq-process {
+    padding: 110px 0 80px;
+  }
+}
+@media (max-width: 700px) {
+  .mq-hero {
+    align-items: flex-start;
+    padding-top: 120px;
+  }
+  .mq-title {
+    font-size: clamp(2.3rem, 10.5vw, 3.4rem);
+  }
+  .mq-eyebrow {
+    margin-bottom: 22px;
+  }
+  .mq-sub {
+    font-size: 0.98rem;
+  }
+  .mq-hero-actions {
+    margin-top: 24px;
+  }
+  .mq-float {
+    width: 40vw;
+  }
+  .f1,
+  .f2 {
+    display: none;
+  }
+  .f3 {
+    bottom: 4%;
+    left: -4%;
+  }
+  .f4 {
+    bottom: 2%;
+    right: -4%;
+  }
+  .mq-scroll-hint {
+    display: none;
+  }
+  .mq-manifesto {
+    border-radius: 32px 32px 0 0;
+    padding-top: 140px;
+  }
+  .mq-mark {
+    top: 40px;
+  }
+  .mq-device {
+    width: 90vw;
+    border-width: 4px;
+    border-radius: 14px;
+  }
+  .mq-mosaic {
+    gap: 8px;
+  }
+  .mq-tile {
+    border-radius: 10px;
+  }
+  .mq-names,
+  .mq-name {
+    height: 80px;
+  }
+  .mq-mosaic-label {
+    padding: 0 16px;
+  }
+  .mq-facts {
+    grid-template-columns: 1fr 1fr;
+  }
+  .mq-final {
+    border-radius: 32px 32px 0 0;
+  }
+  .mq-foot {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,931 @@
+/* ===== Maquette « défilement narratif » (components/maquette/maquette.tsx) ===== */
+/* Charte : noir --ink, citron --lime, crème. Police d'affichage : Plus Jakarta Sans. */
+
+/* La maquette a sa propre nav et sa propre fin : on masque celles du site. */
+body:has(.mq) .nav-wrap,
+body:has(.mq) .ft {
+  display: none;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.mq {
+  --ink: #141419;
+  --lime: #d5f82c;
+  --cream: #f4f4ef;
+  --soft: #b9b9c1;
+  --display: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: clip;
+}
+.mq-wrap {
+  width: min(1240px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+/* --- Éléments communs --- */
+.mq-w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+.mq-w > span {
+  display: inline-block;
+}
+.mq-light {
+  color: var(--soft);
+}
+.mq-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+}
+.mq-kicker::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.mq-kicker-lime {
+  color: var(--lime);
+}
+.mq-h2 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 4.6vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  margin: 0 0 24px;
+}
+.mq-h2 .mq-w {
+  margin-right: 0.22em;
+}
+.mq-sub {
+  max-width: 520px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #55545c;
+  margin: 0;
+}
+.mq-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border-radius: 99px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: transform 0.25s;
+}
+.mq-btn:hover {
+  transform: translateY(-2px);
+}
+.mq-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.mq-btn-ink {
+  background: var(--ink);
+  color: #fff;
+}
+.mq-btn-line {
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+}
+
+/* ===== 1. Hero ===== */
+.mq-hero {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  height: 100svh;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--cream);
+}
+.mq-nav {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1240px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+.mq-logo {
+  height: 28px;
+  width: auto;
+  color: var(--ink);
+}
+.mq-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 11px 22px;
+  border-radius: 99px;
+}
+.mq-hero-inner {
+  position: relative;
+  z-index: 3;
+  width: min(1180px, calc(100% - 32px));
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mq-title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 4.7vw, 4.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  max-width: 980px;
+  margin: 0 0 28px;
+}
+.mq-title .mq-w {
+  margin-right: 0.2em;
+}
+.mq-w-obj {
+  vertical-align: middle;
+}
+/* Les petits objets dans le titre */
+.mq-obj {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 0.86em;
+  border-radius: 99px;
+  transform: translateY(-0.05em);
+}
+.mq-obj svg {
+  width: 0.5em;
+  height: 0.5em;
+}
+.mq-obj-cursor {
+  background: var(--lime);
+  color: var(--ink);
+  rotate: -8deg;
+}
+.mq-obj-code {
+  background: var(--ink);
+  color: var(--lime);
+  rotate: 6deg;
+}
+/* Curseurs façon Figma */
+.mq-cursor {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: flex-start;
+  pointer-events: none;
+}
+.mq-cursor svg {
+  width: 22px;
+  height: 22px;
+}
+.mq-cursor em {
+  font-style: normal;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 4px 99px 99px 99px;
+  margin: 16px 0 0 -4px;
+  white-space: nowrap;
+}
+.mq-cursor-a {
+  top: 47%;
+  left: 8%;
+  color: #7b61ff;
+}
+.mq-cursor-a em {
+  background: #7b61ff;
+  color: #fff;
+}
+.mq-cursor-b {
+  bottom: 30%;
+  right: 20%;
+  color: var(--ink);
+}
+.mq-cursor-b em {
+  background: var(--lime);
+  color: var(--ink);
+}
+.mq-hero-actions {
+  margin-top: 34px;
+}
+.mq-float {
+  position: absolute;
+  z-index: 2;
+  width: clamp(150px, 17vw, 280px);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(20, 20, 25, 0.16);
+}
+.mq-float img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.f1 {
+  top: 15%;
+  left: -2%;
+  rotate: -7deg;
+}
+.f2 {
+  top: 12%;
+  right: -3%;
+  rotate: 6deg;
+}
+.f3 {
+  bottom: 5%;
+  left: 7%;
+  rotate: 5deg;
+}
+.f4 {
+  bottom: 3%;
+  right: 6%;
+  rotate: -5deg;
+}
+.mq-scroll-hint {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #77767e;
+  margin: 0;
+}
+
+/* ===== 2. Le constat ===== */
+.mq-manifesto {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  height: 100svh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  background: var(--lime);
+  border-radius: 48px 48px 0 0;
+  overflow: hidden;
+}
+.mq-man-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.mq-manifesto .mq-light {
+  color: rgba(20, 20, 25, 0.38);
+}
+.mq-man-note {
+  font-size: 1.1rem;
+  margin: 0;
+}
+.mq-scene {
+  position: relative;
+  height: 440px;
+}
+.mq-search {
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 22px;
+  background: #fff;
+  border-radius: 99px;
+  box-shadow: 0 14px 40px rgba(20, 20, 25, 0.1);
+  font-size: 1rem;
+}
+.mq-typed {
+  white-space: nowrap;
+}
+.mq-caret {
+  width: 2px;
+  height: 20px;
+  background: var(--ink);
+  margin-left: -8px;
+  animation: mq-blink 1s steps(1) infinite;
+}
+@keyframes mq-blink {
+  50% {
+    opacity: 0;
+  }
+}
+.mq-none {
+  position: absolute;
+  top: 78px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(20, 20, 25, 0.6);
+  margin: 0;
+}
+.mq-site {
+  position: absolute;
+  top: 92px;
+  left: 50%;
+  width: min(380px, 80%);
+  margin-left: max(-190px, -40%);
+  background: #fff;
+  border-radius: 16px;
+  overflow: visible;
+  box-shadow: 0 30px 70px rgba(20, 20, 25, 0.16);
+}
+.mq-site img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0 0 16px 16px;
+}
+.mq-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 28px;
+  padding: 0 12px;
+}
+.mq-bar span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #dcdcdf;
+}
+.mq-bar b {
+  margin-left: 10px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: #8a8992;
+}
+.mq-found {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--ink);
+  color: var(--lime);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 99px;
+}
+.mq-chip {
+  position: absolute;
+  background: #fff;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: 99px;
+  box-shadow: 0 10px 26px rgba(20, 20, 25, 0.08);
+}
+.mq-chip-1 {
+  top: 170px;
+  left: 0;
+}
+.mq-chip-2 {
+  top: 250px;
+  right: 0;
+}
+.mq-chip-3 {
+  bottom: 30px;
+  left: 14%;
+}
+.mq-cursor-scene {
+  bottom: 70px;
+  right: 18%;
+  color: var(--ink);
+}
+.mq-cursor-scene em {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* ===== 3. Projets ===== */
+.mq-projects {
+  --dev: min(42vw, 540px);
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--ink);
+  color: #fff;
+}
+.mq-pj-head {
+  position: absolute;
+  top: 9vh;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  text-align: center;
+}
+.mq-pj-head .mq-kicker {
+  margin-bottom: 14px;
+}
+.mq-pj-title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+.mq-projects .mq-light {
+  color: #6f6e78;
+}
+.mq-device {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: var(--dev);
+  height: calc(var(--dev) / 1.6 + 28px);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #1d1d24;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  z-index: 3;
+}
+.mq-device .mq-bar span {
+  background: #3a3a44;
+}
+.mq-screens {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.mq-screen {
+  position: absolute;
+  inset: 0;
+}
+/* Avant le chargement des animations, seul le premier écran est visible. */
+.mq-screen:not(:first-child) {
+  visibility: hidden;
+}
+.mq-root.mq-ready .mq-screen {
+  visibility: visible;
+}
+.mq-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.mq-screen img.mq-tall {
+  height: auto;
+}
+.mq-pj-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(50% + var(--dev) / 3.2 + 14px + 28px);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+.mq-names {
+  height: 54px;
+  overflow: hidden;
+}
+.mq-name {
+  height: 54px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+.mq-name strong {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+.mq-name span {
+  margin-top: 4px;
+  color: #8a8992;
+  font-size: 0.82rem;
+}
+.mq-pj-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.mq-pj-nav > span:not(.mq-count) {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--ink);
+}
+.mq-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: #8a8992;
+  font-variant-numeric: tabular-nums;
+}
+.mq-count-box {
+  display: inline-block;
+  height: 1.2em;
+  line-height: 1.2;
+  overflow: hidden;
+  color: #fff;
+}
+.mq-count-track {
+  display: flex;
+  flex-direction: column;
+}
+.mq-mosaic {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 112vw;
+  margin-left: -6vw;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  z-index: 2;
+}
+.mq-tile {
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #22222a;
+  opacity: 0;
+}
+.mq-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mq-tile-center {
+  visibility: hidden;
+}
+.mq-mosaic-label {
+  position: absolute;
+  bottom: 22px;
+  left: 16px;
+  right: 16px;
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  margin: 0 auto;
+  z-index: 4;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #fff;
+  background: rgba(20, 20, 25, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 10px 18px;
+  border-radius: 99px;
+  white-space: nowrap;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(10px);
+}
+.mq-mosaic-label a {
+  color: var(--lime);
+}
+
+/* ===== 4. Méthode ===== */
+.mq-process {
+  position: relative;
+  z-index: 2;
+  padding: 160px 0 120px;
+  background: var(--cream);
+}
+.mq-split {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
+  align-items: start;
+}
+.mq-sticky {
+  position: sticky;
+  top: 20vh;
+}
+.mq-process .mq-sub {
+  color: inherit;
+  opacity: 0.7;
+}
+.mq-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.mq-step {
+  background: #fff;
+  color: var(--ink);
+  border-radius: 28px;
+  padding: 36px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(20, 20, 25, 0.06);
+}
+.mq-step:nth-child(2) {
+  background: var(--lime);
+}
+.mq-step:nth-child(3) {
+  background: var(--ink);
+  color: #fff;
+}
+.mq-step-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: auto;
+}
+.mq-step-n {
+  font-family: var(--display);
+  font-size: 4.4rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+.mq-step h3 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: -0.04em;
+  margin: 40px 0 10px;
+}
+.mq-step p {
+  margin: 0 0 22px;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+.mq-step ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.mq-step ul li {
+  font-size: 0.8rem;
+  padding: 7px 14px;
+  border-radius: 99px;
+  border: 1px solid currentColor;
+  opacity: 0.85;
+}
+
+/* ===== 5. À propos ===== */
+.mq-about {
+  position: relative;
+  z-index: 2;
+  padding: 80px 0 200px;
+  background: var(--cream);
+}
+.mq-about-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 70px;
+  align-items: center;
+}
+.mq-photo {
+  border-radius: 28px;
+  overflow: hidden;
+}
+.mq-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.mq-about-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #55545c;
+  max-width: 560px;
+  margin: 0 0 34px;
+}
+.mq-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0;
+}
+.mq-facts div {
+  border-top: 1.5px solid var(--ink);
+  padding-top: 14px;
+}
+.mq-facts dt {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #77767e;
+}
+.mq-facts dd {
+  margin: 6px 0 0;
+  font-weight: 500;
+}
+
+/* ===== 6. Fin ===== */
+.mq-final {
+  position: relative;
+  z-index: 3;
+  margin-top: -60px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 16px 40px;
+  background: var(--lime);
+  border-radius: 48px 48px 0 0;
+}
+.mq-big {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(3.6rem, 15vw, 15rem);
+  letter-spacing: -0.065em;
+  line-height: 1;
+  margin: 0 0 44px;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+.mq-big span {
+  display: inline-block;
+}
+.mq-final-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.mq-foot {
+  margin-top: auto;
+  padding-top: 80px;
+  width: min(1240px, 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.85rem;
+}
+
+/* ===== Sans animation (prefers-reduced-motion) ===== */
+.mq-static .mq-none {
+  display: none;
+}
+.mq-static .mq-tile,
+.mq-static .mq-mosaic-label {
+  opacity: 1;
+}
+.mq-static .mq-projects {
+  height: auto;
+  padding: 140px 16px 60px;
+}
+.mq-static .mq-device,
+.mq-static .mq-pj-caption,
+.mq-static .mq-tile-center {
+  display: none;
+}
+.mq-static .mq-mosaic,
+.mq-static .mq-mosaic-label {
+  position: static;
+  transform: none;
+  margin: 0 auto 30px;
+}
+
+/* ===== Tablette et mobile ===== */
+@media (max-width: 900px) {
+  .mq-split,
+  .mq-about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .mq-sticky {
+    position: static;
+  }
+  .mq-step {
+    min-height: 0;
+  }
+  .mq-man-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .mq-scene {
+    height: 380px;
+  }
+  .mq-step h3 {
+    margin-top: 28px;
+  }
+  .mq-process {
+    padding: 110px 0 80px;
+  }
+}
+@media (max-width: 700px) {
+  .mq-hero {
+    align-items: flex-start;
+    padding-top: 120px;
+  }
+  .mq-title {
+    font-size: clamp(2.3rem, 10.5vw, 3.4rem);
+  }
+  .mq-sub {
+    font-size: 0.98rem;
+  }
+  .mq-hero-actions {
+    margin-top: 24px;
+  }
+  .mq-float {
+    width: 40vw;
+  }
+  .f1,
+  .f2 {
+    display: none;
+  }
+  .f3 {
+    bottom: 4%;
+    left: -4%;
+  }
+  .f4 {
+    bottom: 2%;
+    right: -4%;
+  }
+  .mq-scroll-hint {
+    display: none;
+  }
+  .mq-manifesto {
+    border-radius: 32px 32px 0 0;
+  }
+  .mq-projects {
+    --dev: 84vw;
+  }
+  .mq-pj-head {
+    top: 12vh;
+    padding: 0 16px;
+  }
+  .mq-mosaic {
+    gap: 6px;
+  }
+  .mq-tile {
+    border-radius: 8px;
+  }
+  .mq-mosaic-label {
+    white-space: normal;
+    border-radius: 16px;
+  }
+  /* Sur mobile, les curseurs gêneraient la lecture du titre */
+  .mq-cursor-a,
+  .mq-cursor-b {
+    display: none;
+  }
+  .mq-facts {
+    grid-template-columns: 1fr 1fr;
+  }
+  .mq-final {
+    border-radius: 32px 32px 0 0;
+  }
+  .mq-foot {
+    flex-direction: column;
+  }
+}
